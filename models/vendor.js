@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 const vendorSchema = new Schema({
   companyName: { type: String, required: true },
-  companyAddress: { type: String, required: true },
-  companyDescription: { type: String, required: true },
-  companyLogo: { type: String, required: true },
-  companyContacts: { type: String, required: true },
+  companyAddress: { type: String, },
+  companyDescription: { type: String },
+  companyLogo: { type: String },
+  companyContacts: { type: String },
 });
 
 const Vendor = mongoose.model("Vendor", vendorSchema);

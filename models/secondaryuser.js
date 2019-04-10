@@ -8,14 +8,15 @@ const secondaryUserSchema = new Schema({
       ref: "User"
     }
   ],
-  petTag: { type: String, required: true },
+  petTag: { type: String },
+  petType: { type: String, required: true },
   petName: { type: String, required: true },
   petBreed: { type: String, required: true },
   petAge: { type: String, required: true },
   petWeigth: { type: String, required: true },
-  petBehaviour: { type: String, required: true },
-  petVaccines: { type: String, required: true },
-  petNotes: { type: String, required: true },
+  petBehaviour: { type: String },
+  petVaccines: { type: String },
+  petNotes: { type: String },
 });
 
 const SecondaryUser = mongoose.model("SecondaryUser", secondaryUserSchema);

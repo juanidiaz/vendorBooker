@@ -12,10 +12,10 @@ const serviceSchema = new Schema({
   description: { type: String, required: true },
   duration: { type: Number, required: true },
   price: { type: Number, required: true },
-  specialPrice: { type: Number, required: true },
-  cost: { type: Number, required: true },
-  images: { type: String, required: true },
-  notes: { type: String, required: true },
+  specialPrice: { type: Number },
+  cost: { type: Number },
+  images: { type: String },
+  notes: { type: String },
 });
 
 const Service = mongoose.model("Service", serviceSchema);

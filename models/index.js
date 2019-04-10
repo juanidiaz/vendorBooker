@@ -5,5 +5,4 @@ module.exports = {
   Service: require("./service"),
   Vendor: require("./vendor"),
   Notification: require("./notification"),
-  Book: require("./book"),
 };
