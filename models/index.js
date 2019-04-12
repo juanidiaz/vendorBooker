@@ -1,3 +1,8 @@
 module.exports = {
-  Book: require("./book")
+  User: require("./user"),
+  SecondaryUser: require("./secondaryuser"),
+  Calendar: require("./calendar"),
+  Service: require("./service"),
+  Vendor: require("./vendor"),
+  Notification: require("./notification"),
 };
