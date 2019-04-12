@@ -10,7 +10,7 @@ const serviceSchema = new Schema({
   ],
   name: { type: String, required: true },
   description: { type: String, required: true },
-  duration: { type: Number, required: true },
+  duration: { type: Number, default: 90 },
   price: { type: Number, required: true },
   specialPrice: { type: Number },
   cost: { type: Number },
