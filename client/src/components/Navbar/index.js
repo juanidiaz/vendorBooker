@@ -28,7 +28,7 @@ function Navbar() {
               to="/discover"
               className={window.location.pathname === "/discover" ? "nav-link active" : "nav-link"}
             >
-              Discover
+              Book Appointment
             </Link>
           </li>
           <li className="nav-item">
@@ -36,8 +36,9 @@ function Navbar() {
               to="/search"
               className={window.location.pathname === "/search" ? "nav-link active" : "nav-link"}
             >
-              Search
+              Client Login
             </Link>
+   
           </li>
         </ul>
       </div>
