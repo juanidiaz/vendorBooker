@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-function Hero(props) {
+function Background(props) {
   return (
     <div className="hero text-center" style={{ backgroundImage: `url(${props.backgroundImage})` }}>
       {props.children}
@@ -9,4 +9,4 @@ function Hero(props) {
   );
 }
 
-export default Hero;
+export default Background;
