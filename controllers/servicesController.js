@@ -6,25 +6,15 @@ module.exports = {
     return db.Service.find({});
   },
   findById: (id) => {
-    return db.Service.findById({_id: id})
+    return db.Service.findById({_id: id}); 
   },
-  create: function(req, res) {
-    db.Service
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+  create: (newService) => {
+    return db.Service.create(newService);
   },
-  update: function(req, res) {
-    db.Service
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+  deleteOne: (id) => {
+    return db.Service.findOneAndDelete({_id: id});
   },
-  remove: function(req, res) {
-    db.Service
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+  updateOne: (id, updateInfo) => {
+    return db.Service.findOneAndUpdate({ _id: id }, updateInfo);
   }
 };

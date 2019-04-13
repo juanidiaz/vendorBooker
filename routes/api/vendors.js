@@ -1,17 +1,17 @@
 const router = require("express").Router();
-const users = require("../../controllers/usersController");
+const vendors = require("../../controllers/vendorsController");
 
-// Matches with "/api/users"
+// Matches with "/api/vendors"
 router.route("/")
-    .get((req, res) => { // get ALL users from database
-        users.findAll()
+    .get((req, res) => { // get ALL vendors from database
+        vendors.findAll()
             .then((data) => {
                 res.send(data)
             })
             .catch(err => res.status(422).json(err));
     })
-    .post((req, res) => { // add ONE user to database
-        users.create(req.body)
+    .post((req, res) => { // add ONE vendor to database
+        vendors.create(req.body)
             .then((data) => {
                 res.send(data)
             })
@@ -19,25 +19,25 @@ router.route("/")
     });
 
 
-// Matches with "/api/users/:id"
+// Matches with "/api/vendors/:id"
 router
     .route("/:id")
-    .get((req, res) => { // get ONE user from database
-        users.findById(req.params.id)
+    .get((req, res) => { // get ONE vendor from database
+        vendors.findById(req.params.id)
             .then((data) => {
                 res.send(data)
             })
             .catch(err => res.status(422).json(err));
     })
-    .put((req, res) => { // update ONE user from database
-        users.updateOne(req.params.id, req.body)
+    .put((req, res) => { // update ONE vendor from database
+        vendors.updateOne(req.params.id, req.body)
             .then((data) => {
                 res.send(data)
             })
             .catch(err => res.status(422).json(err));
     })
-    .delete((req, res) => { // delete ONE user from database
-        users.deleteOne(req.params.id)
+    .delete((req, res) => { // delete ONE vendor from database
+        vendors.deleteOne(req.params.id)
             .then((data) => {
                 res.send(data)
             })
