@@ -11,8 +11,7 @@
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build",
-    "seed": "node scripts/seedDB.js"
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -22,14 +21,19 @@
     "react-hot-loader": "^4.8.3"
   },
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "mongoose": "^5.5.0",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8",
+    "react-hot-loader": "^4.8.3",
     "react-router-dom": "^5.0.0",
-    "react-hot-loader": "^4.8.3"
+    "react-scripts": "2.1.8",
+    "typescript": "^3.4.3"
   }
 }

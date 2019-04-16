@@ -1,6 +1,7 @@
 import React from "react";
 import Background from "../components/Background";
 import Container from "../components/Container";
+import Carousel from '../components/Carousel'
 import Row from "../components/Row";
 import Col from "../components/Col";
 
@@ -11,6 +12,10 @@ function About() {
         <h1>Amazing Pet Grooming</h1>
         <h2>We are the best in Canada!</h2>
       </Background>
+      xxxxxxxxxxx
+      <Carousel>
+        </Carousel>
+        yyyyyy
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-12">
@@ -20,8 +25,8 @@ function About() {
         <Row>
           <Col size="md-12">
             <p>
-              With over 18 years of experience, you can be sure that your dogs and cats are in good hands. 
-              Our open concept allows you to watch your dogs and/or cat to be pampered with love. 
+              With over 18 years of experience, you can be sure that your dogs and cats are in good hands.
+              Our open concept allows you to watch your dogs and/or cat to be pampered with love.
               Our environment provides your pets with a unique experience, free from stress.
             </p>
             <p>
@@ -34,6 +39,7 @@ function About() {
             </p>
           </Col>
         </Row>
+
       </Container>
     </div>
   );
