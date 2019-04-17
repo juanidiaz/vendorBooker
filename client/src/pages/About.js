@@ -1,7 +1,8 @@
 import React from "react";
 import Background from "../components/Background";
 import Container from "../components/Container";
-import Carousel from '../components/Carousel'
+import Carousel from '../components/Carousel';
+import Button from 'react-bootstrap/Button';
 import Row from "../components/Row";
 import Col from "../components/Col";
 
@@ -12,10 +13,9 @@ function About() {
         <h1>Amazing Pet Grooming</h1>
         <h2>We are the best in Canada!</h2>
       </Background>
-      xxxxxxxxxxx
-      <Carousel>
-        </Carousel>
-        yyyyyy
+      XXXXXXXXXXX
+      <Carousel />
+      yyyyyy
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-12">
