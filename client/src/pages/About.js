@@ -1,7 +1,7 @@
 import React from "react";
 import Background from "../components/Background";
 import Container from "../components/Container";
-import Carousel from '../components/Carousel';
+import NewService from '../components/Services/NewService';
 import Button from 'react-bootstrap/Button';
 import Row from "../components/Row";
 import Col from "../components/Col";
@@ -14,7 +14,7 @@ function About() {
         <h2>We are the best in Canada!</h2>
       </Background>
       XXXXXXXXXXX
-      <Carousel />
+      <NewService />
       yyyyyy
       <Container style={{ marginTop: 30 }}>
         <Row>
