@@ -30,32 +30,71 @@ export default {
   },
 
   ///////////////////////
+  // About: USERS
 
-  // Gets all books
-  getBooks: function () {
-    return axios.get("/api/books");
+  // Get ALL users
+  getUsers: () => {
+    return axios.get("/api/users");
   },
-  // Gets the book with the given id
-  getBook: function (id) {
-    return axios.get("/api/books/" + id);
+
+  // Save ONE user
+  addUser: (newUser) => {
+    return axios.post("/api/users", newUser);
   },
-  // Deletes the book with the given id
-  deleteBook: function (id) {
-    return axios.delete("/api/books/" + id);
+
+  // Get ONE user by ID
+  getUser: (id) => {
+    return axios.get("/api/users/" + id);
   },
-  // Saves a book to the database
-  saveBook: function (bookData) {
-    return axios.post("/api/books", bookData);
-  }
+
+  // Update ONE user by ID
+  uptadeUser: (id) => {
+    return axios.put("/api/users/" + id);
+  },
+
+  // Delete ONE user by ID
+  dalateUser: (id) => {
+    return axios.delete("/api/users/" + id);
+  },
+
+  ///////////////////////
+  // About: CALENDAR EVENTS
+
+  // Get ALL calendar events
+  getCalendars: () => {
+    return axios.get("/api/calendars");
+  },
+
+  // Save ONE calendar event
+  addCalendar: (newCalendar) => {
+    return axios.post("/api/calendars", newCalendar);
+  },
+
+  // Get ONE calendar event by ID
+  getCalendar: (id) => {
+    return axios.get("/api/calendars/" + id);
+  },
+
+  // Update ONE calendar event by ID
+  uptadeCalendar: (id) => {
+    return axios.put("/api/calendars/" + id);
+  },
+
+  // Delete ONE calendar event by ID
+  dalateCalendar: (id) => {
+    return axios.delete("/api/calendars/" + id);
+  },
+
+  ///////////////////////
 };
 
 /*            --- API PATHS ---
 
-/api/users         GET      get ALL Users
-/api/users         POST     add ONE User
-/api/users/:id     GET      get ONE User
-/api/users/:id     PUT      update ONE User
-/api/users/:id     DELETE   delete ONE User
+/api/users            GET      get ALL Users
+/api/users            POST     add ONE User
+/api/users/:id        GET      get ONE User
+/api/users/:id        PUT      update ONE User
+/api/users/:id        DELETE   delete ONE User
 
 /api/secusers         GET      get ALL Secondary users (pets)
 /api/secusers         POST     add ONE Secondary users (pets)
@@ -69,17 +108,17 @@ export default {
 /api/services/:id     PUT      update ONE Service
 /api/services/:id     DELETE   delete ONE Service
 
-/api/vendor         GET      get ALL Vendors
-/api/vendor         POST     add ONE Vendor
-/api/vendor/:id     GET      get ONE Vendor
-/api/vendor/:id     PUT      update ONE Vendor
-/api/vendor/:id     DELETE   delete ONE Vendor
+/api/vendor           GET      get ALL Vendors
+/api/vendor           POST     add ONE Vendor
+/api/vendor/:id       GET      get ONE Vendor
+/api/vendor/:id       PUT      update ONE Vendor
+/api/vendor/:id       DELETE   delete ONE Vendor
 
-/api/calendars         GET      get ALL Calendar events
-/api/calendars         POST     add ONE Calendar event
-/api/calendars/:id     GET      get ONE Calendar event
-/api/calendars/:id     PUT      update ONE Calendar event
-/api/calendars/:id     DELETE   delete ONE Calendar event
+/api/calendars        GET      get ALL Calendar events
+/api/calendars        POST     add ONE Calendar event
+/api/calendars/:id    GET      get ONE Calendar event
+/api/calendars/:id    PUT      update ONE Calendar event
+/api/calendars/:id    DELETE   delete ONE Calendar event
 
 /api/services         GET      get ALL Services
 /api/services         POST     add ONE Service
@@ -87,10 +126,10 @@ export default {
 /api/services/:id     PUT      update ONE Service
 /api/services/:id     DELETE   delete ONE Service
 
-/api/notif         GET      get ALL Notifications
-/api/notif         POST     add ONE Notification
-/api/notif/:id     GET      get ONE Notification
-/api/notif/:id     PUT      update ONE Notification
-/api/notif/:id     DELETE   delete ONE Notification
+/api/notif            GET      get ALL Notifications
+/api/notif            POST     add ONE Notification
+/api/notif/:id        GET      get ONE Notification
+/api/notif/:id        PUT      update ONE Notification
+/api/notif/:id        DELETE   delete ONE Notification
 
 */
