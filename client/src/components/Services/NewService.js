@@ -1,104 +1,87 @@
-import React, { Component } from "react";
-import API from "../../utils/API";
+import React from "react";
 import { Col, Row, Container } from "../Grid";
 import { Input, TextArea, FormBtn, ListDuration } from "../Form";
 
-// function NewService(props) {
-class NewService extends Component {
+function NewService(props) {
 
-  state = {
-  };
+  let newService = {};
 
-  handleInputChange = event => {
+  let handleInputChange = event => {
     const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
+    newService[name] = value;
   };
 
-  handleFormSubmit = event => {
+  let handleSubmitNewService = event => {
     event.preventDefault();
 
-    let newService = {
-      name: this.state.name,
-      description: this.state.description,
-      duration: this.state.duration,
-      price: this.state.price,
-      specialPrice: this.state.specialPrice,
-      cost: this.state.cost,
-      images: this.state.images,
-      notes: this.state.notes,
-    };
-
-    console.log(newService);
-
-    if (this.state.name && this.state.description && this.state.duration && this.state.price) {
-      API.addService(newService)
-        .then(res => this.loadBooks())
-        .catch(err => console.log(err));
-    }
+    if (newService.name && newService.description && newService.duration && newService.price) {
+      props.handleSubmitNewService(newService);
+      }
   };
 
-  render() {
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-10">
-            <h3>Create a new service</h3>
-            <form>
-              <Input
-                name="name"
-                onChange={this.handleInputChange}
-                placeholder="Service name (required)"
-              />
-              <TextArea
-                name="description"
-                onChange={this.handleInputChange}
-                placeholder="Description (required)"
-              />
-              <ListDuration
-                name="duration"
-                onChange={this.handleInputChange}
-                text="Duration (required)"
-              />
-              <Input
-                name="price"
-                onChange={this.handleInputChange}
-                placeholder="Price (required)"
-              />
-              <Input
-                name="specialPrice"
-                onChange={this.handleInputChange}
-                placeholder="Special price"
-              />
-              <Input
-                name="cost"
-                onChange={this.handleInputChange}
-                placeholder="Cost"
-              />
-              <Input
-                name="images"
-                onChange={this.handleInputChange}
-                placeholder="Path to images"
-              />
-              <TextArea
-                name="notes"
-                onChange={this.handleInputChange}
-                placeholder="Notes"
-              />
-              <FormBtn
-                disabled={!(this.state.name && this.state.description && this.state.duration && this.state.price)}
-                onClick={this.handleFormSubmit}
-                color="warning"
-              >
-                Create new Service
+  return (
+    <Container fluid>
+      <Row>
+        <Col size="md-10">
+          <h3>Create a new service</h3>
+          <form>
+            <Input
+              name="name"
+              onChange={handleInputChange}
+              placeholder="Service name (required)"
+            />
+            <TextArea
+              name="description"
+              onChange={handleInputChange}
+              placeholder="Description (required)"
+            />
+            <ListDuration
+              name="duration"
+              onChange={handleInputChange}
+              text="Duration (required)"
+            />
+            <Input
+              name="price"
+              onChange={handleInputChange}
+              placeholder="Price (required)"
+            />
+            <Input
+              name="specialPrice"
+              onChange={handleInputChange}
+              placeholder="Special price"
+            />
+            <Input
+              name="cost"
+              onChange={handleInputChange}
+              placeholder="Cost"
+            />
+            <Input
+              name="images"
+              onChange={handleInputChange}
+              placeholder="Path to images"
+            />
+            <TextArea
+              name="notes"
+              onChange={handleInputChange}
+              placeholder="Notes"
+            />
+            <FormBtn
+              onClick={props.handleCancel}
+              color={props.colorCancel}
+            >
+              Cancel
               </FormBtn>
-            </form>
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+            <FormBtn
+              onClick={handleSubmitNewService}
+              color={props.color}
+            >
+              Create new Service
+              </FormBtn>
+          </form>
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
 export default NewService;

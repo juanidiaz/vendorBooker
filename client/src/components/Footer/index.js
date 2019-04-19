@@ -4,7 +4,8 @@ import "./style.css";
 function Footer() {
   return (
     <footer className="footer">
-      <span>Cats and Dogs Grooming</span>
+      <span>Amazing Pet Grooming Copyright @2019</span>
+      <span>Powered by: Boots N' Cats</span>
     </footer>
   );
 }

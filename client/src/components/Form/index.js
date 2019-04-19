@@ -41,6 +41,19 @@ export function ListDuration(props) {
   );
 }
 
+export function ListUserType(props) {
+  return (
+    <div className="form-group">
+      <select className="form-control" name={props.name} {...props}>
+        <option selected value="">{props.text}</option>
+        <option value="user">Client</option>
+        <option value="vendor">Admin</option>
+        <option value="staff">Staff</option>
+      </select>
+    </div>
+  );
+}
+
 export function FormBtn(props) {
   return (
     <button {...props} style={{ float: "right", marginBottom: 10 }} className={`btn btn-${props.color}`}>

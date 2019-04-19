@@ -1,21 +1,14 @@
 import React from "react";
 import Background from "../components/Background";
 import Container from "../components/Container";
-import NewService from '../components/Services/NewService';
-// import Button from 'react-bootstrap/Button';
 import Row from "../components/Row";
 import Col from "../components/Col";
 
 function Home() {
   return (
     <div>
-      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-        <h1>Amazing Pet Grooming</h1>
-        <h2>We are the best in Canada!</h2>
+      <Background backgroundImage="../../images/logo_hero.png">
       </Background>
-      XXXXXXXXXXX
-      <NewService />
-      yyyyyy
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-12">
