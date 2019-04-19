@@ -26,7 +26,7 @@ export function TextArea(props) {
   );
 }
 
-export function DropDownList(props) {
+export function ListDuration(props) {
   return (
     <div className="form-group">
       <select className="form-control" name={props.name} {...props}>
@@ -43,7 +43,7 @@ export function DropDownList(props) {
 
 export function FormBtn(props) {
   return (
-    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
+    <button {...props} style={{ float: "right", marginBottom: 10 }} className={`btn btn-${props.color}`}>
       {props.children}
     </button>
   );

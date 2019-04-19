@@ -3,8 +3,7 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../Grid";
 import { Input, TextArea, FormBtn, ListDuration } from "../Form";
 
-// function NewService(props) {
-class NewService extends Component {
+class NewUser extends Component {
 
   state = {
   };
@@ -19,7 +18,7 @@ class NewService extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    let newService = {
+    let newUser = {
       name: this.state.name,
       description: this.state.description,
       duration: this.state.duration,
@@ -30,10 +29,10 @@ class NewService extends Component {
       notes: this.state.notes,
     };
 
-    console.log(newService);
+    console.log(newUser);
 
     if (this.state.name && this.state.description && this.state.duration && this.state.price) {
-      API.addService(newService)
+      API.addUser(newUser)
         .then(res => this.loadBooks())
         .catch(err => console.log(err));
     }
@@ -44,12 +43,12 @@ class NewService extends Component {
       <Container fluid>
         <Row>
           <Col size="md-10">
-            <h3>Create a new service</h3>
+            <h3>Create a new user</h3>
             <form>
               <Input
                 name="name"
                 onChange={this.handleInputChange}
-                placeholder="Service name (required)"
+                placeholder="User name (required)"
               />
               <TextArea
                 name="description"
@@ -91,7 +90,7 @@ class NewService extends Component {
                 onClick={this.handleFormSubmit}
                 color="warning"
               >
-                Create new Service
+                Create new User
               </FormBtn>
             </form>
           </Col>
@@ -101,4 +100,4 @@ class NewService extends Component {
   }
 }
 
-export default NewService;
+export default NewUser;
