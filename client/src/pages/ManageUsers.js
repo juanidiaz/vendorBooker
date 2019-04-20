@@ -57,8 +57,7 @@ class ManageUsers extends Component {
           <Row>
           <Col size="md-10">
           <div>
-          <Link to="/admin/services">Services</Link> | 
-            <Link to="/admin/users"> Users</Link>
+          <Link to="/admin">Admin Panel</Link> | <Link to="/admin/services">Services</Link> |<Link to="/admin/users"> Users</Link>
           </div>
               <h2>
                 Managing Users

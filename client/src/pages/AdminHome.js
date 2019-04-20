@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Background from "../components/Background";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 
-function About() {
+function AdminHome() {
   return (
     <div>
       <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
@@ -14,11 +15,13 @@ function About() {
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-10">
-            <h1>About us</h1>
+            <h1>Administrator panel</h1>
           </Col>
         </Row>
         <Row>
-          <Col size="md-12">
+          <Col size="md-10">
+          <Link to="/admin/services">Services</Link> | <Link to="/admin/users"> Users</Link>
+
             <p>
               Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor. Sed
               malesuada molestie velit ac viverra. Quisque a ullamcorper purus. Curabitur luctus mi
@@ -43,4 +46,4 @@ function About() {
   );
 }
 
-export default About;
+export default AdminHome;

@@ -8,10 +8,9 @@ function Services() {
   return (
     <div>
       <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-        <h1>Amazing Pet Grooming</h1>
-        <h2>We are the best in Canada!</h2>
+        <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
       </Background>
-      
+
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-10">

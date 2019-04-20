@@ -4,11 +4,13 @@ import NewService from "../components/Services/NewService"
 import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
+import "./index.css"
 
 class ManageServices extends Component {
   state = {
     services: [],
     adding: false,
+    editing: false,
   };
 
   componentDidMount() {
@@ -38,6 +40,17 @@ class ManageServices extends Component {
     this.setState({ adding: false });
   }
 
+  handleDeleteService = event => {
+    let id = event.target.id
+    API.deleteService(id)
+    .then((deletedService) => this.loadServices())
+    .catch(err => console.log(err));
+  }
+
+  handleDeleteUpdate = event => {
+    console.log(event.target.id)
+  }
+
   handleSubmitNewService = (newService) => {
     API.addService(newService)
       .then(res => {
@@ -53,43 +66,64 @@ class ManageServices extends Component {
       <div>
         <img src='/images/logo_300.png' style={{ with: '100px' }} alt='logo 300' />
         <hr />
-        <Container>
-          <Row>
-            <Col size="md-10">
-            <Link to="/admin/services">Services</Link> | 
-            <Link to="/admin/users"> Users</Link>
-              <h2>
-                Managing Services
+        <div style={{ background: "white" }}>
+          <Container>
+            <Row>
+              <Col size="md-10">
+                <Link to="/admin">Admin Panel</Link> | <Link to="/admin/services">Services</Link> |<Link to="/admin/users"> Users</Link>
+                <h2 style={{ color: "black" }}>
+                  Managing Services
               </h2>
-              <hr />
-              {!this.state.adding ? (
-                <div>
-                  {this.state.services.map(service =>
-                    <div className="alert alert-primary" role="alert" id={service._id}>
-                      {service.name}
+                <hr />
+                {!this.state.adding ? (
+                  <div className="accordion" id="accordionExample">
+                    {this.state.services.map(service =>
+
+                      <div className="card" key={service._id}>
+                        <div className="card-header" id="headingOne">
+                          <h2 className="mb-0">
+                            <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#A${service._id}`}
+                              aria-expanded="true" aria-controls='xxx'>
+                              {service.name}
+                            </button>
+                          </h2>
+                        </div>
+                        <div id={`A${service._id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div className="card-body">
+                            <p><b>Description: </b>{service.description}</p>
+                            <p><b>Duration: </b>{service.duration} minutes</p>
+                            <p><b>Normal price: </b>${service.price}
+                              {service.specialPrice ? (<span><b> Special price: </b>${service.specialPrice}</span>) : null}
+                              {service.cost ? (<span><b> Cost: </b>${service.cost}</span>) : null}</p>
+                            <p>{service.images ? <img src={`/images/${service.images}`} width="200" height="300" alt={''} /> : null}</p>
+                            <p>{service.notes ? (<span><b>Notes: </b>${service.notes}</span>) : null}</p>
+                            <button type="button" className="btn btn-danger btn-sm" onClick={this.handleDeleteService} id={service._id}>Delete</button>
+                            <button type="button" className="btn btn-success btn-sm ml-4" onClick={this.handleUpdateService} id={service._id}>Update</button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    <hr />
+                    <Button
+                      onClick={this.handleAddService}
+                      color='primary'
+                    >Add a new service</Button>
+                  </div>
+                ) : (
+                    <div>
+                      <NewService
+                        handleSubmitNewService={this.handleSubmitNewService}
+                        handleCancel={this.handleCancel}
+                        color='warning'
+                        colorCancel='danger'
+                      >
+                      </NewService>
                     </div>
                   )}
-                  <hr />
-                  <Button
-                    onClick={this.handleAddService}
-                    color='primary'
-                  >Add a new service</Button>
-                </div>
-              ) : (
-                  <div>
-                    <NewService
-                      handleSubmitNewService={this.handleSubmitNewService}
-                      handleCancel={this.handleCancel}
-                      color='warning'
-                      colorCancel='danger'
-                    >
-                    </NewService>
-                  </div>
-                )}
-            </Col>
-          </Row>
-        </Container>
-
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </div>
     );
   }

@@ -1,19 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import { Col, Row, Container } from "../Grid";
 import { Input, TextArea, FormBtn, ListDuration } from "../Form";
 
-function NewService(props) {
+function UpdateService(props) {
+
+  let updateService = {};
 
   let handleInputChange = event => {
     const { name, value } = event.target;
-    newService[name] = value;
+    updateService[name] = value;
   };
 
-  let handleSubmitNewService = event => {
+  let handleSubmitUpdateService = event => {
     event.preventDefault();
 
-    if (newService.name && newService.description && newService.duration && newService.price) {
-      props.handleSubmitNewService(newService);
+    if (updateService.name && updateService.description && updateService.duration && updateService.price) {
+      props.handleSubmitUpdateService(updateService);
       }
   };
 
@@ -21,7 +23,7 @@ function NewService(props) {
     <Container fluid>
       <Row>
         <Col size="md-10">
-          <h3>Manage services</h3>
+          <h3>Update a service</h3>
           <form>
             <Input
               name="name"
@@ -64,18 +66,16 @@ function NewService(props) {
               placeholder="Notes"
             />
             <FormBtn
-              // disabled={!(newService.name && newService.description && newService.duration && newService.price)}
               onClick={props.handleCancel}
               color={props.colorCancel}
             >
               Cancel
               </FormBtn>
             <FormBtn
-              // disabled={!(newService.name && newService.description && newService.duration && newService.price)}
-              onClick={handleSubmitNewService}
+              onClick={handleSubmitUpdateService}
               color={props.color}
             >
-              Create new Service
+              Create update Service
               </FormBtn>
           </form>
         </Col>
@@ -84,4 +84,4 @@ function NewService(props) {
   );
 }
 
-export default NewService;
+export default UpdateService;

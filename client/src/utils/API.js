@@ -25,7 +25,7 @@ export default {
   },
 
   // Delete ONE service by ID
-  dalateService: (id) => {
+  deleteService: (id) => {
     return axios.delete("/api/services/" + id);
   },
 
@@ -53,7 +53,7 @@ export default {
   },
 
   // Delete ONE user by ID
-  dalateUser: (id) => {
+  deleteUser: (id) => {
     return axios.delete("/api/users/" + id);
   },
 
@@ -81,7 +81,7 @@ export default {
   },
 
   // Delete ONE calendar event by ID
-  dalateCalendar: (id) => {
+  deleteCalendar: (id) => {
     return axios.delete("/api/calendars/" + id);
   },
 
