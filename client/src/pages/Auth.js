@@ -19,8 +19,10 @@ function Auth() {
           </Col>
         </Row>
         <Row>
-        <Col size="md-10">
-          <Link to="/admin">Administrator Panel</Link> | <Link to="/user/"> User</Link>
+          <Col size="md-10">
+            <a href="/admin" class="badge badge-warning mr-2">Administrator Panel</a>
+            <a href="/client" class="badge badge-warning mr-2">User Account</a>
+
             <p>
               Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor. Sed
               malesuada molestie velit ac viverra. Quisque a ullamcorper purus. Curabitur luctus mi

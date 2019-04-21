@@ -24,12 +24,12 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} />
       <Route exact path="/services" component={Services} />
-      <Route exact path="/auth*" component={Auth} />
-      <Route exact path="/user/*" component={UserHome} />
-      <Route exact path="/admin/" component={AdminHome} />
+      <Route exact path="/login*" component={Auth} />
+      <Route exact path="/client/*" component={UserHome} />
+      <Route exact path="/admin" component={AdminHome} />
       <Route exact path="/admin/services" component={ManageServices} />
       <Route exact path="/admin/users" component={ManageUsers} />
-      <Route exact path="/book" component={Book} />
+      <Route exact path="/booking" component={Book} />
     </Wrapper>
     <Footer />
   </div>

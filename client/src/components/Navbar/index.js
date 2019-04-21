@@ -29,16 +29,16 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <Link
-              to="/book"
-              className={window.location.pathname === "/book" ? "nav-link active" : "nav-link"}
+              to="/booking"
+              className={window.location.pathname === "/booking" ? "nav-link active" : "nav-link"}
             >
               Book Appointment
             </Link>
           </li>
           <li className="nav-item">
             <Link
-              to="/auth"
-              className={window.location.pathname === "/auth" ? "nav-link active" : "nav-link"}
+              to="/login"
+              className={window.location.pathname === "/login" ? "nav-link active" : "nav-link"}
             >
               Login
             </Link>

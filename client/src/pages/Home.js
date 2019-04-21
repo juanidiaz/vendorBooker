@@ -19,9 +19,9 @@ function Home() {
             <h2 style={{ color: "black" }}>
               Call us at: 905 878 9009 / 905 878 5557
             </h2>
-            <a href="/about" class="badge badge-danger">About us</a>
-            <a href="/services" class="badge badge-danger">Services</a>
-            <a href="/auth" class="badge badge-danger">Log in</a>
+            <a href="/about" class="badge badge-danger mr-2">About us</a>
+            <a href="/services" class="badge badge-danger mr-2">Services</a>
+            <a href="/auth" class="badge badge-danger mr-2">Log in</a>
             {/* <Button
               // onClick={routeChange('/services')}
               color='primary'
