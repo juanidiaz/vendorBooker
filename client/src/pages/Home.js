@@ -43,7 +43,7 @@ export default withAuth(
             <Link to="/booking">click here </Link>
             to book an appointment {' '}
           </button> */}
-          <button style={{marginLeft: "300px", marginTop: "-35px"}} className="btn btn-danger btn-sm" onClick={this.logout}>
+          <button style={{marginLeft: "300px", marginTop: "-36px"}} className="btn btn-danger btn-sm" onClick={this.logout}>
             Logout Session
           </button>
         </div>
