@@ -1,10 +1,11 @@
 import React from "react";
 import Background from "../components/Background";
 import Container from "../components/Container";
+import Button from "../components/Button";
 import Row from "../components/Row";
 import Col from "../components/Col";
 
-function About() {
+function UserHome() {
   return (
     <div>
       <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
@@ -14,7 +15,7 @@ function About() {
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-10">
-            <h1>About us</h1>
+            <h1>User profile</h1>
           </Col>
         </Row>
         <Row>
@@ -43,4 +44,4 @@ function About() {
   );
 }
 
-export default About;
+export default UserHome;

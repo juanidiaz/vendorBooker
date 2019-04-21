@@ -1,6 +1,6 @@
 .footer {
   min-height: 100px;
-  background: #E5E5E5;
+  background: #2377be;
   position: relative;
 }
 
@@ -10,5 +10,6 @@
   left: 0;
   right: 0;
   padding: 3px;
-  background: #B8B8B8;
+  background: #185586;
+  color: white
 }

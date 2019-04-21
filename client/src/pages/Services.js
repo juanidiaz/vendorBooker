@@ -28,12 +28,13 @@ class Services extends Component {
 
     return (
       <div>
-        <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-          <h1>Amazing Pet Grooming</h1>
-          <h2>We are the best in Canada!</h2>
-        </Background>
+      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
+        <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
+      </Background>
+
         <AllServices
           services = {this.state.services}
+          color= 'info'
           text = 'Book service'
         />
       </div>

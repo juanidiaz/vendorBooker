@@ -28,7 +28,8 @@ export default (props) => {
                         </Button>
                       </div>
                       <div className="col-auto d-none d-lg-block">
-                        <svg className="bd-placeholder-img" width="200" height="300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                        <img src={`/images/${service.images}`} width="200" height="300" alt={''}/>
+                        {/* <svg className="bd-placeholder-img" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> */}
                       </div>
                     </div>
                   </div>
@@ -36,7 +37,7 @@ export default (props) => {
               </div>
             </div>
           ) : (
-              <small>You have no services saved. First you need to <a href='/'>search</a> for services.</small>
+              <small>You have no services saved.</small>
             )}
         </Col>
       </Row>

@@ -14,7 +14,7 @@ const serviceSchema = new Schema({
   price: { type: Number, required: true },
   specialPrice: { type: Number },
   cost: { type: Number },
-  images: { type: String },
+  images: { type: String, default: 'servs_nopic.jpg' },
   notes: { type: String },
 });
 
