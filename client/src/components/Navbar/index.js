@@ -37,10 +37,19 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <Link
+              to="/clientlogin"
+              className={window.location.pathname === "/clientlogin" ? "nav-link active" : "nav-link"}
+            >
+              Client Login
+            </Link>
+
+          </li>
+          <li className="nav-item">
+            <Link
               to="/login"
               className={window.location.pathname === "/login" ? "nav-link active" : "nav-link"}
             >
-              Login
+              Admin
             </Link>
 
           </li>
