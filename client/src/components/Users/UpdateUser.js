@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Container } from "../Grid";
 import { Input, TextArea, FormBtn, ListUserType } from "../Form";
 
-function NewUser(props) {
+function UpdateUser(props) {
 
   let newUser = {};
 
@@ -11,11 +11,11 @@ function NewUser(props) {
     newUser[name] = value;
   };
 
-  let handleSubmitNewUser = event => {
+  let handleSubmitUpdateUser = event => {
     event.preventDefault();
 
     if (newUser.firstName && newUser.lastName && newUser.phone && newUser.userType) {
-      props.handleSubmitNewUser(newUser);
+      props.handleSubmitUpdateUser(newUser);
       }
   };
 
@@ -23,13 +23,14 @@ function NewUser(props) {
     <Container fluid>
       <Row>
         <Col size="md-10">
-          <h3>Create a new user</h3>
+          <h3>Update existing user</h3>
           <form>
             <span>Type of user: </span>
             <ListUserType
               name="userType"
               onChange={handleInputChange}
               text="Type of user (required)"
+            //   value=""
             />
             <Input
               name="firstName"
@@ -63,10 +64,10 @@ function NewUser(props) {
               Cancel
               </FormBtn>
             <FormBtn
-              onClick={handleSubmitNewUser}
+              onClick={handleSubmitUpdateUser}
               color={props.color}
             >
-              Create new User
+              Update!
               </FormBtn>
           </form>
         </Col>
@@ -75,4 +76,4 @@ function NewUser(props) {
   );
 }
 
-export default NewUser;
+export default UpdateUser;

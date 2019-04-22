@@ -30,7 +30,7 @@ export function ListDuration(props) {
   return (
     <div className="form-group">
       <select className="form-control" name={props.name} {...props}>
-        <option selected value="">{props.text}</option>
+        <option defaultValue="">{props.text}</option>
         <option value="30">30 mins</option>
         <option value="45">45 mins</option>
         <option value="60">1 hr</option>
@@ -45,7 +45,7 @@ export function ListUserType(props) {
   return (
     <div className="form-group">
       <select className="form-control" name={props.name} {...props}>
-        <option selected value="">{props.text}</option>
+        <option defaultValue="">{props.text}</option>
         <option value="user">Client</option>
         <option value="vendor">Admin</option>
         <option value="staff">Staff</option>
@@ -56,7 +56,7 @@ export function ListUserType(props) {
 
 export function FormBtn(props) {
   return (
-    <button {...props} style={{ float: "right", marginBottom: 10 }} className={`btn btn-${props.color}`}>
+    <button {...props} style={{ float: "right", marginBottom: 10 }} className={`btn btn-${props.color} ml-3 mb-5`}>
       {props.children}
     </button>
   );

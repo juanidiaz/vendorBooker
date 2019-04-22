@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import NewService from "../components/Services/NewService"
 import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
@@ -26,12 +25,6 @@ class ManageServices extends Component {
       .catch(err => console.log(err));
   };
 
-  deleteService = id => {
-    API.deleteService(id)
-      .then(() => this.loadServices())
-      .catch(err => console.log(err));
-  };
-
   handleAddService = () => {
     this.setState({ adding: true })
   }
@@ -43,7 +36,10 @@ class ManageServices extends Component {
   handleDeleteService = event => {
     let id = event.target.id
     API.deleteService(id)
-      .then((deletedService) => this.loadServices())
+      .then((deletedService) => {
+        alert(`Service "${deletedService.data.name}" was deleted!`)        
+        this.loadServices();
+      })
       .catch(err => console.log(err));
   }
 
@@ -64,15 +60,16 @@ class ManageServices extends Component {
   render() {
     return (
       <div>
-        <img src='/images/logo_300.png' style={{ with: '100px' }} alt='logo 300' />
+        <h1><img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' />
+          &nbsp;&nbsp;&nbsp;&nbsp;Administrator panel</h1>
         <hr />
         <div style={{ background: "white" }}>
           <Container>
             <Row>
               <Col size="md-10">
-                <a href="/admin" class="badge badge-info mr-2">Administrator panel</a>
-                {/* <a href="/admin/services" class="badge badge-warning mr-2">Manage Services</a> */}
-                <a href="/admin/users" class="badge badge-warning mr-2">Manage Users</a>
+                <a href="/admin" className="badge badge-info mr-2">Administrator panel</a>
+                {/* <a href="/admin/services" className="badge badge-warning mr-2">Manage Services</a> */}
+                <a href="/admin/users" className="badge badge-warning mr-2">Manage Users</a>
                 <h2 style={{ color: "black" }}>
                   Managing Services
               </h2>
@@ -80,7 +77,6 @@ class ManageServices extends Component {
                 {!this.state.adding ? (
                   <div className="accordion" id="accordionExample">
                     {this.state.services.map(service =>
-
                       <div className="card" key={service._id}>
                         <div className="card-header" id="headingOne">
                           <h2 className="mb-0">
@@ -97,7 +93,7 @@ class ManageServices extends Component {
                             <p><b>Normal price: </b>${service.price}
                               {service.specialPrice ? (<span><b> Special price: </b>${service.specialPrice}</span>) : null}
                               {service.cost ? (<span><b> Cost: </b>${service.cost}</span>) : null}</p>
-                            <p>{service.images ? <img src={`/images/${service.images}`} width="200" height="300" style={{'border-radius': '8px', border:'2px solid #185586' , 'box-shadow': '3px 3px 5px grey'}} alt={''} /> : null}</p>
+                            <p>{service.images ? <img src={`/images/${service.images}`} width="200" height="300" style={{ 'border-radius': '8px', border: '2px solid #185586', 'box-shadow': '3px 3px 5px grey' }} alt={''} /> : null}</p>
                             <p>{service.notes ? (<span><b>Notes: </b>${service.notes}</span>) : null}</p>
                             <button type="button" className="btn btn-danger btn-sm" onClick={this.handleDeleteService} id={service._id}>Delete</button>
                             <button type="button" className="btn btn-success btn-sm ml-4" onClick={this.handleUpdateService} id={service._id}>Update</button>
