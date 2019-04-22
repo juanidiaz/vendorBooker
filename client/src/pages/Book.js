@@ -3,6 +3,8 @@ import Background from "../components/Background";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import Calendar from "../components/Calendar"
+import NewBooking from "../components/Booking/NewBooking"
 
 function Services() {
   return (
@@ -18,7 +20,8 @@ function Services() {
           </Col>
         </Row>
         <Row>
-          <Col size="md-12">
+          <Col size="md-7">
+
             <p>
               Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor. Sed
               malesuada molestie velit ac viverra. Quisque a ullamcorper purus. Curabitur luctus mi
@@ -27,6 +30,10 @@ function Services() {
               Aliquam blandit mi eu urna scelerisque, vitae volutpat ligula ultricies. Maecenas vel
               porta augue. Fusce mauris ex, dignissim et lacinia ut, tempus eget nibh.
             </p>
+            <NewBooking />
+          </Col>
+          <Col size="md-4" offset="md-1">
+          <Calendar />
           </Col>
         </Row>
 

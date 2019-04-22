@@ -2,9 +2,9 @@ import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 
-import '../../node_modules/fullcalendar/dist/fullcalendar.css'
+import '../../../node_modules/fullcalendar/dist/fullcalendar.css'
 
-import './index.css'
+import './style.css'
 
 function calendar(props){
     return (
