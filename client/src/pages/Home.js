@@ -43,7 +43,7 @@ export default withAuth(
             <Link to="/booking">click here </Link>
             to book an appointment {' '}
           </button> */}
-          <button style={{marginLeft: "300px", marginTop: "-36px"}} className="btn btn-danger btn-sm" onClick={this.logout}>
+          <button style={{marginLeft: "200px", marginTop: "-70px"}} className="btn btn-primary" onClick={this.logout}>
             Logout Session
           </button>
         </div>
@@ -61,7 +61,7 @@ export default withAuth(
 
           <Container style={{ marginTop: 30 }}>
             <Row>
-              <Col size="md-10">
+              <Col size="md-12">
                 <h2 style={{ color: "black" }}>
                   Call us at: 905 878 9009 / 905 878 5557
                   </h2>

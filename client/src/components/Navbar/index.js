@@ -49,9 +49,10 @@ function Navbar(props) {
             >
               Admin
             </Link>
-
           </li>
-          { links }
+          <div style={{marginTop: "7.5px"}}>
+          {links}
+          </div>
         </ul>
       </div>
     </nav>
@@ -60,7 +61,7 @@ function Navbar(props) {
 
 const mapStateToProps = (state) => {
   // console.log(state);
-  return{
+  return {
     auth: state.firebase.auth
   }
 }

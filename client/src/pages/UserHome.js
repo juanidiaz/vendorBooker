@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import Background from "../components/Background";
 import Container from "../components/Container";
 // import Button from "../components/Button";
@@ -12,10 +12,8 @@ class UserHome extends Component {
   render() {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to='/signin' /> 
-    // if (auth.uid) return <Redirect to='/client' /> 
     return (
       <div>
-      <Redirect to='/client' />
         <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
           <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
         </Background>
@@ -43,6 +41,12 @@ class UserHome extends Component {
                 nibh porta accumsan. Nunc volutpat tempus porttitor. Nunc congue dictum egestas.
                 Aliquam blandit mi eu urna scelerisque, vitae volutpat ligula ultricies. Maecenas vel
                 porta augue. Fusce mauris ex, dignissim et lacinia ut, tempus eget nibh.
+                <br></br>
+                <br></br>
+            <button className="btn-warning bookAppBtn">
+            <Link to="/booking">click here 
+            to book an appointment {' '}</Link>
+          </button>
             </p>
             </Col>
           </Row>

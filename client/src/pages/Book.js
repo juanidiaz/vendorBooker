@@ -10,7 +10,7 @@ import Col from "../components/Col";
 class Services extends Component {
   render() {
     const { auth } = this.props;
-    if (!auth.uid) return <Redirect to='/signin' /> 
+    if (!auth.uid) return <Redirect to='/signin' />
     return (
       <div>
         <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
@@ -33,6 +33,7 @@ class Services extends Component {
                 Aliquam blandit mi eu urna scelerisque, vitae volutpat ligula ultricies. Maecenas vel
                 porta augue. Fusce mauris ex, dignissim et lacinia ut, tempus eget nibh.
             </p>
+             
             </Col>
           </Row>
 
