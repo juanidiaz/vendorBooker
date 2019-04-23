@@ -1,45 +1,47 @@
-import React, { Component } from "react";
-import API from "../../utils/API";
+import React from "react";
 import { Col, Row, Container } from "../Grid";
 import { Input, TextArea, FormBtn, ListDuration } from "../Form";
 import DatePicker from "react-datepicker";
- 
+import AllServices from "../Services/AllServices"
+import ListServices from "../Services/ListServices"
+
 import "react-datepicker/dist/react-datepicker.css";
 
-// function newBooking(props) {
-class NewBooking extends Component {
+function NewBooking(props) {
 
-    state = {
+    // this.state={
+    //     services: [],
+    //     booking: []
+    // }
+    let newBooking = {};
+  
+    // this.state = {
+    //     startDate: new Date()
+    //   };
+
+    let handleInputChange = event => {
+      let { name, value } = event.target;
+      newBooking[name] = value;
     };
-
-    handleInputChange = event => {
-        const { name, value } = event.target;
+  
+    let handleDateChange = date => {
         this.setState({
-            [name]: value
+          startDate: date
         });
+      }
+
+    let handleSubmitNewBooking = event => {
+      event.preventDefault();
+  
+      if (newBooking.name && newBooking.notes) {
+        props.handleSubmitNewBooking(newBooking);
+        }
     };
 
-    handleFormSubmit = event => {
-        event.preventDefault();
+    // this.state = {
+    //     startDate: new Date()
+    //   };
 
-        let newBooking = {
-            datetime: this.state.datetime,
-            name: this.state.name,
-            description: this.state.description,
-            duration: this.state.duration,
-            notes: this.state.notes,
-        };
-
-        console.log(newBooking);
-
-        // if (this.state.name && this.state.description && this.state.duration && this.state.price) {
-        //     API.addCalendar(addCalendar)
-        //         .then(res => this.loadBooks())
-        //         .catch(err => console.log(err));
-        // }
-    };
-
-    render() {
         return (
             <Container fluid>
                 <Row>
@@ -48,8 +50,8 @@ class NewBooking extends Component {
                         <form>
                             <DatePicker
                                 name="datetime"
-                                selected={this.state.startDate}
-                                onChange={this.handleChange}
+                                // selected={this.state.startDate}
+                                onChange={handleDateChange}
                                 showTimeSelect
                                 timeFormat="HH:mm"
                                 timeIntervals={15}
@@ -58,20 +60,21 @@ class NewBooking extends Component {
                             />
                             <Input
                                 name="name"
-                                onChange={this.handleInputChange}
+                                onChange={handleInputChange}
                                 placeholder="Your name (required)"
                             />
                             <TextArea
                                 name="notes"
-                                onChange={this.handleInputChange}
+                                onChange={handleInputChange}
                                 placeholder="Notes"
                             />
+
                             <FormBtn
-                                disabled={!(this.state.name && this.state.description && this.state.duration && this.state.price)}
-                                onClick={this.handleFormSubmit}
+                                // disabled={!(this.state.name && this.state.notes)}
+                                onClick={handleSubmitNewBooking}
                                 color="warning"
                             >
-                                Create new Service
+                                Book appointment!
               </FormBtn>
                         </form>
                     </Col>
@@ -79,6 +82,5 @@ class NewBooking extends Component {
             </Container>
         );
     }
-}
 
 export default NewBooking;

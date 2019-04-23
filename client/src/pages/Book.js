@@ -1,12 +1,33 @@
-import React from "react";
+import React , { Component } from "react";
 import Background from "../components/Background";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import Calendar from "../components/Calendar"
 import NewBooking from "../components/Booking/NewBooking"
+import AllBookings from "../components/Booking/AllBookings"
+import AllServices from "../components/Services/AllServices"
+import ListServices from "../components/Services/ListServices"
+import API from "../utils/API";
 
-function Services() {
+
+class Booking extends Component {
+  state = {
+    booking: [],
+    services: []
+  };
+
+  componentDidMount() {
+    this.loadEvents();
+  }
+
+loadEvents = () => {
+  API.getCalendars()
+    .then(res => this.setState({ events: res.data }))
+    .catch(err => console.log(err));
+};
+
+render() {
   return (
     <div>
       <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
@@ -31,9 +52,11 @@ function Services() {
               porta augue. Fusce mauris ex, dignissim et lacinia ut, tempus eget nibh.
             </p>
             <NewBooking />
+            <ListServices 
+                           services = {this.state.services}/>
           </Col>
           <Col size="md-4" offset="md-1">
-          <Calendar />
+          <Calendar events= {this.state.events}/>
           </Col>
         </Row>
 
@@ -41,5 +64,6 @@ function Services() {
     </div>
   );
 }
+}
 
-export default Services;
+export default Booking;
