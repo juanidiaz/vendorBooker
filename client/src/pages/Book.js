@@ -19,6 +19,7 @@ class Booking extends Component {
 
   componentDidMount() {
     this.loadEvents();
+    this.loadServices();
   }
 
 loadEvents = () => {
@@ -26,6 +27,14 @@ loadEvents = () => {
     .then(res => this.setState({ events: res.data }))
     .catch(err => console.log(err));
 };
+
+loadServices = () => {
+  API.getServices()
+    .then(res => this.setState({ services: res.data }))
+    .catch(err => console.log(err));
+};
+
+
 
 render() {
   return (
@@ -53,7 +62,8 @@ render() {
             </p>
             <NewBooking />
             <ListServices 
-                           services = {this.state.services}/>
+            services = {this.state.services}
+            />
           </Col>
           <Col size="md-4" offset="md-1">
           <Calendar events= {this.state.events}/>
