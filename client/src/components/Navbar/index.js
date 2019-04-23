@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SignedInLinks from '../SignComponents/SignedInLinks';
+import SignedOutLinks from '../SignComponents/SignedOutLinks';
+import { connect } from 'react-redux';
 import "./style.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
-function Navbar() {
+function Navbar(props) {
+  const { auth } = props;
+  // console.log(auth);
+  const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-light" id="nav">
       <Link className="navbar-brand" to="/">
@@ -37,15 +44,6 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <Link
-              to="/clientlogin"
-              className={window.location.pathname === "/clientlogin" ? "nav-link active" : "nav-link"}
-            >
-              Client Login
-            </Link>
-
-          </li>
-          <li className="nav-item">
-            <Link
               to="/login"
               className={window.location.pathname === "/login" ? "nav-link active" : "nav-link"}
             >
@@ -53,10 +51,18 @@ function Navbar() {
             </Link>
 
           </li>
+          { links }
         </ul>
       </div>
     </nav>
   );
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return{
+    auth: state.firebase.auth
+  }
+}
+
+export default connect(mapStateToProps)(Navbar)

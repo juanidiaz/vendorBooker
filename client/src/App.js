@@ -5,14 +5,18 @@ import Login from "./components/Auth/Login";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
-import LoginClient from "./pages/LoginClient";
+// import LoginClient from "./pages/LoginClient";
 import UserHome from "./pages/UserHome";
+import Book from "./pages/Book";
 import AdminHome from "./pages/AdminHome";
 import ManageServices from "./pages/ManageServices";
 import ManageUsers from "./pages/ManageUsers";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
+import SignIn from "./components/Auth/SignIn";
+import SignUp from "./components/Auth/SignUp";
+
 import "./App.css";
 
 function onAuthRequired({ history }) {
@@ -38,12 +42,15 @@ class App extends Component {
               <Route exact path="/services" component={Services} />
               <Route exact path="/login*" render={() => <Login baseUrl='https://dev-915604.okta.com' />} />
               <Route path='/implicit/callback' component={ImplicitCallback} />
-              <Route exact path="/clientlogin*" component={LoginClient} />
+              {/* <Route exact path="/clientlogin*" component={LoginClient} /> */}
               <SecureRoute exact path="/admin" component={AdminHome} />
               <SecureRoute exact path="/admin/services" component={ManageServices} />
               <SecureRoute exact path="/admin/users" component={ManageUsers} />
-              <Route exact path="/booking" component={LoginClient} />
+              <Route exact path="/booking" component={Book} />
               <Route exact path="/client*" component={UserHome} />
+              <Route exact path="/signin" component={SignIn} />
+              <Route exact path="/signup" component={SignUp} />
+
               </Switch>
             </Wrapper>
             <Footer />

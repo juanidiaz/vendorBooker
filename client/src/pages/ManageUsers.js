@@ -59,7 +59,7 @@ class ManageUsers extends Component {
               <div>
                 <a href="/admin" class="badge badge-info mr-2">Administrator panel</a>
                 <a href="/admin/services" class="badge badge-warning mr-2">Manage Services</a>
-                {/* <a href="/admin/users" class="badge badge-warning mr-2">Manage Users</a> */}
+                <a href="/" class="badge badge-warning mr-2">Admin Home</a>
               </div>
               <h2>
                 Managing Users
