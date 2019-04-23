@@ -39,10 +39,6 @@ export default withAuth(
 
       const mainContent = this.state.authenticated ? (
         <div className="textUnderLogo">
-          {/* <button className="bookAppBtn">
-            <Link to="/booking">click here </Link>
-            to book an appointment {' '}
-          </button> */}
           <button style={{marginLeft: "200px", marginTop: "-70px"}} className="btn btn-primary" onClick={this.logout}>
             Logout Session
           </button>
@@ -65,18 +61,11 @@ export default withAuth(
                 <h2 style={{ color: "black" }}>
                   Call us at: 905 878 9009 / 905 878 5557
                   </h2>
-                <a href="/about" class="badge badge-danger mr-2">About us</a>
-                <a href="/services" class="badge badge-danger mr-2">Services</a>
-                <a href="/admin" class="badge badge-danger mr-2">Admin</a>
+                <a href="/about" className="badge badge-danger mr-2">About us</a>
+                <a href="/services" className="badge badge-danger mr-2">Services</a>
+                <a href="/admin" className="badge badge-danger mr-2">Admin</a>
 
-                {/* <Button
-                    // onClick={routeChange('/services')}
-                    color='primary'
-                  >Services</Button>
-                  <Button
-                    // onClick={this.handleAddService}
-                    color='primary'
-                  >Log in</Button> */}
+
 
               </Col>
             </Row>
