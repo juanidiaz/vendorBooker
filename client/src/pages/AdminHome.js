@@ -21,7 +21,7 @@ function AdminHome() {
           <Col size="md-10">
             <a href="/admin/services" class="badge badge-warning mr-2">Manage Services</a>
             <a href="/admin/users" class="badge badge-warning mr-2">Manage Users</a>
-
+            <a href="/admin/pets" className="badge badge-warning mr-2">Manage Pets</a>
             <p>
               Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor. Sed
               malesuada molestie velit ac viverra. Quisque a ullamcorper purus. Curabitur luctus mi

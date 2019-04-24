@@ -8,6 +8,7 @@ import UserHome from "./pages/UserHome";
 import AdminHome from "./pages/AdminHome";
 import ManageServices from "./pages/ManageServices";
 import ManageUsers from "./pages/ManageUsers";
+import ManageSecUsers from "./pages/ManageSecUsers";
 import Book from "./pages/Book";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -29,6 +30,7 @@ function App() {
       <Route exact path="/admin" component={AdminHome} />
       <Route exact path="/admin/services" component={ManageServices} />
       <Route exact path="/admin/users" component={ManageUsers} />
+      <Route exact path="/admin/pets" component={ManageSecUsers} />
       <Route exact path="/booking" component={Book} />
     </Wrapper>
     <Footer />

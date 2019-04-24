@@ -1,32 +1,32 @@
 import React, { Component } from "react";
-import NewUser from "../components/Users/NewUser"
-import { ReadUser, UpdateUser } from "../components/Users/CRUDUser"
+import NewSecUser from "../components/SecUsers/NewSecUser"
+import { ReadSecUser, UpdateSecUser } from "../components/SecUsers/CRUDSecUser"
 import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
 import "./index.css"
 
-class ManageUsers extends Component {
+class ManageSecUsers extends Component {
   state = {
-    users: [],
+    pets: [],
     adding: false,
     updating: false
   };
 
   componentDidMount() {
-    this.loadUsers();
+    this.loadSecUsers();
   }
 
-  loadUsers = () => {
-    API.getUsers()
+  loadSecUsers = () => {
+    API.getSecUsers()
       .then(res => {
-        this.setState({ users: res.data });
-        // console.log(this.state.users);
+        this.setState({ pets: res.data });
+        console.log(this.state.pets);
       })
       .catch(err => console.log(err));
   };
 
-  handleAddUser = () => {
+  handleAddSecUser = () => {
     this.setState({ adding: true })
   }
 
@@ -38,71 +38,71 @@ class ManageUsers extends Component {
     this.setState({ updating: false });
   }
 
-  handleDeleteUser = event => {
+  handleDeleteSecUser = event => {
     let id = event.target.id
-    API.deleteUser(id)
-      .then((deletedUser) => {
-        alert(`${deletedUser.data.userType} "${deletedUser.data.firstName} ${deletedUser.data.lastName}" was deleted!`);
-        this.loadUsers();
+    API.deleteSecUser(id)
+      .then((deletedSecUser) => {
+        alert(`${deletedSecUser.data.petType} "${deletedSecUser.data.firstName} ${deletedSecUser.data.lastName}" was deleted!`);
+        this.loadSecUsers();
       })
       .catch(err => console.log(err));
   }
 
-  handleSubmitNewUser = newUser => {
-    API.addUser(newUser)
+  handleSubmitNewSecUser = newSecUser => {
+    API.addSecUser(newSecUser)
       .then(res => {
-        alert(`New ${newUser.userType} "${newUser.firstName} ${newUser.lastName}" was created!`)
+        alert(`New ${newSecUser.petType} "${newSecUser.firstName} ${newSecUser.lastName}" was created!`)
         this.setState({ adding: false });
-        this.loadUsers();
+        this.loadSecUsers();
       })
       .catch(err => console.log(err));
   };
 
-  handleUpdateUser = event => {
+  handleUpdateSecUser = event => {
     // console.log(event.target);
     this.setState({ updating: true });
   }
 
-  handleUpdateClick = editedUser => {
-    console.log(editedUser);
+  handleUpdateClick = editedSecUser => {
+    console.log(editedSecUser);
   }
 
   handleClickOnAccordion = event => {
     this.setState({ updating: false });
-    this.loadUsers();
+    this.loadSecUsers();
   }
 
   handleValueUpdate = (event, id) => {
-    const nextUsers = this.state.users.map(user => {
+    const nextSecUsers = this.state.pets.map(pet => {
       const { name, value } = event.target;
-      // This line will RETURN the result of evaluating the `_id` of the user and, if 
+      // This line will RETURN the result of evaluating the `_id` of the pet and, if 
       // it's the same as the one that is being modified then it will make a copy of 
-      // the whole `user` but updating the key `[name]` with the new `value`. If it 
-      // is NOT the same `_id` then just copy that `user` without any changes.
-      return user._id === id ? { ...user, ...{ [name]: value } } : { ...user }
+      // the whole `pet` but updating the key `[name]` with the new `value`. If it 
+      // is NOT the same `_id` then just copy that `pet` without any changes.
+      return pet._id === id ? { ...pet, ...{ [name]: value } } : { ...pet }
 
       // The three lines below do THE SAME but in three lines :-)
-      // if (user._id === id) {
-      //   return { ...user, ...{ [name]: value } }
-      // } else { return { ...user } }
+      // if (pet._id === id) {
+      //   return { ...pet, ...{ [name]: value } }
+      // } else { return { ...pet } }
     });
-    this.setState({ users: nextUsers })
+    this.setState({ pets: nextSecUsers })
   };
 
   handleUpdateClick = (event, id) => {
 
-    if (!event.target.firstName && !event.target.lastName && !event.target.phone && !event.target.secuserType) { return }
+    if (!event.target.firstName && !event.target.lastName && !event.target.phone && !event.target.secpetType) { return }
 
-    const updatedUser = { ...this.state.users.find(user => user._id === id) }
+    const updatedSecUser = { ...this.state.pets.find(pet => pet._id === id) }
     const { name, value } = event.target;
-    updatedUser[name] = value;
+    updatedSecUser[name] = value;
 
-    console.log(updatedUser);
-    API.updateUser(updatedUser._id, updatedUser)
+    console.log(updatedSecUser);
+    API.updateSecUser(updatedSecUser._id, updatedSecUser)
       .then(res => {
-        alert(`${updatedUser.userType} "${updatedUser.firstName} ${updatedUser.lastName}" was updated!`)
+        alert(`${updatedSecUser.petType} "${updatedSecUser.firstName} ${updatedSecUser.lastName}" was updated!`)
         this.setState({ updating: false });
-        this.loadUsers();
+        this.loadSecUsers();
       })
       .catch(err => console.log(err));
   }
@@ -120,36 +120,36 @@ class ManageUsers extends Component {
                 <div>
                   <a href="/admin" className="badge badge-info mr-2">Administrator panel</a>
                   <a href="/admin/services" className="badge badge-warning mr-2">Manage Services</a>
-                  {/* <a href="/admin/users" className="badge badge-warning mr-2">Manage Users</a> */}
-                  <a href="/admin/pets" className="badge badge-warning mr-2">Manage Pets</a>
+                  <a href="/admin/users" className="badge badge-warning mr-2">Manage Users</a>
+                  {/* <a href="/admin/pets" className="badge badge-warning mr-2">Manage Pets</a> */}
                 </div>
                 <h2 style={{ color: "black" }}>
-                  Managing Users
+                  Managing pets
               </h2>
                 <hr />
                 {!this.state.adding ? (
                   <div className="accordion" id="accordionExample">
-                    <h4 style={{ color: "black" }}>Client list <small>(users)</small></h4>
-                    {this.state.users.map(user => user.userType === 'user' ? (
-                      <div className="card" key={user._id}>
+                    <h4 style={{ color: "black" }}>Dog's</h4>
+                    {this.state.pets.map(pet => pet.petType.toLowerCase() === 'dog' ? (
+                      <div className="card" key={pet._id}>
                         <div className="card-header" id="headingOne">
                           <h2 className="mb-0">
-                            <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#A${user._id}`}
+                            <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#A${pet._id}`}
                               aria-expanded="true" aria-controls='xxx'>
-                              <span onClick={this.handleClickOnAccordion}>{user.firstName} {user.lastName}</span>
+                              <span onClick={this.handleClickOnAccordion}>{pet.petName} ({pet.petBreed})</span>
                             </button>
                           </h2>
                         </div>
-                        <div id={`A${user._id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div id={`A${pet._id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                           <div className="card-body">
                             {!this.state.updating ? (
-                              <ReadUser
-                                user={user}
-                                handleUpdateUser={this.handleUpdateUser}
+                              <ReadSecUser
+                                pet={pet}
+                                handleUpdateSecUser={this.handleUpdateSecUser}
                               />
                             ) : (
-                                <UpdateUser
-                                  user={user}
+                                <UpdateSecUser
+                                  pet={pet}
                                   handleValueUpdate={this.handleValueUpdate}
                                   handleUpdateClick={this.handleUpdateClick}
                                   handleCancelUpdate={this.handleCancelUpdate}
@@ -163,28 +163,27 @@ class ManageUsers extends Component {
                     ) : null)}
                     <hr />
                     <div className="accordion" id="accordionExample">
-                      <h4 style={{ color: "red" }}>Non-customer list <small>(admin or staff)</small></h4>
-                      {this.state.users.map(user => user.userType === 'vendor' || user.userType === 'staff' ? (
-                        <div className="card" key={user._id}>
+                      <h4 style={{ color: "black" }}>Cat's</h4>
+                      {this.state.pets.map(pet => pet.petType.toLowerCase() === 'cat' ? (
+                        <div className="card" key={pet._id}>
                           <div className="card-header" id="headingOne">
                             <h2 className="mb-0">
-                              <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#A${user._id}`}
+                              <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#A${pet._id}`}
                                 aria-expanded="true" aria-controls='xxx'>
-                                <span onClick={this.handleClickOnAccordion}>{user.firstName} {user.lastName}</span>&nbsp;&nbsp;
-                                <span className="badge badge-pill badge-secondary">{user.userType}</span>
+                                <span onClick={this.handleClickOnAccordion}>{pet.petName} ({pet.petBreed})</span>
                               </button>
                             </h2>
                           </div>
-                          <div id={`A${user._id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div id={`A${pet._id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div className="card-body">
                               {!this.state.updating ? (
-                                <ReadUser
-                                  user={user}
-                                  handleUpdateUser={this.handleUpdateUser}
+                                <ReadSecUser
+                                  pet={pet}
+                                  handleUpdateSecUser={this.handleUpdateSecUser}
                                 />
                               ) : (
-                                  <UpdateUser
-                                    user={user}
+                                  <UpdateSecUser
+                                    pet={pet}
                                     handleValueUpdate={this.handleValueUpdate}
                                     handleUpdateClick={this.handleUpdateClick}
                                     handleCancelUpdate={this.handleCancelUpdate}
@@ -199,19 +198,19 @@ class ManageUsers extends Component {
                       <hr />
                     </div>
                     <Button
-                      onClick={this.handleAddUser}
+                      onClick={this.handleAddSecUser}
                       color='primary'
-                    >Add a new user</Button>
+                    >Add a new pet</Button>
                   </div>
                 ) : (
                     <div>
-                      <NewUser
-                        handleSubmitNewUser={this.handleSubmitNewUser}
+                      <NewSecUser
+                        handleSubmitNewSecUser={this.handleSubmitNewSecUser}
                         handleCancel={this.handleCancel}
                         color='warning'
                         colorCancel='danger'
                       >
-                      </NewUser>
+                      </NewSecUser>
                     </div>
                   )}
               </Col>
@@ -223,4 +222,4 @@ class ManageUsers extends Component {
   }
 }
 
-export default ManageUsers;
+export default ManageSecUsers;

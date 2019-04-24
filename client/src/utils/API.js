@@ -58,6 +58,34 @@ export default {
   },
 
   ///////////////////////
+  // About: SECONDARY USERS (PETS)
+
+  // Get ALL users
+  getSecUsers: () => {
+    return axios.get("/api/secusers");
+  },
+
+  // Save ONE user
+  addSecUser: (newSecUser) => {
+    return axios.post("/api/secusers", newSecUser);
+  },
+
+  // Get ONE user by ID
+  getSecUser: (id) => {
+    return axios.get("/api/secusers/" + id);
+  },
+
+  // Update ONE user by ID
+  updateSecUser: (id, data) => {
+    return axios.put("/api/secusers/" + id, data);
+  },
+
+  // Delete ONE user by ID
+  deleteSecUser: (id) => {
+    return axios.delete("/api/secusers/" + id);
+  },
+
+  ///////////////////////
   // About: CALENDAR EVENTS
 
   // Get ALL calendar events

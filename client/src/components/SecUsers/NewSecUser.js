@@ -1,21 +1,21 @@
 import React from "react";
 import { Col, Row, Container } from "../Grid";
-import { Input, TextArea, FormBtn, ListUserType } from "../Form";
+import { Input, TextArea, FormBtn, ListSecUserType } from "../Form";
 
-function UpdateUser(props) {
+function NewSecUser(props) {
 
-  let newUser = {};
+  let newSecUser = {};
 
   let handleInputChange = event => {
     const { name, value } = event.target;
-    newUser[name] = value;
+    newSecUser[name] = value;
   };
 
-  let handleSubmitUpdateUser = event => {
+  let handleSubmitNewSecUser = event => {
     event.preventDefault();
 
-    if (newUser.firstName && newUser.lastName && newUser.phone && newUser.userType) {
-      props.handleSubmitUpdateUser(newUser);
+    if (newSecUser.firstName && newSecUser.lastName && newSecUser.phone && newSecUser.secuserType) {
+      props.handleSubmitNewSecUser(newSecUser);
       }
   };
 
@@ -23,15 +23,9 @@ function UpdateUser(props) {
     <Container fluid>
       <Row>
         <Col size="md-10">
-          <h3>Update existing user</h3>
+          <h3>Create a new secuser</h3>
           <form>
-            <span>Type of user: </span>
-            <ListUserType
-              name="userType"
-              onChange={handleInputChange}
-              text="Type of user (required)"
-            //   value=""
-            />
+            <span>Type of secuser: </span>
             <Input
               name="firstName"
               onChange={handleInputChange}
@@ -64,10 +58,10 @@ function UpdateUser(props) {
               Cancel
               </FormBtn>
             <FormBtn
-              onClick={handleSubmitUpdateUser}
+              onClick={handleSubmitNewSecUser}
               color={props.color}
             >
-              Update!
+              Create new SecUser
               </FormBtn>
           </form>
         </Col>
@@ -76,4 +70,4 @@ function UpdateUser(props) {
   );
 }
 
-export default UpdateUser;
+export default NewSecUser;
