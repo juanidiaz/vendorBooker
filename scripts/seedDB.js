@@ -182,6 +182,25 @@ const servicesSeed = [
     },
 ];
 
+const calendarSeed = [
+    {
+        userID: 1,
+        PetID: 2,
+        SkuID: 1234,
+        startTime: '2019-04-01 11:00:00',
+        endTime: '2019-04-01 13:00',
+        status: 'confirmed'
+    },
+    {
+        userID: 2,
+        PetID: 3,
+        SkuID: 5432,
+        startTime: '2019-04-25 13:00',
+        endTime: '2019-04-25 13:00',
+        status: 'confirmed'
+    }
+]
+
 db.User
     .deleteMany({})
     .then(() => db.User.collection.insertMany(userSeed))
@@ -217,5 +236,3 @@ db.Service
         console.error(err);
         // process.exit(1);
     });
-
-

@@ -7,7 +7,8 @@ import '../../../node_modules/fullcalendar/dist/fullcalendar.css'
 import './style.css'
 
 function calendar(props){
-    return (
+console.log(props)
+  return (
       <FullCalendar
       theme="bootstrap3"
       default-view="month"

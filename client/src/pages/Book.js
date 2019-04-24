@@ -9,12 +9,14 @@ import AllBookings from "../components/Booking/AllBookings"
 import AllServices from "../components/Services/AllServices"
 import ListServices from "../components/Services/ListServices"
 import API from "../utils/API";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class Booking extends Component {
   state = {
     booking: [],
-    services: []
+    services: [],
+    startDate: ''
   };
 
   componentDidMount() {
@@ -34,7 +36,11 @@ loadServices = () => {
     .catch(err => console.log(err));
 };
 
-
+handleDateChange = (date) => {
+  this.setState({
+    startDate: date
+  });
+}
 
 render() {
   return (
@@ -52,21 +58,26 @@ render() {
         <Row>
           <Col size="md-7">
 
-            <p>
-              Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor. Sed
-              malesuada molestie velit ac viverra. Quisque a ullamcorper purus. Curabitur luctus mi
-              ac mi hendrerit semper. Nulla tincidunt accumsan lobortis. Mauris convallis sapien non
-              nibh porta accumsan. Nunc volutpat tempus porttitor. Nunc congue dictum egestas.
-              Aliquam blandit mi eu urna scelerisque, vitae volutpat ligula ultricies. Maecenas vel
-              porta augue. Fusce mauris ex, dignissim et lacinia ut, tempus eget nibh.
-            </p>
-            <NewBooking />
-            <ListServices 
+          <DatePicker
+                                name="datetime"
+                                selected={this.state.startDate}
+                                onChange={this.handleDateChange}
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={15}
+                                dateFormat="MMMM d, yyyy h:mm aa"
+                                timeCaption="time"
+                            />
+            <ListServices
             services = {this.state.services}
             />
+            <NewBooking />
+
           </Col>
           <Col size="md-4" offset="md-1">
-          <Calendar events= {this.state.events}/>
+          <Calendar
+          events= {this.state.events}
+          />
           </Col>
         </Row>
 
