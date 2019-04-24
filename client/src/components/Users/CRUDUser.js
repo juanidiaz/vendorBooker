@@ -16,54 +16,63 @@ export function ReadUser(props) {
 
 export function UpdateUser(props) {
 
-  let editedUser = {};
+  // let editedUser = {
+  //   firstName: props.user.firstName,
+  //   lastName: props.user.lastName,
+  //   phoneName: props.user.phoneName,
+    // firstName: props.user.firstName,
+    // firstName: props.user.firstName,
+    // firstName: props.user.firstName,
+  // };
 
-  let handleInputChange = event => {
-    const { name, value } = event.target;
-    editedUser[name] = value;
-  };
+  // let handleInputChange = event => {
+  //   const { name, value } = event.target;
+  //   editedUser[name] = value;
+  //     console.log(editedUser)
+  // };
 
-  let handleUpdateClick = event => {
-    event.preventDefault();
+  // let handleUpdateClick = event => {
+  //   event.preventDefault();
 
-    if (editedUser.firstName && editedUser.lastName && editedUser.phone && editedUser.userType) {
-      props.handleUpdateClick(editedUser);
-    }else{
-      console.log('nah!')
-    }
-  };
+    // if (editedUser.firstName && editedUser.lastName && editedUser.phone && editedUser.userType) {
+    //   props.handleUpdateClick(editedUser);
+    // }else{
+    //   console.log('nah!');
+    //   // console.log(editedUser)
+    // }
+  // };
 
   return (
     <div>
       Edit mode
       <Input
         name="firstName"
-        onChange={handleInputChange}
-        inputVal={props.user.firstName}
+        onChange={(e) => props.handleValueUpdate(e, props.user._id)}
+        value={props.user.firstName}
       />
       <Input
         name="lastName"
-        onChange={handleInputChange}
-        placeholder={props.user.lastName}
+        onChange={(e) => props.handleValueUpdate(e, props.user._id)}
+        defaultValue={props.user.lastName}
       />
       <Input
         name="phone"
-        onChange={handleInputChange}
-        placeholder={props.user.phone}
+        onChange={(e) => props.handleValueUpdate(e, props.user._id)}
+        defaultValue={props.user.phone}
       />
       <Input
         name="email"
-        onChange={handleInputChange}
-        placeholder={props.user.email}
+        onChange={(e) => props.handleValueUpdate(e, props.user._id)}
+        defaultValue={props.user.email}
       />
       <TextArea
         name="address"
-        onChange={handleInputChange}
-        placeholder={props.user.address}
+        onChange={(e) => props.handleValueUpdate(e, props.user._id)}
+        defaultValue={props.user.address}
       />
       <ListUserType
         name="userType"
-        onChange={handleInputChange}
+        onChange={(e) => props.handleValueUpdate(e, props.user._id)}
         text={props.user.userType}
       />
       <FormBtn
@@ -73,7 +82,7 @@ export function UpdateUser(props) {
         Cancel
       </FormBtn>
       <FormBtn
-        onClick={handleUpdateClick}
+        onClick={(e) => props.handleUpdateClick(e, props.user._id)}
         color={props.color}
       >
         Update

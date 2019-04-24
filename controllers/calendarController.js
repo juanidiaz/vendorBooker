@@ -14,7 +14,7 @@ module.exports = {
   deleteOne: (id) => {
     return db.Calendar.findOneAndDelete({_id: id});
   },
-  updateOne: (id, updateInfo) => {
-    return db.Calendar.findOneAndUpdate({ _id: id }, updateInfo);
+  updateOne: (id, data) => {
+    return db.Calendar.findOneAndUpdate({ _id: id }, data);
   }
 };

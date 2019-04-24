@@ -93,7 +93,7 @@ class ManageServices extends Component {
                             <p><b>Normal price: </b>${service.price}
                               {service.specialPrice ? (<span><b> Special price: </b>${service.specialPrice}</span>) : null}
                               {service.cost ? (<span><b> Cost: </b>${service.cost}</span>) : null}</p>
-                            <p>{service.images ? <img src={`/images/${service.images}`} width="200" height="300" style={{ 'border-radius': '8px', border: '2px solid #185586', 'box-shadow': '3px 3px 5px grey' }} alt={''} /> : null}</p>
+                            <p>{service.images ? <img src={`/images/${service.images}`} width="200" height="300" style={{ 'borderRadius': '8px', border: '2px solid #185586', 'boxShadow': '3px 3px 5px grey' }} alt={''} /> : null}</p>
                             <p>{service.notes ? (<span><b>Notes: </b>${service.notes}</span>) : null}</p>
                             <button type="button" className="btn btn-danger btn-sm" onClick={this.handleDeleteService} id={service._id}>Delete</button>
                             <button type="button" className="btn btn-success btn-sm ml-4" onClick={this.handleUpdateService} id={service._id}>Update</button>

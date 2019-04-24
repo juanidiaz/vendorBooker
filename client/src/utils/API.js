@@ -20,8 +20,8 @@ export default {
   },
 
   // Update ONE service by ID
-  uptadeService: (id) => {
-    return axios.put("/api/services/" + id);
+  updateService: (id, data) => {
+    return axios.put("/api/services/" + id, data);
   },
 
   // Delete ONE service by ID
@@ -48,8 +48,8 @@ export default {
   },
 
   // Update ONE user by ID
-  uptadeUser: (id) => {
-    return axios.put("/api/users/" + id);
+  updateUser: (id, data) => {
+    return axios.put("/api/users/" + id, data);
   },
 
   // Delete ONE user by ID
@@ -76,8 +76,8 @@ export default {
   },
 
   // Update ONE calendar event by ID
-  uptadeCalendar: (id) => {
-    return axios.put("/api/calendars/" + id);
+  updateCalendar: (id, data) => {
+    return axios.put("/api/calendars/" + id, data);
   },
 
   // Delete ONE calendar event by ID
