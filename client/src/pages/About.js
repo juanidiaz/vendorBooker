@@ -16,11 +16,13 @@ import Slider from "../components/Slider";
 function About() {
   return (
     <div>
-      <Background />
+      <Background>
+      <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
+      </Background>
   
       <Container style={{ marginTop: 30 }}>
         <Row>
-          <Col size="md-10">
+          <Col size="md-12">
             <h1>About us</h1>
           </Col>
         </Row>
