@@ -2,7 +2,7 @@
 
 import React from "react";
 import classnames from "classnames";
-import { canGoNext } from "./utils/innerSliderUtils";
+import { canGoNext } from "../InnerSliderUtils";
 
 export class PrevArrow extends React.PureComponent {
   clickHandler(options, e) {
