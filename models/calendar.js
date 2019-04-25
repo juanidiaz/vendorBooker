@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const calendarSchema = new Schema({
-  userId: [{
+  title: [{
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: "title"
   }],
   vendorId: [{
     type: Schema.Types.ObjectId,

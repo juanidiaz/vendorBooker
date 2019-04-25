@@ -10,13 +10,17 @@ import AllServices from "../components/Services/AllServices"
 import ListServices from "../components/Services/ListServices"
 import API from "../utils/API";
 import DatePicker from "react-datepicker";
+import Button from "../components/Button"
 import "react-datepicker/dist/react-datepicker.css";
+import { FormBtn } from "../components/Form"
 
 class Booking extends Component {
   state = {
     booking: [],
     services: [],
-    startDate: ''
+    service: '',
+    startDate: '',
+    value: '' 
   };
 
   componentDidMount() {
@@ -42,6 +46,24 @@ handleDateChange = (date) => {
   });
 }
 
+handleServiceChange = (Service) => {
+  this.setState({
+    service: Service
+  })
+  console.log(this.state.service)
+}
+
+handleSubmitNewBooking = (newBooking) => {
+  API.addCalendar(newBooking)
+    .then(res => {
+      alert(`Appointment has been booked for ${newBooking.startDate} was created!`)
+      // this.setState({ adding: false });
+      this.loadEvents();
+
+    })
+    .catch(err => console.log(err));
+};
+
 render() {
   return (
     <div>
@@ -65,14 +87,15 @@ render() {
                                 showTimeSelect
                                 timeFormat="HH:mm"
                                 timeIntervals={15}
-                                dateFormat="MMMM d, yyyy h:mm aa"
+                                dateFormat="yyyy-mm-dd h:mm aa"
                                 timeCaption="time"
                             />
             <ListServices
             services = {this.state.services}
+            selected={this.state.service}
+            onChange={this.handleServiceChange}
             />
-            <NewBooking />
-
+            {/* <NewBooking booking={this.state.booking}/> */}
           </Col>
           <Col size="md-4" offset="md-1">
           <Calendar
@@ -80,7 +103,13 @@ render() {
           />
           </Col>
         </Row>
-
+        <FormBtn
+                                // disabled={!(this.state.name && this.state.notes)}
+                                onClick={this.handleSubmitNewBooking}
+                                color="warning"
+                            >
+                                Book appointment!
+              </FormBtn>
       </Container>
     </div>
   );

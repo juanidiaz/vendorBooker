@@ -13,31 +13,32 @@ function NewBooking(props) {
     //     services: [],
     //     booking: []
     // }
-    let newBooking = {};
+    // let newBooking = {};
   
-    // this.state = {
-    //     startDate: new Date()
-    //   };
+    // // this.state = {
+    // //     startDate: new Date()
+    // //   };
 
-    let handleInputChange = event => {
-      let { name, value } = event.target;
-      newBooking[name] = value;
-    };
+    // let handleInputChange = event => {
+    //   let { name, value } = event.target;
+    //   newBooking[name] = value;
+    // };
   
-    let handleDateChange = date => {
-        this.setState({
-          startDate: date
-        });
-      }
+    // let handleDateChange = date => {
+    //     this.setState({
+    //       startDate: date
+    //     });
+    //   }
 
-    let handleSubmitNewBooking = event => {
-      event.preventDefault();
+    // let handleSubmitNewBooking = event => {
+    //   event.preventDefault();
   
-      if (newBooking.name && newBooking.notes) {
-        props.handleSubmitNewBooking(newBooking);
-        }
-    };
+    //   if (newBooking.name && newBooking.notes) {
+    //     props.handleSubmitNewBooking(newBooking);
+    //     }
+    // };
 
+    console.log(props)
     // this.state = {
     //     startDate: new Date()
     //   };
@@ -48,7 +49,7 @@ function NewBooking(props) {
                     <Col size="md-10">
                         <h3>Book a visit with us!</h3>
                         <form>
-                            <DatePicker
+                            {/* <DatePicker
                                 name="datetime"
                                 // selected={this.state.startDate}
                                 onChange={handleDateChange}
@@ -67,15 +68,15 @@ function NewBooking(props) {
                                 name="notes"
                                 onChange={handleInputChange}
                                 placeholder="Notes"
-                            />
+                            /> */}
 
-                            <FormBtn
+                            {/* <FormBtn
                                 // disabled={!(this.state.name && this.state.notes)}
                                 onClick={handleSubmitNewBooking}
                                 color="warning"
                             >
                                 Book appointment!
-              </FormBtn>
+              </FormBtn> */}
                         </form>
                     </Col>
                 </Row>

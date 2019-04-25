@@ -206,7 +206,7 @@ db.User
     .then(() => db.User.collection.insertMany(userSeed))
     .then(dataUser => {
         console.log(dataUser.result.n + " USER records inserted!");
-        process.exit(0);
+        // process.exit(0);
     })
     .catch(err => {
         console.error(err);
@@ -230,7 +230,19 @@ db.Service
     .then(() => db.Service.collection.insertMany(servicesSeed))
     .then(data => {
         console.log(data.result.n + " SERVICES records inserted!");
-        process.exit(0);
+        // process.exit(0);
+    })
+    .catch(err => {
+        console.error(err);
+        // process.exit(1);
+    });
+
+db.Calendar
+.deleteMany({})
+    .then(() => db.Calendar.collection.insertMany(calendarSeed))
+    .then(data => {
+        console.log(data.result.n + " Calendar records inserted!");
+        // process.exit(0);
     })
     .catch(err => {
         console.error(err);
