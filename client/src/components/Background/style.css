@@ -8,7 +8,7 @@
 .hero::after {
   content: "";
   display: block;
-  opacity: .4;
+  /* opacity: .4; */
   position: absolute;
   top: 0;
   bottom: 0;
