@@ -19,6 +19,11 @@ export function ReadService(props) {
 
 export function UpdateService(props) {
 
+  let validateBeforeUpdate = (e) => {
+    if (!props.service.name || !props.service.description || !props.service.price) { return } 
+    props.handleUpdateClick(e, props.service._id)
+  };
+
   return (
     <div>
       Edit mode
@@ -69,7 +74,7 @@ export function UpdateService(props) {
         Cancel
       </FormBtn>
       <FormBtn
-        onClick={(e) => props.handleUpdateClick(e, props.service._id)}
+        onClick={validateBeforeUpdate}
         color={props.color}
       >
         Update

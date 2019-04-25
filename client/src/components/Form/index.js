@@ -54,6 +54,18 @@ export function ListUserType(props) {
   );
 }
 
+export function ListSecUserType(props) {
+  return (
+    <div className="form-group">
+      <select className="form-control" name={props.name} {...props}>
+        <option defaultValue="">{props.text}</option>
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+      </select>
+    </div>
+  );
+}
+
 export function FormBtn(props) {
   return (
     <button {...props} style={{ float: "right", marginBottom: 10 }} className={`btn btn-${props.color} ml-3 mb-5`}>

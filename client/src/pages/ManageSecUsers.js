@@ -42,7 +42,7 @@ class ManageSecUsers extends Component {
     let id = event.target.id
     API.deleteSecUser(id)
       .then((deletedSecUser) => {
-        alert(`${deletedSecUser.data.petType} "${deletedSecUser.data.firstName} ${deletedSecUser.data.lastName}" was deleted!`);
+        alert(`${deletedSecUser.petName}'s (${deletedSecUser.petBreed}) register was deleted!`)
         this.loadSecUsers();
       })
       .catch(err => console.log(err));
@@ -51,7 +51,7 @@ class ManageSecUsers extends Component {
   handleSubmitNewSecUser = newSecUser => {
     API.addSecUser(newSecUser)
       .then(res => {
-        alert(`New ${newSecUser.petType} "${newSecUser.firstName} ${newSecUser.lastName}" was created!`)
+        alert(`A new ${newSecUser.petType} register was created for "${newSecUser.name}" (${newSecUser.petBreed}).`)
         this.setState({ adding: false });
         this.loadSecUsers();
       })
@@ -61,10 +61,6 @@ class ManageSecUsers extends Component {
   handleUpdateSecUser = event => {
     // console.log(event.target);
     this.setState({ updating: true });
-  }
-
-  handleUpdateClick = editedSecUser => {
-    console.log(editedSecUser);
   }
 
   handleClickOnAccordion = event => {
@@ -91,8 +87,6 @@ class ManageSecUsers extends Component {
 
   handleUpdateClick = (event, id) => {
 
-    if (!event.target.firstName && !event.target.lastName && !event.target.phone && !event.target.secpetType) { return }
-
     const updatedSecUser = { ...this.state.pets.find(pet => pet._id === id) }
     const { name, value } = event.target;
     updatedSecUser[name] = value;
@@ -100,7 +94,7 @@ class ManageSecUsers extends Component {
     console.log(updatedSecUser);
     API.updateSecUser(updatedSecUser._id, updatedSecUser)
       .then(res => {
-        alert(`${updatedSecUser.petType} "${updatedSecUser.firstName} ${updatedSecUser.lastName}" was updated!`)
+        alert(`${updatedSecUser.petName}'s (${updatedSecUser.petBreed}) register was updated!`)
         this.setState({ updating: false });
         this.loadSecUsers();
       })

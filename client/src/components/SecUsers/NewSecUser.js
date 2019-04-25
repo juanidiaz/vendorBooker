@@ -16,40 +16,59 @@ function NewSecUser(props) {
 
     if (newSecUser.firstName && newSecUser.lastName && newSecUser.phone && newSecUser.secuserType) {
       props.handleSubmitNewSecUser(newSecUser);
-      }
+    }
   };
 
   return (
     <Container fluid>
       <Row>
         <Col size="md-10">
-          <h3>Create a new secuser</h3>
+          <h3>Create a new pet</h3>
           <form>
-            <span>Type of secuser: </span>
-            <Input
-              name="firstName"
+            <small>Type of animal: </small><ListSecUserType
+              name="petType"
               onChange={handleInputChange}
-              placeholder="First name (required)"
+              text="Type of animal (required)"
             />
-            <Input
-              name="lastName"
+            <small>Name: </small><Input
+              name="petName"
               onChange={handleInputChange}
-              placeholder="Last name (required)"
+              text="Name (required)"
             />
-            <Input
-              name="phone"
+            <small>Age: </small><Input
+              name="petAge"
               onChange={handleInputChange}
-              placeholder="Phone number (required)"
+              text="Age (required)"
             />
-            <Input
-              name="email"
+            <small>Breed: </small><Input
+              name="petBreed"
               onChange={handleInputChange}
-              placeholder="Email (required)"
+              text="Breed (required)"
             />
-            <TextArea
-              name="address"
+            <small>Weight: </small><Input
+              name="petWeight"
               onChange={handleInputChange}
-              placeholder="Address"
+              text="Weight (required)"
+            />
+            <small>Vacccines: </small><Input
+              name="petVaccines"
+              onChange={handleInputChange}
+              text="Vaccination"
+            />
+            <small>Tag information: </small><Input
+              name="petTag"
+              onChange={handleInputChange}
+              text="Tag number/code"
+            />
+            <small>Behaviour: </small><Input
+              name="petBehaviour"
+              onChange={handleInputChange}
+              text="Behaviour"
+            />
+            <small>Notes: </small><TextArea
+              name="petNotes"
+              onChange={handleInputChange}
+              text="Notes"
             />
             <FormBtn
               onClick={props.handleCancel}
@@ -61,7 +80,7 @@ function NewSecUser(props) {
               onClick={handleSubmitNewSecUser}
               color={props.color}
             >
-              Create new SecUser
+              Create new pet
               </FormBtn>
           </form>
         </Col>

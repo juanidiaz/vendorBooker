@@ -20,7 +20,8 @@ function Home() {
             </h2>
             <a href="/about" class="badge badge-danger mr-2">About us</a>
             <a href="/services" class="badge badge-danger mr-2">Services</a>
-            <a href="/auth" class="badge badge-danger mr-2">Log in</a>
+            <a href="/booking" class="badge badge-danger mr-2">Book appointment</a>
+            <a href="/login" class="badge badge-danger mr-2">Log in</a>
             {/* <Button
               // onClick={routeChange('/services')}
               color='primary'

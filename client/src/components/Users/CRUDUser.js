@@ -16,6 +16,11 @@ export function ReadUser(props) {
 
 export function UpdateUser(props) {
 
+  let validateBeforeUpdate = (e) => {
+    if (!props.user.firstName || !props.user.lastName || !props.user.phone || !props.user.email) { return } 
+    props.handleUpdateClick(e, props.user._id)
+  };
+
   return (
     <div>
       Edit mode
@@ -56,7 +61,7 @@ export function UpdateUser(props) {
         Cancel
       </FormBtn>
       <FormBtn
-        onClick={(e) => props.handleUpdateClick(e, props.user._id)}
+        onClick={validateBeforeUpdate}
         color={props.color}
       >
         Update

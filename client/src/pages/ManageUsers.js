@@ -63,16 +63,13 @@ class ManageUsers extends Component {
     this.setState({ updating: true });
   }
 
-  handleUpdateClick = editedUser => {
-    console.log(editedUser);
-  }
-
   handleClickOnAccordion = event => {
     this.setState({ updating: false });
     this.loadUsers();
   }
 
   handleValueUpdate = (event, id) => {
+    event.preventDefault();
     const nextUsers = this.state.users.map(user => {
       const { name, value } = event.target;
       // This line will RETURN the result of evaluating the `_id` of the user and, if 
@@ -90,8 +87,6 @@ class ManageUsers extends Component {
   };
 
   handleUpdateClick = (event, id) => {
-
-    if (!event.target.firstName && !event.target.lastName && !event.target.phone && !event.target.secuserType) { return }
 
     const updatedUser = { ...this.state.users.find(user => user._id === id) }
     const { name, value } = event.target;

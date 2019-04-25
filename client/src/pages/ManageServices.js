@@ -63,11 +63,6 @@ class ManageServices extends Component {
     this.setState({ updating: true });
   }
 
-  handleUpdateClick = editedService => {
-    console.log(editedService);
-
-  }
-
   handleClickOnAccordion = event => {
     console.log(event.target.id);
     this.setState({ updating: false });
