@@ -40,29 +40,29 @@ function About() {
         </Row>
         <Slider {...settings}>
         <div>
-          <h3>BATHING</h3>
-          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/bathingDog.jpg" style={{ width: "200px" }}/>
+          <h4>Bathing</h4>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/bathingDog.jpg" style={{ height:"120px", width: "120px" }}/>
          
         </div>
         <div>
-          <h3>BRUSHING</h3>
-          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/dryingDog.jpg" style={{ width: "200px" }}/>
+          <h4>Drying</h4>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/dryingDog.jpg" style={{ height:"120px", width: "150px"  }}/>
         </div>
         <div>
-          <h3>DE-MATTING</h3>
-          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/demattingDog.jpg" style={{ width: "200px" }}/>
+          <h4>De-matting</h4>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/demattingDog.jpg" style={{ height:"120px", width: "150px"  }}/>
         </div>
         <div>
-          <h3>EAR CLEANING</h3>
-          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/earCleaning.jpg" style={{ width: "200px" }}/>
+          <h4>Ear Cleaning</h4>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/earCleaning.jpg" style={{ height:"120px", width: "150px"  }}/>
         </div>
         <div>
-          <h3>HAIRCUTS</h3>
-          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/haircutImg.jpg" style={{ width: "200px" }}/>
+          <h4>Haircuts</h4>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/haircutImg.jpg" style={{ height:"120px", width: "150px"  }}/>
         </div>
         <div>
-          <h3>NAIL TRIMMING</h3>
-          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/nailTrim.jpg" style={{ width: "200px" }}/>
+          <h4>Nail Trimming</h4>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/nailTrim.jpg" style={{ height:"120px", width: "150px" }}/>
         </div>
       </Slider>
       </Container>
