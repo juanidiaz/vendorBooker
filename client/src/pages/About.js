@@ -29,41 +29,40 @@ function About() {
         <Row>
           <Col size="md-12">
             <p>
-              Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor. Sed
-              malesuada molestie velit ac viverra. Quisque a ullamcorper purus. Curabitur luctus mi
-              ac mi hendrerit semper. Nulla tincidunt accumsan lobortis. Mauris convallis sapien non
-              nibh porta accumsan. Nunc volutpat tempus porttitor. Nunc congue dictum egestas.
-              Aliquam blandit mi eu urna scelerisque, vitae volutpat ligula ultricies. Maecenas vel
-              porta augue. Fusce mauris ex, dignissim et lacinia ut, tempus eget nibh.
+              With over 19 years of experience, you can be sure that your dogs and cats are in good hands. 
             </p>
             <p>
-              Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor. Sed
-              malesuada molestie velit ac viverra. Quisque a ullamcorper purus. Curabitur luctus mi
-              ac mi hendrerit semper. Nulla tincidunt accumsan lobortis. Mauris convallis sapien non
-              nibh porta accumsan. Nunc volutpat tempus porttitor. Nunc congue dictum egestas.
-              Aliquam blandit mi eu urna scelerisque, vitae volutpat ligula ultricies. Maecenas vel
-              porta augue. Fusce mauris ex, dignissim et lacinia ut, tempus eget nibh.
+            Our open concept allows you to watch your dog and/or cat being pampered by looking through our windows at any time. 
+            Our environment provides your pets a unique experience where stress from all other pet groomers will simply go away. 
+            Your furry members of the family are just as happy coming in, as they are going home.
             </p>
           </Col>
         </Row>
         <Slider {...settings}>
         <div>
-          <h3>1</h3>
+          <h3>BATHING</h3>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/bathingDog.jpg" style={{ width: "200px" }}/>
+         
         </div>
         <div>
-          <h3>2</h3>
+          <h3>BRUSHING</h3>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/dryingDog.jpg" style={{ width: "200px" }}/>
         </div>
         <div>
-          <h3>3</h3>
+          <h3>DE-MATTING</h3>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/demattingDog.jpg" style={{ width: "200px" }}/>
         </div>
         <div>
-          <h3>4</h3>
+          <h3>EAR CLEANING</h3>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/earCleaning.jpg" style={{ width: "200px" }}/>
         </div>
         <div>
-          <h3>5</h3>
+          <h3>HAIRCUTS</h3>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/haircutImg.jpg" style={{ width: "200px" }}/>
         </div>
         <div>
-          <h3>6</h3>
+          <h3>NAIL TRIMMING</h3>
+          <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/nailTrim.jpg" style={{ width: "200px" }}/>
         </div>
       </Slider>
       </Container>
