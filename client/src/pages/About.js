@@ -16,10 +16,8 @@ import Slider from "../components/Slider";
 function About() {
   return (
     <div>
-      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-        <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
-      </Background>
-
+      <Background />
+  
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-10">
