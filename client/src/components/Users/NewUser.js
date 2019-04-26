@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row, Container } from "../Grid";
-import { Input, TextArea, FormBtn, ListUserType } from "../Form";
+import { Input, FormBtn, ListUserType } from "../Form";
 
 function NewUser(props) {
 
@@ -49,11 +49,6 @@ function NewUser(props) {
               name="email"
               onChange={handleInputChange}
               placeholder="Email (required)"
-            />
-            <TextArea
-              name="address"
-              onChange={handleInputChange}
-              placeholder="Address"
             />
             <FormBtn
               onClick={props.handleCancel}

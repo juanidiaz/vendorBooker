@@ -3,12 +3,14 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUp } from '../../store/actions/authActions';
 
+
 class SignUp extends Component {
     state = {
         email: '',
         password: '',
         firstName: '',
         lastName: '',
+        phone: ''
     }
     handleChange = (e) => {
         this.setState({
@@ -18,16 +20,18 @@ class SignUp extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.signUp(this.state);
-      }
+    }
     render() {
-        const { auth } = this.props;
-        if (auth.uid) return <Redirect to='/client' /> 
+        const { authError, auth } = this.props;
+        if (auth.uid) return <Redirect to='/client' />
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-md-8">
                         <form className="white" onSubmit={this.handleSubmit}>
-                            <h5 className="grey-text text-darken-3">Sign Up</h5>
+                            <h4 className="grey-text text-darken-3" style={{textAlign: "center"}}>Sign Up</h4>
+                            <hr></hr>
+                            <p style={{textAlign: "center"}}>Please fill out this form to create an account</p>
                             <div className="input-field">
                                 <label htmlFor="email">Email</label>
                                 <input type="email" id='email' onChange={this.handleChange} />
@@ -45,7 +49,14 @@ class SignUp extends Component {
                                 <input type="text" id='lastName' onChange={this.handleChange} />
                             </div>
                             <div className="input-field">
+                                <label htmlFor="phone">Phone</label>
+                                <input type="text" id='phone' onChange={this.handleChange} />
+                            </div>
+                            <div className="input-field">
                                 <button className="btn-warning lighten-1 z-depth-0">Sign Up</button>
+                                <div className="center red-text">
+                                    {authError ? <p>{authError}</p> : null}
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -58,15 +69,15 @@ class SignUp extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      auth: state.firebase.auth,
-      authError: state.auth.authError
+        auth: state.firebase.auth,
+        authError: state.auth.authError
     }
-  }
-  
-  const mapDispatchToProps = (dispatch)=> {
+}
+
+const mapDispatchToProps = (dispatch) => {
     return {
-      signUp: (creds) => dispatch(signUp(creds))
+        signUp: (creds) => dispatch(signUp(creds))
     }
-  }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

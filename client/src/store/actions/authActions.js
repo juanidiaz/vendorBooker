@@ -1,3 +1,6 @@
+import API from "../../utils/API";
+
+
 export const signIn = (credentials) => {
   return (dispatch, getState, {getFirebase}) => {
     const firebase = getFirebase();
@@ -32,8 +35,13 @@ export const signUp = (newUser) => {
       newUser.email, 
       newUser.password
     ).then(() => {
-      dispatch({ type: 'SIGNUP_SUCCESS' });
-    }).catch((err) => {
+      dispatch({ type: 'SIGNUP_SUCCESS' })
+    })
+    .then( API.addUser(newUser)
+    .then(res => {
+      dispatch({ type: true  });
+    }))
+    .catch((err) => {
       dispatch({ type: 'SIGNUP_ERROR', err});
     });
   }
