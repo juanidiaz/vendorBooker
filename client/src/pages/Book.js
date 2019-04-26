@@ -7,8 +7,7 @@ import Col from "../components/Col";
 function Services() {
   return (
     <div>
-      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-        <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
+      <Background backgroundImage="https://alextimes.com/wp-content/uploads/2018/02/cat-with-a-heart-696x364.jpeg">
       </Background>
 
       <Container style={{ marginTop: 30 }}>

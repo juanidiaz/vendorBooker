@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-light" id="nav">
       <Link className="navbar-brand" to="/">
-        Amazing Pet Grooming
+      <img src="/images/logo_300.png" style={{ width: "100px" }} alt="main logo" />
       </Link>
       <div>
         <ul className="navbar-nav">
