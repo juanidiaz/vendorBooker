@@ -1,5 +1,4 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import Background from "../components/Background";
 import Container from "../components/Container";
 import Row from "../components/Row";
@@ -8,8 +7,7 @@ import Col from "../components/Col";
 function Auth() {
   return (
     <div>
-      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-        <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
+      <Background backgroundImage="http://1mpr64kkw06av2tn1d975o3k-wpengine.netdna-ssl.com/wp-content/uploads/2012/03/bgConnect.jpg">
       </Background>
 
       <Container style={{ marginTop: 30 }}>

@@ -1,0 +1,21 @@
+.card {
+  background:white;
+  border-radius: 2px;
+  height: 160px;
+  margin: 1rem;
+  position: relative;
+  width: 150px;
+  box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+  text-align: left;
+}
+
+.card > .img-container {
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+  background: #000000
+}
+
+.card > hover {
+  color: #d50000;
+}

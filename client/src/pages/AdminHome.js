@@ -1,5 +1,4 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import Background from "../components/Background";
 import Container from "../components/Container";
 import Row from "../components/Row";
@@ -8,9 +7,8 @@ import Col from "../components/Col";
 function AdminHome() {
   return (
     <div>
-      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-        <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
-      </Background>
+      <Background backgroundImage="https://wallup.net/wp-content/uploads/2016/01/227619-nature-animals-dog-cat-baby_animals-kittens-pet-love.jpg">
+       </Background>
 
       <Container style={{ marginTop: 30 }}>
         <Row>

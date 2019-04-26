@@ -1,94 +1,82 @@
 import React, { Component } from "react";
 import Background from "../components/Background";
-import Container from "../components/Container";
-// import Button from "../components/Button";
+
 import Row from "../components/Row";
 import Col from "../components/Col";
-// import { Link } from 'react-router-dom';
-import { withAuth } from '@okta/okta-react';
+import Container from "../components/Container";
+import Slider from "../components/Slider";
+import API from "../utils/API";
 
-export default withAuth(
-  class Home extends Component {
-    state = { authenticated: null };
+const settings = {
+  focusOnSelect: true,
+  infinite: true,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  speed: 500
+};
 
-    checkAuthentication = async () => {
-      const authenticated = await this.props.auth.isAuthenticated();
-      if (authenticated !== this.state.authenticated) {
-        this.setState({ authenticated });
-      }
-    };
+class Home extends Component {
+  state = {
+    services: [],
+  };
 
-    async componentDidMount() {
-      this.checkAuthentication();
-    }
-
-    async componentDidUpdate() {
-      this.checkAuthentication();
-    }
-
-    login = async () => {
-      this.props.auth.login('/');
-    };
-
-    logout = async () => {
-      this.props.auth.logout('/');
-    };
-
-    render() {
-      if (this.state.authenticated === null) return null;
-
-      const mainContent = this.state.authenticated ? (
-        <div className="textUnderLogo">
-          <button style={{marginLeft: "200px", marginTop: "-70px"}} className="btn btn-primary" onClick={this.logout}>
-            Logout Session
-          </button>
-        </div>
-      ) : (
-          <div >
-            {/* blank div */}
-          </div>
-        );
-
-      return (
-        <div>
-          <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-            <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
-          </Background>
-
-          <Container style={{ marginTop: 30 }}>
-            <Row>
-              <Col size="md-12">
-                <h2 style={{ color: "black" }}>
-                  Call us at: 905 878 9009 / 905 878 5557
-                  </h2>
-                <a href="/about" className="badge badge-danger mr-2">About us</a>
-                <a href="/services" className="badge badge-danger mr-2">Services</a>
-                <a href="/admin" className="badge badge-danger mr-2">Admin</a>
-
-
-
-              </Col>
-            </Row>
-
-          </Container>
-          <div className="container">
-            <div className="row">
-              {/* <div className="col-md-3 logoBox">
-                <img className="logo" alt="logo" src="https://res.cloudinary.com/bootcamp2019/image/upload/c_scale,h_300,w_600/v1555380182/logo_final_PARA_PAGINA_WEB_Amazing_Pet_Grooming.png"
-                ></img>
-              </div> */}
-              <div className="col-md-3 mainContent">
-                {mainContent}
-              </div>
-              <div>
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-      );
-    }
+  componentDidMount() {
+    this.loadServices();
   }
-);
+
+  loadServices = () => {
+    API.getServices()
+      .then(res => this.setState({ services: res.data }))
+      .catch(err => console.log(err));
+  };
+
+  render() {
+  return (
+    <div>
+      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
+      </Background>
+
+      <Container style={{ marginTop: 30 }}>
+        <Row>
+          <Col size="md-12">
+            <h1>Our Services Stand Apart</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col size="md-12">
+    
+            <Slider {...settings}>
+            <div>
+              <h4>Bathing</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/bathingDog.jpg" alt="bathing" style={{ height:"120px", width: "120px" }}/>
+            </div>
+            <div>
+              <h4>Drying</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/dryingDog.jpg" alt="drying" style={{ height:"120px", width: "15git 0px"  }}/>
+            </div>
+            <div>
+              <h4>De-matting</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/demattingDog.jpg" alt="de-matting" style={{ height:"120px", width: "150px"  }}/>
+            </div>
+            <div>
+              <h4>Ear Cleaning</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/earCleaning.jpg" alt="earcleaning" style={{ height:"120px", width: "150px"  }}/>
+            </div>
+            <div>
+              <h4>Haircuts</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/haircutImg.jpg" alt="ear cleaning" style={{ height:"120px", width: "150px"  }}/>
+            </div>
+            <div>
+              <h4>Nail Trimming</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/nailTrim.jpg" alt="nail trimming" style={{ height:"120px", width: "150px" }}/>
+            </div>
+          </Slider>
+          </Col>
+        </Row>
+
+      </Container>
+    </div>
+    );
+  }
+}
+export default Home;
