@@ -44,8 +44,10 @@ export function ListDuration(props) {
 export function ListUserType(props) {
   return (
     <div className="form-group">
-      <select className="form-control" name={props.name} {...props}>
-        <option defaultValue="">{props.text}</option>
+      {/* <select className="form-control" name={props.name}> */}
+      {/* <select className="form-control" name={props.name} value={props.user.userType} onChange={(e) => props.handleValueUpdate(e, props.user._id)} > */}
+      <select className="form-control" name={props.name}>
+        <option value="null" disabled>Select user type</option>
         <option value="user">Client</option>
         <option value="vendor">Admin</option>
         <option value="staff">Staff</option>

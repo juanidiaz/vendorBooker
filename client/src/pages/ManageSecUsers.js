@@ -8,6 +8,7 @@ import "./index.css"
 
 class ManageSecUsers extends Component {
   state = {
+    users: [],
     pets: [],
     adding: false,
     updating: false
@@ -15,13 +16,23 @@ class ManageSecUsers extends Component {
 
   componentDidMount() {
     this.loadSecUsers();
+    this.loadUsers();
   }
+
+  loadUsers = () => {
+    API.getUsers()
+      .then(res => {
+        this.setState({ users: res.data });
+        // console.log(this.state.users);
+      })
+      .catch(err => console.log(err));
+  };
 
   loadSecUsers = () => {
     API.getSecUsers()
       .then(res => {
         this.setState({ pets: res.data });
-        console.log(this.state.pets);
+        // console.log(this.state.pets);
       })
       .catch(err => console.log(err));
   };
@@ -140,10 +151,12 @@ class ManageSecUsers extends Component {
                               <ReadSecUser
                                 pet={pet}
                                 handleUpdateSecUser={this.handleUpdateSecUser}
+                                users={this.state.users}
                               />
                             ) : (
                                 <UpdateSecUser
                                   pet={pet}
+                                  users={this.state.users}
                                   handleValueUpdate={this.handleValueUpdate}
                                   handleUpdateClick={this.handleUpdateClick}
                                   handleCancelUpdate={this.handleCancelUpdate}

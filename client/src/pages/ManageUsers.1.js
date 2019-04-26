@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card';
 import NewUser from "../components/Users/NewUser"
 import { ReadUser, UpdateUser } from "../components/Users/CRUDUser"
 import Button from "../components/Button";
@@ -107,6 +105,11 @@ class ManageUsers extends Component {
       .catch(err => console.log(err));
   }
 
+  toggleCollapse = (elementId) => {
+    $(elementId).collapse('toggle')
+  }
+
+
   render() {
     return (
       <div>
@@ -128,52 +131,56 @@ class ManageUsers extends Component {
               </h2>
                 <hr />
                 {!this.state.adding ? (
-                  <div>
-
-                    <Accordion>
-                      <h4 style={{ color: "black" }}>Client list <small>(users)</small></h4>
-                      {this.state.users.map(user => user.userType === 'user' ? (
-
-                        <Card>
-                          <Card.Header>
-                            <Accordion.Toggle as={Card.Header} eventKey={user._id}>
-                              {user.firstName} {user.lastName}
-                            </Accordion.Toggle>
-                          </Card.Header>
-                          <Accordion.Collapse eventKey={user._id}>
-                            <Card.Body>
-                              {!this.state.updating ? (
-                                <ReadUser
+                  <div className="accordion" id="accordionExample">
+                    <h4 style={{ color: "black" }}>Client list <small>(users)</small></h4>
+                    {this.state.users.map(user => user.userType === 'user' ? (
+                      <div className="card" key={user._id}>
+                        <div className="card-header" id="headingOne">
+                          <h2 className="mb-0">
+                            {/* <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#A${user._id}`} */}
+                            <button className="btn btn-link" type="button" data-toggle="collapse" onClick={this.toggleCollapse(`#A${user._id}`)}
+                              aria-expanded="true" aria-controls={`#A${user._id}`}>
+                              <span onClick={this.handleClickOnAccordion}>{user.firstName} {user.lastName}</span>
+                            </button>
+                          </h2>
+                        </div>
+                        <div id={`A${user._id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div className="card-body">
+                            {!this.state.updating ? (
+                              <ReadUser
+                                user={user}
+                                handleUpdateUser={this.handleUpdateUser}
+                              />
+                            ) : (
+                                <UpdateUser
                                   user={user}
-                                  handleUpdateUser={this.handleUpdateUser}
+                                  handleValueUpdate={this.handleValueUpdate}
+                                  handleUpdateClick={this.handleUpdateClick}
+                                  handleCancelUpdate={this.handleCancelUpdate}
+                                  color='warning'
+                                  colorCancel='danger'
                                 />
-                              ) : (
-                                  <UpdateUser
-                                    user={user}
-                                    handleValueUpdate={this.handleValueUpdate}
-                                    handleUpdateClick={this.handleUpdateClick}
-                                    handleCancelUpdate={this.handleCancelUpdate}
-                                    color='warning'
-                                    colorCancel='danger'
-                                  />
-                                )}
-                            </Card.Body>
-                          </Accordion.Collapse>
-                        </Card>
-                      ) : null)}
-
-                      <hr />
-
+                              )}
+                          </div>
+                        </div>
+                      </div>
+                    ) : null)}
+                    <hr />
+                    <div className="accordion" id="accordionExample">
                       <h4 style={{ color: "red" }}>Non-customer list <small>(admin or staff)</small></h4>
                       {this.state.users.map(user => user.userType === 'vendor' || user.userType === 'staff' ? (
-                        <Card>
-                          <Card.Header>
-                            <Accordion.Toggle as={Card.Header} eventKey={user._id}>
-                              {user.firstName} {user.lastName}
-                            </Accordion.Toggle>
-                          </Card.Header>
-                          <Accordion.Collapse eventKey={user._id}>
-                            <Card.Body>
+                        <div className="card" key={user._id}>
+                          <div className="card-header" id="headingOne">
+                            <h2 className="mb-0">
+                              <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#A${user._id}`}
+                                aria-expanded="true" aria-controls='xxx'>
+                                <span onClick={this.handleClickOnAccordion}>{user.firstName} {user.lastName}</span>&nbsp;&nbsp;
+                                <span className="badge badge-pill badge-secondary">{user.userType}</span>
+                              </button>
+                            </h2>
+                          </div>
+                          <div id={`A${user._id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div className="card-body">
                               {!this.state.updating ? (
                                 <ReadUser
                                   user={user}
@@ -189,19 +196,16 @@ class ManageUsers extends Component {
                                     colorCancel='danger'
                                   />
                                 )}
-                            </Card.Body>
-                          </Accordion.Collapse>
-                        </Card>
+                            </div>
+                          </div>
+                        </div>
                       ) : null)}
-                    </Accordion>
-
-                    <hr />
+                      <hr />
+                    </div>
                     <Button
                       onClick={this.handleAddUser}
                       color='primary'
-                    >Add a new user
-                  </Button>
-
+                    >Add a new user</Button>
                   </div>
                 ) : (
                     <div>

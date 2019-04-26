@@ -26,7 +26,9 @@ export function UpdateUser(props) {
       Edit mode
       <ListUserType
         name="userType"
-        onChange={(e) => props.handleValueUpdate(e, props.user._id)}
+        handleValueUpdate={props.handleValueUpdate}
+        user={props.user}
+        // onChange={(e) => props.handleValueUpdate(e, props.user._id)}
         text={props.user.userType}
       />
       <Input

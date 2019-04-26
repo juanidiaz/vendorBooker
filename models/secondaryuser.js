@@ -2,12 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const secondaryUserSchema = new Schema({
-  userId: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    }
-  ],
   petType: { type: String, required: true },
   petName: { type: String, required: true },
   petAge: { type: String, required: true },

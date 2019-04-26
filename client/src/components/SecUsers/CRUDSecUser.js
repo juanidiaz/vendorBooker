@@ -2,6 +2,14 @@ import React from "react";
 import { Input, TextArea, FormBtn, ListSecUserType } from "../Form";
 
 export function ReadSecUser(props) {
+
+  // let findUser = (users) => {
+  //   return props.users._id === props.pet.userId;
+  // };
+
+  // console.log(props.user.find(findUser(props.user)));
+  // // console.log(props.users)
+
   return (
     <div>
       <p><b>Name: </b>{props.pet.petName}</p>
@@ -12,6 +20,7 @@ export function ReadSecUser(props) {
       {props.pet.petTag ? (<p><b>Tag: </b>{props.pet.petTag}</p>) : null}
       {props.pet.petBehaviour ? (<p><b>Behaviour: </b>{props.pet.petBehaviour}</p>) : null}
       {props.pet.petNotes ? (<p><b>Notes: </b>{props.pet.petNotes}</p>) : null}
+      <p><small>Owner: {props.pet.userId}</small></p>
       <p><small>Pet type: {props.pet.petType}</small></p>
       <button type="button" className="btn btn-danger btn-sm" onClick={props.handleDeleteSecUser} id={props.pet._id}>Delete</button>
       <button type="button" className="btn btn-success btn-sm ml-4" onClick={props.handleUpdateSecUser} id={props.pet._id}>Update</button>

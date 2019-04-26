@@ -8,6 +8,12 @@ const userSchema = new Schema({
   phone: { type: String, required: true },
   email: { type: String, required: true },
   address: { type: String },
+  petId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "SecondaryUser"
+    }
+  ],
 });
 
 const User = mongoose.model("User", userSchema);
