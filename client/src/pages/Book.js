@@ -36,7 +36,6 @@ function Services() {
       </div>
     );
   }
-}
 
 const mapStateToProps = (state) => {
   // console.log(state);
