@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Background from "../components/Background";
+
 import Row from "../components/Row";
 import Col from "../components/Col";
 import Container from "../components/Container";
