@@ -4,7 +4,6 @@ import { compose } from 'redux';
 import { Redirect, Link } from 'react-router-dom';
 import Background from "../components/Background";
 import Container from "../components/Container";
-// import Button from "../components/Button";
 import Row from "../components/Row";
 import Col from "../components/Col";
 
