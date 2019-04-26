@@ -4,23 +4,21 @@ import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import Calendar from "../components/Calendar"
-import NewBooking from "../components/Booking/NewBooking"
-import AllBookings from "../components/Booking/AllBookings"
-import AllServices from "../components/Services/AllServices"
 import ListServices from "../components/Services/ListServices"
 import API from "../utils/API";
 import DatePicker from "react-datepicker";
-import Button from "../components/Button"
 import "react-datepicker/dist/react-datepicker.css";
 import { FormBtn } from "../components/Form"
+// import NewBooking from "../components/Booking/NewBooking"
 
 class Booking extends Component {
   state = {
-    booking: [],
+    booking: {},
     services: [],
     service: '',
-    startDate: '',
-    value: '' 
+    start: '',
+    value: '',
+    events: []
   };
 
   componentDidMount() {
@@ -31,7 +29,8 @@ class Booking extends Component {
 loadEvents = () => {
   API.getCalendars()
     .then(res => this.setState({ events: res.data }))
-    .catch(err => console.log(err));
+    console.log(this.state.events)
+    // .catch(err => console.log(err));
 };
 
 loadServices = () => {
@@ -50,16 +49,24 @@ handleServiceChange = (Service) => {
   this.setState({
     service: Service
   })
-  console.log(this.state.service)
+  // console.log(this.state.service)
 }
 
 handleSubmitNewBooking = (newBooking) => {
-  API.addCalendar(newBooking)
-    .then(res => {
-      alert(`Appointment has been booked for ${newBooking.startDate} was created!`)
-      // this.setState({ adding: false });
-      this.loadEvents();
 
+  // console.log(this.state)
+  // console.log(newBooking)
+  this.setState({
+    booking: {
+      title: this.state.service,
+      start: this.state.start
+    }
+  })
+  console.log(this.state.booking)
+  API.addCalendar(this.state.booking)
+  .then(res => {
+    alert(`Appointment for ${this.state.service} has been booked for ${newBooking.start} has been requested!`)
+      this.loadEvents();
     })
     .catch(err => console.log(err));
 };
@@ -79,7 +86,7 @@ render() {
         </Row>
         <Row>
           <Col size="md-7">
-
+          <p>When would you like?</p>
           <DatePicker
                                 name="datetime"
                                 selected={this.state.startDate}
@@ -90,12 +97,16 @@ render() {
                                 dateFormat="yyyy-mm-dd h:mm aa"
                                 timeCaption="time"
                             />
+                            <br /><br />
+            What do you need done?
             <ListServices
             services = {this.state.services}
             selected={this.state.service}
             onChange={this.handleServiceChange}
             />
             {/* <NewBooking booking={this.state.booking}/> */}
+            <br /><br />
+            {/* For what pet? */}
           </Col>
           <Col size="md-4" offset="md-1">
           <Calendar
@@ -103,10 +114,12 @@ render() {
           />
           </Col>
         </Row>
+        <br /><br />
+
         <FormBtn
-                                // disabled={!(this.state.name && this.state.notes)}
+                                disabled={!(this.state.startDate && this.state.service)}
                                 onClick={this.handleSubmitNewBooking}
-                                color="warning"
+                                color="primary"
                             >
                                 Book appointment!
               </FormBtn>

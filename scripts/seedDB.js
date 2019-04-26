@@ -184,20 +184,22 @@ const servicesSeed = [
 
 const calendarSeed = [
     {
-        userID: 1,
-        PetID: 2,
-        SkuID: 1234,
-        startTime: '2019-04-01 11:00:00',
-        endTime: '2019-04-01 13:00',
-        status: 'confirmed'
+        title: 'first event',
+        // userID: 1,
+        // petID: 2,
+        // skuID: 1234,
+        start: '2019-04-01 11:00:00',
+        end: '2019-04-01 13:00',
+        // status: 'confirmed'
     },
     {
-        userID: 2,
-        PetID: 3,
-        SkuID: 5432,
-        startTime: '2019-04-25 13:00',
-        endTime: '2019-04-25 13:00',
-        status: 'confirmed'
+        title: 'second event',
+        // userID: 2,
+        // petID: 3,
+        // skuID: 5432,
+        start: '2019-04-25 13:00',
+        end: '2019-04-25 13:00',
+        // status: 'confirmed'
     }
 ]
 

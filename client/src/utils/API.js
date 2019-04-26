@@ -66,8 +66,8 @@ export default {
   },
 
   // Save ONE calendar event
-  addCalendar: (newCalendar) => {
-    return axios.post("/api/calendar", newCalendar);
+  addCalendar: (newBooking) => {
+    return axios.post("/api/calendar", newBooking);
   },
 
   // Get ONE calendar event by ID
