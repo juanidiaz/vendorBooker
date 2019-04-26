@@ -3,13 +3,8 @@ import Background from "../components/Background";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import Container from "../components/Container";
-import ValueCard from "../components/ValueCard";
-import Wrapper from "../components/Wrapper";
-import Title from "../components/Title";
 import Slider from "../components/Slider";
 import API from "../utils/API";
-import values from "../values.json";
-
 
 const settings = {
   focusOnSelect: true,
@@ -52,27 +47,27 @@ class Home extends Component {
             <Slider {...settings}>
             <div>
               <h4>Bathing</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/bathingDog.jpg" style={{ height:"120px", width: "120px" }}/>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/bathingDog.jpg" alt="bathing" style={{ height:"120px", width: "120px" }}/>
             </div>
             <div>
               <h4>Drying</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/dryingDog.jpg" style={{ height:"120px", width: "15git 0px"  }}/>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/dryingDog.jpg" alt="drying" style={{ height:"120px", width: "15git 0px"  }}/>
             </div>
             <div>
               <h4>De-matting</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/demattingDog.jpg" style={{ height:"120px", width: "150px"  }}/>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/demattingDog.jpg" alt="de-matting" style={{ height:"120px", width: "150px"  }}/>
             </div>
             <div>
               <h4>Ear Cleaning</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/earCleaning.jpg" style={{ height:"120px", width: "150px"  }}/>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/earCleaning.jpg" alt="earcleaning" style={{ height:"120px", width: "150px"  }}/>
             </div>
             <div>
               <h4>Haircuts</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/haircutImg.jpg" style={{ height:"120px", width: "150px"  }}/>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/haircutImg.jpg" alt="ear cleaning" style={{ height:"120px", width: "150px"  }}/>
             </div>
             <div>
               <h4>Nail Trimming</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/nailTrim.jpg" style={{ height:"120px", width: "150px" }}/>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/nailTrim.jpg" alt="nail trimming" style={{ height:"120px", width: "150px" }}/>
             </div>
           </Slider>
           </Col>
