@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row, Container } from "../Grid";
 import { Input, TextArea, FormBtn, ListSecUserType } from "../Form";
+import Form from 'react-bootstrap/Form';
 
 function NewSecUser(props) {
 
@@ -25,6 +26,14 @@ function NewSecUser(props) {
         <Col size="md-10">
           <h3>Create a new pet</h3>
           <form>
+
+            <Form.Label>This pet is linked to user:</Form.Label>
+            <Form.Control as="select" size='sm'>
+              {props.users.map(user => (
+                <option>{user.firstName} {user.lastName}</option>
+              ))}
+            </Form.Control>
+
             <small>Type of animal: </small><ListSecUserType
               name="petType"
               onChange={handleInputChange}

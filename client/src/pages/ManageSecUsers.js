@@ -212,6 +212,7 @@ class ManageSecUsers extends Component {
                 ) : (
                     <div>
                       <NewSecUser
+                        users={this.state.users}
                         handleSubmitNewSecUser={this.handleSubmitNewSecUser}
                         handleCancel={this.handleCancel}
                         color='warning'
