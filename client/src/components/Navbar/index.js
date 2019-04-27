@@ -14,7 +14,7 @@ function Navbar(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-light" id="nav">
       <Link className="navbar-brand" to="/">
-      <img src="/images/logo_300.png" style={{ width: "100px" }} alt="main logo" />
+        Amazing Pet Grooming
       </Link>
       <div>
         <ul className="navbar-nav">

@@ -2,35 +2,35 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const calendarSchema = new Schema({
-  title: {
-    type: String,
-    ref: "title"
+  userId: [{
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  }],
+  vendorId: [{
+    type: Schema.Types.ObjectId,
+    ref: "Vendor"
+  }],
+  petId: [{
+    type: Schema.Types.ObjectId,
+    ref: "SecondaryUser"
+  }],
+  skuId: [{
+    type: Schema.Types.ObjectId,
+    ref: "Service"
+  }],
+  startTime: {
+    type: Date,
+    required: true
   },
-  // vendorId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Vendor"
-  // },
-  // petId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "SecondaryUser"
-  // },
-  // skuId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Service"
-  // },
-  start: {
-    type: String,
-    // required: true
+  endTime: {
+    type: Date,
+    required: true
   },
-  end: {
+  status: {
     type: String,
-    // required: true
+    required: true
   },
-  // status: {
-  //   type: String,
-  //   // required: true
-  // },
-  // notes: { type: String },
+  notes: { type: String },
 });
 
 const Calendar = mongoose.model("Calendar", calendarSchema);

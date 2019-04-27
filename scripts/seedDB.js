@@ -182,33 +182,12 @@ const servicesSeed = [
     },
 ];
 
-const calendarSeed = [
-    {
-        title: 'first event',
-        // userID: 1,
-        // petID: 2,
-        // skuID: 1234,
-        start: '2019-04-01 11:00:00',
-        end: '2019-04-01 13:00',
-        // status: 'confirmed'
-    },
-    {
-        title: 'second event',
-        // userID: 2,
-        // petID: 3,
-        // skuID: 5432,
-        start: '2019-04-25 13:00',
-        end: '2019-04-25 13:00',
-        // status: 'confirmed'
-    }
-]
-
 db.User
     .deleteMany({})
     .then(() => db.User.collection.insertMany(userSeed))
     .then(dataUser => {
         console.log(dataUser.result.n + " USER records inserted!");
-        // process.exit(0);
+        process.exit(0);
     })
     .catch(err => {
         console.error(err);
@@ -232,21 +211,11 @@ db.Service
     .then(() => db.Service.collection.insertMany(servicesSeed))
     .then(data => {
         console.log(data.result.n + " SERVICES records inserted!");
-        // process.exit(0);
+        process.exit(0);
     })
     .catch(err => {
         console.error(err);
         // process.exit(1);
     });
 
-db.Calendar
-.deleteMany({})
-    .then(() => db.Calendar.collection.insertMany(calendarSeed))
-    .then(data => {
-        console.log(data.result.n + " Calendar records inserted!");
-        // process.exit(0);
-    })
-    .catch(err => {
-        console.error(err);
-        // process.exit(1);
-    });
+
