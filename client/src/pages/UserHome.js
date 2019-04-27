@@ -14,33 +14,25 @@ class UserHome extends Component {
     if (!auth.uid) return <Redirect to='/signin' /> 
     return (
       <div>
-        <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-          <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
+        <Background backgroundImage="https://llppetminding.com.au/wp-content/uploads/2012/10/malibuzeus-and-I-print-2.jpg">
         </Background>
 
         <Container style={{ marginTop: 30 }}>
           <Row>
-            <Col size="md-10">
-              <h1>User profile</h1>
+            <Col size="md-12">
+              <h1>Welcome to our online booking site</h1>
             </Col>
           </Row>
           <Row>
             <Col size="md-12">
-              <p>
-                Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor. Sed
-                malesuada molestie velit ac viverra. Quisque a ullamcorper purus. Curabitur luctus mi
-                ac mi hendrerit semper. Nulla tincidunt accumsan lobortis. Mauris convallis sapien non
-                nibh porta accumsan. Nunc volutpat tempus porttitor. Nunc congue dictum egestas.
-                Aliquam blandit mi eu urna scelerisque, vitae volutpat ligula ultricies. Maecenas vel
-                porta augue. Fusce mauris ex, dignissim et lacinia ut, tempus eget nibh.
+            <p>
+            As a pet owner, you do need to groom your pet on a regular schedule. </p>
+            <p>
+            Our academy-trained Pet Stylists have over 800 hours of hands-on grooming instruction that includes bathing, trimming & styling at least 200 dogs of all breeds & sizes plus annual safety certification. 
+            We offer complete bath, haircut & walk-in grooming services.
             </p>
-              <p>
-                Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor. Sed
-                malesuada molestie velit ac viverra. Quisque a ullamcorper purus. Curabitur luctus mi
-                ac mi hendrerit semper. Nulla tincidunt accumsan lobortis. Mauris convallis sapien non
-                nibh porta accumsan. Nunc volutpat tempus porttitor. Nunc congue dictum egestas.
-                Aliquam blandit mi eu urna scelerisque, vitae volutpat ligula ultricies. Maecenas vel
-                porta augue. Fusce mauris ex, dignissim et lacinia ut, tempus eget nibh.
+            <p>We have flexible appointment times — our services are open 6 days a week.</p>
+            <p>Book your pet's salon appointment today!
                 <br></br>
                 <br></br>
             <button className="btn-warning bookAppBtn">

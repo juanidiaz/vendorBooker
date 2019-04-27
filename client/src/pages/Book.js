@@ -27,6 +27,7 @@ class Booking extends Component {
   componentDidMount() {
     this.loadEvents();
     this.loadServices();
+
   }
 
 loadEvents = () => {
