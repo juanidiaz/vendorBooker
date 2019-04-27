@@ -1,4 +1,7 @@
-import React , { Component } from "react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { Redirect } from 'react-router-dom';
 import Background from "../components/Background";
 import Container from "../components/Container";
 import Row from "../components/Row";
@@ -74,10 +77,8 @@ handleSubmitNewBooking = (newBooking) => {
 render() {
   return (
     <div>
-      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-        <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
+      <Background backgroundImage="https://alextimes.com/wp-content/uploads/2018/02/cat-with-a-heart-696x364.jpeg">
       </Background>
-
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-10">
@@ -126,6 +127,7 @@ render() {
       </Container>
     </div>
   );
+
 }
 }
 

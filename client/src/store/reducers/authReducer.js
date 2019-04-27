@@ -23,8 +23,10 @@ const initState = {
         return state;
   
       case 'SIGNUP_SUCCESS':
+
         console.log('signup success');
         // Send info from user to Mongo DB
+
         return {
           ...state,
           authError: null

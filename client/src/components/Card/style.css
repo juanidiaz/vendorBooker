@@ -1,10 +1,11 @@
 .card {
+  background: white;
   background-size: cover;
   background-position: center;
   background-clip: content-box;
   border: 6px solid white;
-  height: 400px;
-  width: 400px;
+  height: 250px;
+  width: 250px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   position: relative;
   margin: 0 auto;

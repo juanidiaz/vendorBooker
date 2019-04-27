@@ -28,8 +28,7 @@ class Services extends Component {
 
     return (
       <div>
-      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-        <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
+      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/cepillar-perro.jpg">
       </Background>
 
         <AllServices

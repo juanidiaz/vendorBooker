@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import NewService from "../components/Services/NewService"
 import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import "./index.css"
 
 class ManageServices extends Component {
@@ -62,6 +63,8 @@ class ManageServices extends Component {
   };
 
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/client' /> 
     return (
       <div>
         <img src='/images/logo_300.png' style={{ with: '100px' }} alt='logo 300' />
@@ -70,9 +73,9 @@ class ManageServices extends Component {
           <Container>
             <Row>
               <Col size="md-10">
-                <a href="/admin" class="badge badge-info mr-2">Administrator panel</a>
-                {/* <a href="/admin/services" class="badge badge-warning mr-2">Manage Services</a> */}
-                <a href="/admin/users" class="badge badge-warning mr-2">Manage Users</a>
+                <a href="/admin" className="badge badge-info mr-2">Administrator panel</a>
+                <a href="/admin/users" className="badge badge-warning mr-2">Manage Users</a>
+                <a href="/" className="badge badge-warning mr-2">Admin Home</a>
                 <h2 style={{ color: "black" }}>
                   Managing Services
               </h2>
@@ -131,4 +134,11 @@ class ManageServices extends Component {
   }
 }
 
-export default ManageServices;
+const mapStateToProps = (state) => {
+  return {
+      authError: state.auth.authError,
+      auth: state.firebase.auth
+  }
+}
+
+export default connect(mapStateToProps)(ManageServices);
