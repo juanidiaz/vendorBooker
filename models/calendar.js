@@ -20,15 +20,15 @@ const calendarSchema = new Schema({
   }],
   startTime: {
     type: Date,
-    required: true
+    // required: true
   },
   endTime: {
     type: Date,
-    required: true
+    // required: true
   },
   status: {
     type: String,
-    required: true
+    // required: true
   },
   notes: { type: String },
 });
