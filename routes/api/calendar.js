@@ -6,7 +6,6 @@ router.route("/")
     .get((req, res) => { // get ALL calendar events from database
         calendar.findAll()
             .then((data) => {
-                console.log(data)
                 res.send(data)
             })
             .catch(err => res.status(422).json(err));

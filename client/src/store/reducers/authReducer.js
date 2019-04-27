@@ -1,5 +1,6 @@
 const initState = {
-    authError: null
+    authError: null,
+    creatingUser: ""
   }
   
   const authReducer = (state = initState, action) => {
@@ -23,10 +24,7 @@ const initState = {
         return state;
   
       case 'SIGNUP_SUCCESS':
-
-        console.log('signup success');
-        // Send info from user to Mongo DB
-
+        console.log('signup success')
         return {
           ...state,
           authError: null
@@ -36,7 +34,7 @@ const initState = {
         console.log('signup error')
         return {
           ...state,
-          authError: action.err.message
+          authError: 'Sign Up failed'
         }
   
       default:
