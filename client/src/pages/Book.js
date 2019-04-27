@@ -75,7 +75,18 @@ handleSubmitNewBooking = (newBooking) => {
     .catch(err => console.log(err));
 };
 
+handleValueChange = (event) => {
+  console.log(`name=${event.target.name}     value=${event.target.value}`)
+  const { name, value } = event.target;
+  const newApp = { ...this.state.newBooking };
+  newApp[name] = value;
+
+  this.setState({ newBooking: newApp })
+};
+
 render() {
+  const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/signin' />
   return (
     <div>
       <Background backgroundImage="https://alextimes.com/wp-content/uploads/2018/02/cat-with-a-heart-696x364.jpeg">
@@ -132,4 +143,13 @@ render() {
 }
 }
 
-export default Booking;
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return {
+    auth: state.firebase.auth
+  }
+}
+
+export default compose(
+  connect(mapStateToProps)
+)(Booking);
