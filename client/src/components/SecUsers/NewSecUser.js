@@ -5,19 +5,35 @@ import Form from 'react-bootstrap/Form';
 
 function NewSecUser(props) {
 
-  let newSecUser = {};
+  // let newSecUser = {};
 
-  let handleInputChange = event => {
-    const { name, value } = event.target;
-    newSecUser[name] = value;
-  };
+  // let handleInputChange = event => {
+  //   const { name, value } = event.target;
+  //   newSecUser[name] = value;
+  // };
 
-  let handleSubmitNewSecUser = event => {
+  // let handleSubmitNewSecUser = event => {
+  //   event.preventDefault();
+
+  //   if (newSecUser.petType && newSecUser.petName && newSecUser.petAge && newSecUser.petBreed && newSecUser.petWeight && newSecUser.userId) {
+  //     props.handleSubmitNewSecUser(newSecUser);
+  //   }
+  // };
+
+  let validateBeforeAdding = (event) => {
     event.preventDefault();
+    // if (!props.pet.petType || !props.pet.petName || !props.pet.petAge || !props.pet.petBreed || !props.pet.petWeight || !props.pet.userId) { return } 
 
-    if (newSecUser.firstName && newSecUser.lastName && newSecUser.phone && newSecUser.secuserType) {
-      props.handleSubmitNewSecUser(newSecUser);
-    }
+
+    console.log(`1- ${props.pet.petType}`);
+    console.log(`2- ${props.pet.petName}`);
+    console.log(`3- ${props.pet.petAge}`);
+    console.log(`4- ${props.pet.petBreed}`);
+    console.log(`5- ${props.pet.petWeight}`);
+    console.log(`6- ${props.pet.userId}`);
+
+
+    // props.handleSubmitNewSecUser()
   };
 
   return (
@@ -25,60 +41,60 @@ function NewSecUser(props) {
       <Row>
         <Col size="md-10">
           <h3>Create a new pet</h3>
+          <small>Fields marked * as required.</small>
           <form>
-
-            <Form.Label>This pet is linked to user:</Form.Label>
-            <Form.Control as="select" size='sm'>
-              {props.users.map(user => (
-                <option>{user.firstName} {user.lastName}</option>
-              ))}
-            </Form.Control>
-
-            <small>Type of animal: </small><ListSecUserType
+            <small>Type of animal: *</small><ListSecUserType
               name="petType"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               text="Type of animal (required)"
             />
-            <small>Name: </small><Input
+            <small>Name: *</small><Input
               name="petName"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               text="Name (required)"
             />
-            <small>Age: </small><Input
+            <small>Age: *</small><Input
               name="petAge"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               text="Age (required)"
             />
-            <small>Breed: </small><Input
+            <small>Breed: *</small><Input
               name="petBreed"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               text="Breed (required)"
             />
-            <small>Weight: </small><Input
+            <small>Weight: *</small><Input
               name="petWeight"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               text="Weight (required)"
             />
             <small>Vacccines: </small><Input
               name="petVaccines"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               text="Vaccination"
             />
             <small>Tag information: </small><Input
               name="petTag"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               text="Tag number/code"
             />
             <small>Behaviour: </small><Input
               name="petBehaviour"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               text="Behaviour"
             />
             <small>Notes: </small><TextArea
               name="petNotes"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               text="Notes"
             />
+            <small>Registered to: *</small><Form.Control name='userId' as="select" size='sm' defaultValue='' onChange={props.handleAddValueUpdate}>
+              <option key='' value='' disabled>Select a client...</option>
+              {props.users.map(user => (
+                <option key={user._id} value={user._id}>{user.firstName} {user.lastName}</option>
+              ))}
+            </Form.Control>
+            <br />
             <FormBtn
               onClick={props.handleCancel}
               color={props.colorCancel}
@@ -86,7 +102,7 @@ function NewSecUser(props) {
               Cancel
               </FormBtn>
             <FormBtn
-              onClick={handleSubmitNewSecUser}
+              // onClick={validateBeforeAdding}
               color={props.color}
             >
               Create new pet

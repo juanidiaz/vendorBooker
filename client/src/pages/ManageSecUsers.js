@@ -10,6 +10,7 @@ class ManageSecUsers extends Component {
   state = {
     users: [],
     pets: [],
+    newPet: [],
     adding: false,
     updating: false
   };
@@ -59,10 +60,17 @@ class ManageSecUsers extends Component {
       .catch(err => console.log(err));
   }
 
-  handleSubmitNewSecUser = newSecUser => {
-    API.addSecUser(newSecUser)
-      .then(res => {
-        alert(`A new ${newSecUser.petType} register was created for "${newSecUser.name}" (${newSecUser.petBreed}).`)
+  handleSubmitNewSecUser = () => {
+    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+    console.log(this.state.newPet)
+    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+    API.addSecUser(this.state.newPet)
+      .then(data => {
+        console.log(data)
+        // return API.updateUser({ data:userId }, { $push: { petId: data._id } }, { new: true });
+        alert(`A new ${data.petType} register was created for "${data.name}" (${data.petBreed}).`)
+      })
+      .then(() => {
         this.setState({ adding: false });
         this.loadSecUsers();
       })
@@ -82,6 +90,8 @@ class ManageSecUsers extends Component {
   handleValueUpdate = (event, id) => {
     const nextSecUsers = this.state.pets.map(pet => {
       const { name, value } = event.target;
+      // console.log(`name: ${event.target.name} - value: ${event.target.value}`)
+
       // This line will RETURN the result of evaluating the `_id` of the pet and, if 
       // it's the same as the one that is being modified then it will make a copy of 
       // the whole `pet` but updating the key `[name]` with the new `value`. If it 
@@ -94,6 +104,15 @@ class ManageSecUsers extends Component {
       // } else { return { ...pet } }
     });
     this.setState({ pets: nextSecUsers })
+    console.log(this.state.pets)
+  };
+
+  handleAddValueUpdate = (event) => {
+    const { name, value } = event.target;
+    const newSecUser = {...this.state.newPet};
+    newSecUser[name] = value;
+
+    this.setState({ newPet: newSecUser })
   };
 
   handleUpdateClick = (event, id) => {
@@ -213,6 +232,7 @@ class ManageSecUsers extends Component {
                     <div>
                       <NewSecUser
                         users={this.state.users}
+                        handleAddValueUpdate={this.handleAddValueUpdate}
                         handleSubmitNewSecUser={this.handleSubmitNewSecUser}
                         handleCancel={this.handleCancel}
                         color='warning'
