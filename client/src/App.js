@@ -41,7 +41,7 @@ class App extends Component {
       <Router>
 
         <div>
-          <Navbar authenticated={this.state.authenticated} />;
+          <Navbar authenticated={this.state.authenticated} />
   
           <Wrapper>
             <Switch>
