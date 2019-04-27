@@ -1,8 +1,5 @@
 
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-=======
-
 import Background from "../components/Background";
 import Container from "../components/Container";
 import Row from "../components/Row";
