@@ -61,7 +61,7 @@ class ManageUsers extends Component {
         <hr />
         <Container>
           <Row>
-            <Col size="md-10">
+            <Col size="md-12">
               <div>
                 <a href="/admin" className="badge badge-info mr-2">Administrator panel</a>
                 <a href="/admin/services" className="badge badge-warning mr-2">Manage Services</a>
