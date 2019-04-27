@@ -18,7 +18,7 @@ class Services extends Component {
 
         <Container style={{ marginTop: 30 }}>
         <Row>
-          <Col size="md-12">
+          <Col size="md-10">
             <h1>Book a service for your pet</h1>
           </Col>
         </Row>
