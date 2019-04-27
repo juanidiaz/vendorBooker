@@ -1,6 +1,10 @@
+import React, { Component } from "react";
 import Container from "../components/Container";
+import Row from "../components/Row";
+import Col from "../components/Col";
 import Slider from "../components/Slider";
 import API from "../utils/API";
+import Background from "../components/Background"
 
 const settings = {
   focusOnSelect: true,
