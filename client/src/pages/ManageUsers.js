@@ -11,6 +11,7 @@ import "./index.css"
 class ManageUsers extends Component {
   state = {
     users: [],
+    newUser: [],
     adding: false,
     updating: false
   };
@@ -50,10 +51,10 @@ class ManageUsers extends Component {
       .catch(err => console.log(err));
   }
 
-  handleSubmitNewUser = newUser => {
-    API.addUser(newUser)
+  handleSubmitNewUser = () => {
+    API.addUser(this.state.newUser)
       .then(res => {
-        alert(`New ${newUser.userType} "${newUser.firstName} ${newUser.lastName}" was created!`)
+        alert(`New ${this.state.newUser.userType} "${this.state.newUser.firstName} ${this.state.newUser.lastName}" was created!`)
         this.setState({ adding: false });
         this.loadUsers();
       })
@@ -89,6 +90,13 @@ class ManageUsers extends Component {
       // } else { return { ...user } }
     });
     this.setState({ users: nextUsers })
+  };
+
+  handleAddValueUpdate = (event) => {
+    const { name, value } = event.target;
+    const newUser = { ...this.state.newUser };
+    newUser[name] = value;
+    this.setState({ newUser: newUser })
   };
 
   handleUpdateClick = (event, id) => {
@@ -134,7 +142,7 @@ class ManageUsers extends Component {
                       <h4 style={{ color: "black" }}>Client list <small>(users)</small></h4>
                       {this.state.users.map(user => user.userType === 'user' ? (
 
-                        <Card>
+                        <Card key={user._id}>
                           <Card.Header>
                             <Accordion.Toggle as={Card.Header} eventKey={user._id}>
                               {user.firstName} {user.lastName}
@@ -166,7 +174,7 @@ class ManageUsers extends Component {
 
                       <h4 style={{ color: "red" }}>Non-customer list <small>(admin or staff)</small></h4>
                       {this.state.users.map(user => user.userType === 'vendor' || user.userType === 'staff' ? (
-                        <Card>
+                        <Card key={user._id}>
                           <Card.Header>
                             <Accordion.Toggle as={Card.Header} eventKey={user._id}>
                               {user.firstName} {user.lastName}
@@ -206,6 +214,8 @@ class ManageUsers extends Component {
                 ) : (
                     <div>
                       <NewUser
+                        newUser={this.state.newUser}
+                        handleAddValueUpdate={this.handleAddValueUpdate}
                         handleSubmitNewUser={this.handleSubmitNewUser}
                         handleCancel={this.handleCancel}
                         color='warning'

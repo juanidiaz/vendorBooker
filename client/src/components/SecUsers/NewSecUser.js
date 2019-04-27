@@ -22,18 +22,9 @@ function NewSecUser(props) {
 
   let validateBeforeAdding = (event) => {
     event.preventDefault();
-    // if (!props.pet.petType || !props.pet.petName || !props.pet.petAge || !props.pet.petBreed || !props.pet.petWeight || !props.pet.userId) { return } 
+    if (!props.newPet.petType || !props.newPet.petName || !props.newPet.petAge || !props.newPet.petBreed || !props.newPet.petWeigth || !props.newPet.userId) { return } 
 
-
-    console.log(`1- ${props.pet.petType}`);
-    console.log(`2- ${props.pet.petName}`);
-    console.log(`3- ${props.pet.petAge}`);
-    console.log(`4- ${props.pet.petBreed}`);
-    console.log(`5- ${props.pet.petWeight}`);
-    console.log(`6- ${props.pet.userId}`);
-
-
-    // props.handleSubmitNewSecUser()
+    props.handleSubmitNewSecUser()
   };
 
   return (
@@ -63,8 +54,8 @@ function NewSecUser(props) {
               onChange={props.handleAddValueUpdate}
               text="Breed (required)"
             />
-            <small>Weight: *</small><Input
-              name="petWeight"
+            <small>Weigth: *</small><Input
+              name="petWeigth"
               onChange={props.handleAddValueUpdate}
               text="Weight (required)"
             />
@@ -102,7 +93,7 @@ function NewSecUser(props) {
               Cancel
               </FormBtn>
             <FormBtn
-              // onClick={validateBeforeAdding}
+              onClick={validateBeforeAdding}
               color={props.color}
             >
               Create new pet

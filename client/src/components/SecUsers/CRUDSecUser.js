@@ -1,5 +1,6 @@
 import React from "react";
 import { Input, TextArea, FormBtn, ListSecUserType } from "../Form";
+import Form from 'react-bootstrap/Form';
 
 export function ReadSecUser(props) {
 
@@ -8,7 +9,8 @@ export function ReadSecUser(props) {
   // };
 
   // console.log(props.user.find(findUser(props.user)));
-  // // console.log(props.users)
+  console.log(props.users)
+  console.log(props.pet)
 
   return (
     <div>
@@ -31,19 +33,19 @@ export function ReadSecUser(props) {
 export function UpdateSecUser(props) {
 
   let validateBeforeUpdate = (e) => {
-    if (!props.pet.petName || !props.pet.petAge || !props.pet.petBreed || !props.pet.petWeigth) { return } 
+    if (!props.pet.petName || !props.pet.petAge || !props.pet.petBreed || !props.pet.petWeigth) { return }
     props.handleUpdateClick(e, props.pet._id)
   };
 
   return (
     <div>
       Edit mode
-      <hr/>
+      <hr />
       <small>Type of animal: </small><ListSecUserType
         name="petType"
         onChange={(e) => props.handleValueUpdate(e, props.pet._id)}
         value={props.pet.petType}
-      /> 
+      />
       <small>Name: </small><Input
         name="petName"
         onChange={(e) => props.handleValueUpdate(e, props.pet._id)}
@@ -84,6 +86,12 @@ export function UpdateSecUser(props) {
         onChange={(e) => props.handleValueUpdate(e, props.pet._id)}
         value={props.pet.petNotes}
       />
+      <small>Registered to: *</small><Form.Control name='userId' as="select" size='sm' defaultValue='' onChange={props.handleAddValueUpdate}>
+        <option key='' value='' disabled>Select a client...</option>
+        {props.users.map(user => (
+          <option key={user._id} value={user._id}>{user.firstName} {user.lastName}</option>
+        ))}
+      </Form.Control>
       <FormBtn
         onClick={props.handleCancelUpdate}
         color={props.colorCancel}

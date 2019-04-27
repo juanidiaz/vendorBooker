@@ -61,14 +61,11 @@ class ManageSecUsers extends Component {
   }
 
   handleSubmitNewSecUser = () => {
-    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-    console.log(this.state.newPet)
-    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
     API.addSecUser(this.state.newPet)
-      .then(data => {
-        console.log(data)
-        // return API.updateUser({ data:userId }, { $push: { petId: data._id } }, { new: true });
-        alert(`A new ${data.petType} register was created for "${data.name}" (${data.petBreed}).`)
+      .then((data) => {
+        console.log(data.data)
+        alert(`A new ${this.state.newPet.petType} register was created for "${this.state.newPet.petName}" (${this.state.newPet.petBreed}).`)
+        return API.updateUser( this.state.newPet.userId , { $push: { petIds: data.data._id } }, { new: true });
       })
       .then(() => {
         this.setState({ adding: false });
@@ -108,8 +105,9 @@ class ManageSecUsers extends Component {
   };
 
   handleAddValueUpdate = (event) => {
+    console.log(`name=${event.target.name}     value=${event.target.value}`)
     const { name, value } = event.target;
-    const newSecUser = {...this.state.newPet};
+    const newSecUser = { ...this.state.newPet };
     newSecUser[name] = value;
 
     this.setState({ newPet: newSecUser })
@@ -231,6 +229,7 @@ class ManageSecUsers extends Component {
                 ) : (
                     <div>
                       <NewSecUser
+                        newPet={this.state.newPet}
                         users={this.state.users}
                         handleAddValueUpdate={this.handleAddValueUpdate}
                         handleSubmitNewSecUser={this.handleSubmitNewSecUser}
