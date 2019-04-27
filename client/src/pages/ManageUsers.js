@@ -3,6 +3,10 @@ import NewUser from "../components/Users/NewUser"
 import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
+import { connect } from 'react-redux';
+import { signUp } from '../store/actions/authActions';
+import { Redirect } from 'react-router-dom';
+
 
 class ManageUsers extends Component {
   state = {
@@ -48,6 +52,8 @@ class ManageUsers extends Component {
   };
 
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/client' /> 
     return (
       <div>
         <img src='/images/logo_300.png' style={{ with: '100px' }} alt='logo 300' />
@@ -56,9 +62,9 @@ class ManageUsers extends Component {
           <Row>
             <Col size="md-10">
               <div>
-                <a href="/admin" class="badge badge-info mr-2">Administrator panel</a>
-                <a href="/admin/services" class="badge badge-warning mr-2">Manage Services</a>
-                <a href="/" class="badge badge-warning mr-2">Admin Home</a>
+                <a href="/admin" className="badge badge-info mr-2">Administrator panel</a>
+                <a href="/admin/services" className="badge badge-warning mr-2">Manage Services</a>
+                <a href="/" className="badge badge-warning mr-2">Admin Home</a>
               </div>
               <h2>
                 Managing Users
@@ -66,10 +72,11 @@ class ManageUsers extends Component {
               <hr />
               {!this.state.adding ? (
                 <div>
-                  {this.state.users.map(user => user.userType === 'user' ? (
-                    <div className="alert alert-primary" role="alert" id={user._id}>
+                  {this.state.users.map(user => (
+
+                    <div key={user._id} className="alert alert-primary" role="alert" id={user._id}>
                       {user.firstName} {user.lastName}
-                    </div>) : null
+                  </div>)
                   )}
                   <hr />
                   <Button
@@ -97,4 +104,17 @@ class ManageUsers extends Component {
   }
 }
 
-export default ManageUsers;
+const mapDispatchToProps = (dispatch)=> {
+  return {
+    signUp: (creds) => dispatch(signUp(creds))
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+      authError: state.auth.authError,
+      auth: state.firebase.auth
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageUsers)

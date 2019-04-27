@@ -42,16 +42,9 @@ function Navbar(props) {
               Book Appointment
             </Link>
           </li>
-          <li className="nav-item">
-            <Link
-              to="/login"
-              className={window.location.pathname === "/login" ? "nav-link active" : "nav-link"}
-            >
-              Admin
-            </Link>
-          </li>
-          <div style={{marginTop: "7.5px"}}>
-          {links}
+         
+          <div style={{ marginTop: "7.5px" }}>
+            {links}
           </div>
         </ul>
       </div>

@@ -1,8 +1,3 @@
-import React, { Component } from "react";
-import Background from "../components/Background";
-
-import Row from "../components/Row";
-import Col from "../components/Col";
 import Container from "../components/Container";
 import Slider from "../components/Slider";
 import API from "../utils/API";
@@ -80,3 +75,4 @@ class Home extends Component {
   }
 }
 export default Home;
+

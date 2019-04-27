@@ -1,5 +1,6 @@
 const initState = {
-    authError: null
+    authError: null,
+    creatingUser: ""
   }
   
   const authReducer = (state = initState, action) => {
@@ -33,7 +34,7 @@ const initState = {
         console.log('signup error')
         return {
           ...state,
-          authError: action.err.message
+          authError: 'Sign Up failed'
         }
   
       default:

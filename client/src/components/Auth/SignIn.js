@@ -26,8 +26,9 @@ class SignIn extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-8">
-                        <form className="white" onSubmit={this.handleSubmit}>
-                            <h5 className="grey-text text-darken-3">Sign In</h5>
+                        <form className="white" onSubmit={this.handleSubmit} style={{marginBottom: "50px"}}>
+                            <h4 className="grey-text text-darken-3" style={{textAlign: "center"}}>Sign In</h4>
+                            <hr></hr>
                             <div className="input-field">
                                 <label htmlFor="email">Email</label>
                                 <input type="email" id='email' onChange={this.handleChange} />
