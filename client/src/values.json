@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Satisfaction Guaranteed",
+    "image":
+      "/images/love.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Pet Loving Environment",
+    "image":
+      "/images/satisfaction.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Safety First",
+    "image":
+      "/images/safety.jpg"
+  }
+]
