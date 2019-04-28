@@ -4,19 +4,12 @@ import { Input, FormBtn, ListUserType } from "../Form";
 
 function NewUser(props) {
 
-  let newUser = {};
-
-  let handleInputChange = event => {
-    const { name, value } = event.target;
-    newUser[name] = value;
-  };
-
-  let handleSubmitNewUser = event => {
+  let validateBeforeAdding = (event) => {
     event.preventDefault();
 
-    if (newUser.firstName && newUser.lastName && newUser.phone && newUser.userType) {
-      props.handleSubmitNewUser(newUser);
-      }
+    if (!props.newUser.userType || !props.newUser.firstName || !props.newUser.lastName || !props.newUser.phone || !props.newUser.email) { return }
+
+    props.handleSubmitNewUser()
   };
 
   return (
@@ -25,30 +18,36 @@ function NewUser(props) {
         <Col size="md-10">
           <h3>Create a new user</h3>
           <form>
-            <span>Type of user: </span><ListUserType
+            <span>Type of user: </span>
+            <ListUserType
               name="userType"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               text="Type of user (required)"
             />
             <Input
               name="firstName"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               placeholder="First name (required)"
             />
             <Input
               name="lastName"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               placeholder="Last name (required)"
             />
             <Input
               name="phone"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               placeholder="Phone number (required)"
             />
             <Input
               name="email"
-              onChange={handleInputChange}
+              onChange={props.handleAddValueUpdate}
               placeholder="Email (required)"
+            />
+            <TextArea
+              name="address"
+              onChange={props.handleAddValueUpdate}
+              placeholder="Address"
             />
             <FormBtn
               onClick={props.handleCancel}
@@ -57,7 +56,7 @@ function NewUser(props) {
               Cancel
               </FormBtn>
             <FormBtn
-              onClick={handleSubmitNewUser}
+              onClick={validateBeforeAdding}
               color={props.color}
             >
               Create new User

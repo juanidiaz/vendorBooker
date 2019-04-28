@@ -4,5 +4,10 @@
 
 .card > .card-header {
     background-color:rgba(184, 218, 255, 0.705);
+    padding: 0px;
+}
+
+.card-header > .btn {
+    color: rgb(0, 123, 255);
 }
 

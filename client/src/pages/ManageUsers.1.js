@@ -1,20 +1,14 @@
 import React, { Component } from "react";
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card';
 import NewUser from "../components/Users/NewUser"
 import { ReadUser, UpdateUser } from "../components/Users/CRUDUser"
 import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
 import "./index.css"
-import { connect } from 'react-redux';
-import { signUp } from '../store/actions/authActions';
-import { Redirect } from 'react-router-dom';
 
 class ManageUsers extends Component {
   state = {
     users: [],
-    newUser: [],
     adding: false,
     updating: false
   };
@@ -54,10 +48,10 @@ class ManageUsers extends Component {
       .catch(err => console.log(err));
   }
 
-  handleSubmitNewUser = () => {
-    API.addUser(this.state.newUser)
+  handleSubmitNewUser = newUser => {
+    API.addUser(newUser)
       .then(res => {
-        alert(`New ${this.state.newUser.userType} "${this.state.newUser.firstName} ${this.state.newUser.lastName}" was created!`)
+        alert(`New ${newUser.userType} "${newUser.firstName} ${newUser.lastName}" was created!`)
         this.setState({ adding: false });
         this.loadUsers();
       })
@@ -95,13 +89,6 @@ class ManageUsers extends Component {
     this.setState({ users: nextUsers })
   };
 
-  handleAddValueUpdate = (event) => {
-    const { name, value } = event.target;
-    const newUser = { ...this.state.newUser };
-    newUser[name] = value;
-    this.setState({ newUser: newUser })
-  };
-
   handleUpdateClick = (event, id) => {
 
     const updatedUser = { ...this.state.users.find(user => user._id === id) }
@@ -118,9 +105,12 @@ class ManageUsers extends Component {
       .catch(err => console.log(err));
   }
 
+  toggleCollapse = (elementId) => {
+    $(elementId).collapse('toggle')
+  }
+
+
   render() {
-    const { auth } = this.props;
-    if (!auth.uid) return <Redirect to='/client' /> 
     return (
       <div>
         <h1><img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' />
@@ -135,59 +125,62 @@ class ManageUsers extends Component {
                   <a href="/admin/services" className="badge badge-warning mr-2">Manage Services</a>
                   {/* <a href="/admin/users" className="badge badge-warning mr-2">Manage Users</a> */}
                   <a href="/admin/pets" className="badge badge-warning mr-2">Manage Pets</a>
-
                 </div>
                 <h2 style={{ color: "black" }}>
                   Managing Users
               </h2>
                 <hr />
                 {!this.state.adding ? (
-                  <div>
-
-                    <Accordion>
-                      <h4 style={{ color: "black" }}>Client list <small>(users)</small></h4>
-                      {this.state.users.map(user => user.userType === 'user' ? (
-
-                        <Card key={user._id}>
-                          <Card.Header>
-                            <Accordion.Toggle as={Card.Header} eventKey={user._id}>
-                              {user.firstName} {user.lastName}
-                            </Accordion.Toggle>
-                          </Card.Header>
-                          <Accordion.Collapse eventKey={user._id}>
-                            <Card.Body>
-                              {!this.state.updating ? (
-                                <ReadUser
+                  <div className="accordion" id="accordionExample">
+                    <h4 style={{ color: "black" }}>Client list <small>(users)</small></h4>
+                    {this.state.users.map(user => user.userType === 'user' ? (
+                      <div className="card" key={user._id}>
+                        <div className="card-header" id="headingOne">
+                          <h2 className="mb-0">
+                            {/* <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#A${user._id}`} */}
+                            <button className="btn btn-link" type="button" data-toggle="collapse" onClick={this.toggleCollapse(`#A${user._id}`)}
+                              aria-expanded="true" aria-controls={`#A${user._id}`}>
+                              <span onClick={this.handleClickOnAccordion}>{user.firstName} {user.lastName}</span>
+                            </button>
+                          </h2>
+                        </div>
+                        <div id={`A${user._id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div className="card-body">
+                            {!this.state.updating ? (
+                              <ReadUser
+                                user={user}
+                                handleUpdateUser={this.handleUpdateUser}
+                              />
+                            ) : (
+                                <UpdateUser
                                   user={user}
-                                  handleUpdateUser={this.handleUpdateUser}
+                                  handleValueUpdate={this.handleValueUpdate}
+                                  handleUpdateClick={this.handleUpdateClick}
+                                  handleCancelUpdate={this.handleCancelUpdate}
+                                  color='warning'
+                                  colorCancel='danger'
                                 />
-                              ) : (
-                                  <UpdateUser
-                                    user={user}
-                                    handleValueUpdate={this.handleValueUpdate}
-                                    handleUpdateClick={this.handleUpdateClick}
-                                    handleCancelUpdate={this.handleCancelUpdate}
-                                    color='warning'
-                                    colorCancel='danger'
-                                  />
-                                )}
-                            </Card.Body>
-                          </Accordion.Collapse>
-                        </Card>
-                      ) : null)}
-
-                      <hr />
-
+                              )}
+                          </div>
+                        </div>
+                      </div>
+                    ) : null)}
+                    <hr />
+                    <div className="accordion" id="accordionExample">
                       <h4 style={{ color: "red" }}>Non-customer list <small>(admin or staff)</small></h4>
                       {this.state.users.map(user => user.userType === 'vendor' || user.userType === 'staff' ? (
-                        <Card key={user._id}>
-                          <Card.Header>
-                            <Accordion.Toggle as={Card.Header} eventKey={user._id}>
-                              {user.firstName} {user.lastName}
-                            </Accordion.Toggle>
-                          </Card.Header>
-                          <Accordion.Collapse eventKey={user._id}>
-                            <Card.Body>
+                        <div className="card" key={user._id}>
+                          <div className="card-header" id="headingOne">
+                            <h2 className="mb-0">
+                              <button className="btn btn-link" type="button" data-toggle="collapse" data-target={`#A${user._id}`}
+                                aria-expanded="true" aria-controls='xxx'>
+                                <span onClick={this.handleClickOnAccordion}>{user.firstName} {user.lastName}</span>&nbsp;&nbsp;
+                                <span className="badge badge-pill badge-secondary">{user.userType}</span>
+                              </button>
+                            </h2>
+                          </div>
+                          <div id={`A${user._id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div className="card-body">
                               {!this.state.updating ? (
                                 <ReadUser
                                   user={user}
@@ -203,25 +196,20 @@ class ManageUsers extends Component {
                                     colorCancel='danger'
                                   />
                                 )}
-                            </Card.Body>
-                          </Accordion.Collapse>
-                        </Card>
+                            </div>
+                          </div>
+                        </div>
                       ) : null)}
-                    </Accordion>
-
-                    <hr />
+                      <hr />
+                    </div>
                     <Button
                       onClick={this.handleAddUser}
                       color='primary'
-                    >Add a new user
-                  </Button>
-
+                    >Add a new user</Button>
                   </div>
                 ) : (
                     <div>
                       <NewUser
-                        newUser={this.state.newUser}
-                        handleAddValueUpdate={this.handleAddValueUpdate}
                         handleSubmitNewUser={this.handleSubmitNewUser}
                         handleCancel={this.handleCancel}
                         color='warning'
@@ -239,17 +227,4 @@ class ManageUsers extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch)=> {
-  return {
-    signUp: (creds) => dispatch(signUp(creds))
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-      authError: state.auth.authError,
-      auth: state.firebase.auth
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ManageUsers)
+export default ManageUsers;

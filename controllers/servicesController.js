@@ -14,7 +14,7 @@ module.exports = {
   deleteOne: (id) => {
     return db.Service.findOneAndDelete({_id: id});
   },
-  updateOne: (id, updateInfo) => {
-    return db.Service.findOneAndUpdate({ _id: id }, updateInfo);
+  updateOne: (id, data) => {
+    return db.Service.findOneAndUpdate({ _id: id }, data);
   }
 };

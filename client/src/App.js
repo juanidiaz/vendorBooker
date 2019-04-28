@@ -15,8 +15,6 @@ import SignUp from "./components/Auth/SignUp";
 import AdminHome from "./pages/AdminHome";
 import fireAdmin from './config/adminConfig';
 
-
-
 import "./App.css";
 
 class App extends Component {
@@ -39,7 +37,6 @@ class App extends Component {
   render() {
     return (
       <Router>
-
         <div>
           <Navbar authenticated={this.state.authenticated} />
   

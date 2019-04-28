@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import NewService from "../components/Services/NewService"
+import { ReadService, UpdateService } from "../components/Services/CRUDService"
 import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
@@ -28,12 +28,6 @@ class ManageServices extends Component {
       .catch(err => console.log(err));
   };
 
-  deleteService = id => {
-    API.deleteService(id)
-      .then(() => this.loadServices())
-      .catch(err => console.log(err));
-  };
-
   handleAddService = () => {
     this.setState({ adding: true })
   }
@@ -42,15 +36,18 @@ class ManageServices extends Component {
     this.setState({ adding: false });
   }
 
+  handleCancelUpdate = () => {
+    this.setState({ updating: false });
+  }
+
   handleDeleteService = event => {
     let id = event.target.id
     API.deleteService(id)
-      .then((deletedService) => this.loadServices())
+      .then((deletedService) => {
+        alert(`Service "${deletedService.data.name}" was deleted!`)
+        this.loadServices();
+      })
       .catch(err => console.log(err));
-  }
-
-  handleDeleteUpdate = event => {
-    console.log(event.target.id)
   }
 
   handleSubmitNewService = (newService) => {
@@ -63,20 +60,68 @@ class ManageServices extends Component {
       .catch(err => console.log(err));
   };
 
+  handleUpdateService = event => {
+    // console.log(event.target);
+    this.setState({ updating: true });
+  }
+
+  handleClickOnAccordion = event => {
+    console.log(event.target.id);
+    this.setState({ updating: false });
+    this.loadServices();
+  }
+
+  handleValueUpdate = (event, id) => {
+    const nextServices = this.state.services.map(service => {
+      const { name, value } = event.target;
+      // This line will RETURN the result of evaluating the `_id` of the service and, if 
+      // it's the same as the one that is being modified then it will make a copy of 
+      // the whole `service` but updating the key `[name]` with the new `value`. If it 
+      // is NOT the same `_id` then just copy that `service` without any changes.
+      return service._id === id ? { ...service, ...{ [name]: value } } : { ...service }
+
+      // The three lines below do THE SAME but in three lines :-)
+      // if (service._id === id) {
+      //   return { ...service, ...{ [name]: value } }
+      // } else { return { ...service } }
+    });
+    this.setState({ services: nextServices })
+  };
+
+  handleUpdateClick = (event, id) => {
+
+    const updatedService = { ...this.state.services.find(service => service._id === id) }
+    const { name, value } = event.target;
+    updatedService[name] = value;
+
+    console.log(updatedService);
+    API.updateService(updatedService._id, updatedService)
+      .then(res => {
+        alert(`Service "${updatedService.name}" was updated!`)
+        this.setState({ updating: false });
+        this.loadServices();
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to='/client' /> 
     return (
       <div>
-        <img src='/images/logo_300.png' style={{ with: '100px' }} alt='logo 300' />
+        <h1><img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' />
+          &nbsp;&nbsp;&nbsp;&nbsp;Administrator panel</h1>
         <hr />
         <div style={{ background: "white" }}>
           <Container>
             <Row>
               <Col size="md-10">
-                <a href="/admin" className="badge badge-info mr-2">Administrator panel</a>
-                <a href="/admin/users" className="badge badge-warning mr-2">Manage Users</a>
-                <a href="/" className="badge badge-warning mr-2">Admin Home</a>
+                <div>
+                  <a href="/admin" className="badge badge-info mr-2">Administrator panel</a>
+                  {/* <a href="/admin/services" className="badge badge-warning mr-2">Manage Services</a> */}
+                  <a href="/admin/users" className="badge badge-warning mr-2">Manage Users</a>
+                  <a href="/admin/pets" className="badge badge-warning mr-2">Manage Pets</a>
+                </div>
                 <h2 style={{ color: "black" }}>
                   Managing Services
               </h2>
@@ -84,7 +129,6 @@ class ManageServices extends Component {
                 {!this.state.adding ? (
                   <div className="accordion" id="accordionExample">
                     {this.state.services.map(service =>
-
                       <div className="card" key={service._id}>
                         <div className="card-header" id="headingOne">
                           <h2 className="mb-0">
@@ -96,15 +140,22 @@ class ManageServices extends Component {
                         </div>
                         <div id={`A${service._id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                           <div className="card-body">
-                            <p><b>Description: </b>{service.description}</p>
-                            <p><b>Duration: </b>{service.duration} minutes</p>
-                            <p><b>Normal price: </b>${service.price}
-                              {service.specialPrice ? (<span><b> Special price: </b>${service.specialPrice}</span>) : null}
-                              {service.cost ? (<span><b> Cost: </b>${service.cost}</span>) : null}</p>
-                            <p>{service.images ? <img src={`/images/${service.images}`} width="200" height="300" style={{'border-radius': '8px', border:'2px solid #185586' , 'box-shadow': '3px 3px 5px grey'}} alt={''} /> : null}</p>
-                            <p>{service.notes ? (<span><b>Notes: </b>${service.notes}</span>) : null}</p>
-                            <button type="button" className="btn btn-danger btn-sm" onClick={this.handleDeleteService} id={service._id}>Delete</button>
-                            <button type="button" className="btn btn-success btn-sm ml-4" onClick={this.handleUpdateService} id={service._id}>Update</button>
+
+                            {!this.state.updating ? (
+                              <ReadService
+                                service={service}
+                                handleUpdateService={this.handleUpdateService}
+                              />
+                            ) : (
+                                <UpdateService
+                                  service={service}
+                                  handleValueUpdate={this.handleValueUpdate}
+                                  handleUpdateClick={this.handleUpdateClick}
+                                  handleCancelUpdate={this.handleCancelUpdate}
+                                  color='warning'
+                                  colorCancel='danger'
+                                />
+                              )}
                           </div>
                         </div>
                       </div>
