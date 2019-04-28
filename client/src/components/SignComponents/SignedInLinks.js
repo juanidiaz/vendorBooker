@@ -1,17 +1,40 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { signOut } from "../../store/actions/authActions";
+import "../Navbar/style.css";
 
 const SignedInLinks = (props) => {
 
+    console.log(props.users);
+    let uid = localStorage.getItem('uid');
+    console.log(`@NAV: Current uid=${uid}`);
+
     return (
-        <div>
-            <ul className="right">
-                <li><NavLink style={{marginTop: "10px", borderRadius: "10px"}} to='/' className="btn btn-info" onClick={props.signOut}>Logout</NavLink></li>
-                <li><NavLink style={{marginTop: "10px", borderRadius: "10px"}} to='/client' className="btn btn-primary">My Account</NavLink></li>
-            </ul>
-        </div>
+        <ul className="navbar-nav">
+            <li className="nav-item">
+                <Link
+                    to={"/client/" + uid}
+                    className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}>
+                    My Account
+                    </Link>
+            </li>
+            <li className="nav-item">
+                <Link
+                    to="/admin"
+                    className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}>
+                    Admin
+                    </Link>
+            </li>
+            <li className="nav-item">
+                <Link
+                    to="/"
+                    className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}
+                    onClick={props.signOut}>
+                    Log out
+                    </Link>
+            </li>
+        </ul>
     )
 }
 

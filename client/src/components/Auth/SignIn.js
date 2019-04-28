@@ -20,14 +20,15 @@ class SignIn extends Component {
     }
     render() {
         const { authError, auth } = this.props;
-        if (auth.uid) return <Redirect to='/client' /> 
+        if (auth.uid) return <Redirect to='/client' />
 
         return (
             <div className="container">
+                <img className="logoForms" alt="logo" src="./images/logo_300.png"></img>
                 <div className="row">
-                    <div className="col-md-8">
-                        <form className="white" onSubmit={this.handleSubmit} style={{marginBottom: "50px"}}>
-                            <h4 className="grey-text text-darken-3" style={{textAlign: "center"}}>Sign In</h4>
+                    <div className="col-md-6">
+                        <form className="white" onSubmit={this.handleSubmit} style={{ marginBottom: "50px" }}>
+                            <h2 className="grey-text text-darken-3" style={{ textAlign: "center" }}>Sign In</h2>
                             <hr></hr>
                             <div className="input-field">
                                 <label htmlFor="email">Email</label>
@@ -38,7 +39,7 @@ class SignIn extends Component {
                                 <input type="password" id='password' onChange={this.handleChange} />
                             </div>
                             <div className="input-field">
-                                <button className="btn pink lighten-1 z-depth-0">Login</button>
+                                <button className="btn-primary lighten-1 z-depth-0">Login</button>
                                 <div className="center red-text">
                                     {authError ? <p>{authError}</p> : null}
                                 </div>

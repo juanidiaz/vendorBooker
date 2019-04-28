@@ -8,7 +8,8 @@ export const signIn = (credentials) => {
     firebase.auth().signInWithEmailAndPassword(
       credentials.email,
       credentials.password
-    ).then(() => {
+    ).then((res) => {
+      localStorage.setItem('uid', (res.user.uid));
       dispatch({ type: 'LOGIN_SUCCESS' });
     }).catch((err) => {
       dispatch({ type: 'LOGIN_ERROR', err });
