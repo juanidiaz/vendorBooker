@@ -8,8 +8,8 @@ const SignedInLinks = (props) => {
     return (
         <div>
             <ul className="right">
-                <li><NavLink style={{marginTop: "10px", borderRadius: "10px"}} to='/' className="btn btn-info" onClick={props.signOut}>Logout</NavLink></li>
-                <li><NavLink style={{marginTop: "10px", borderRadius: "10px"}} to='/client' className="btn btn-primary">My Account</NavLink></li>
+                <li><NavLink to='/' className="signOutBtn" onClick={props.signOut}>Logout</NavLink></li>
+                <li><NavLink to='/client' className="signInBtn">My Account</NavLink></li>
             </ul>
         </div>
     )

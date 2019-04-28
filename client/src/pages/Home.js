@@ -4,7 +4,7 @@ import Row from "../components/Row";
 import Col from "../components/Col";
 import Container from "../components/Container";
 import Slider from "../components/Slider";
-import API from "../utils/API";
+// import API from "../utils/API";
 
 const settings = {
   focusOnSelect: true,
