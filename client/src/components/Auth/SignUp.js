@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUp } from '../../store/actions/authActions';
+import "./SignForms.css";
 
 
 class SignUp extends Component {
@@ -26,10 +27,11 @@ class SignUp extends Component {
         if (auth.uid) return <Redirect to='/client' />
         return (
             <div className="container">
+                <img className="logoForms" alt="logo" src="./images/logo_300.png"></img>
                 <div className="row">
-                    <div className="col-md-8">
+                    <div className="col-md-6 mainBox" >
                         <form className="white" onSubmit={this.handleSubmit}>
-                            <h4 className="grey-text text-darken-3" style={{textAlign: "center"}}>Sign Up</h4>
+                            <h2 className="grey-text text-darken-3" style={{textAlign: "center"}}>Sign Up</h2>
                             <hr></hr>
                             <p style={{textAlign: "center"}}>Please fill out this form to create an account</p>
                             <div className="input-field">
@@ -53,7 +55,7 @@ class SignUp extends Component {
                                 <input type="text" id='phone' onChange={this.handleChange} />
                             </div>
                             <div className="input-field">
-                                <button className="btn-warning lighten-1 z-depth-0">Sign Up</button>
+                                <button className="btn-primary lighten-1 z-depth-0">Sign Up</button>
                                 <div className="center red-text">
                                     {authError ? <p>{authError}</p> : null}
                                 </div>
