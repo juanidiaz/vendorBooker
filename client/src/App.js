@@ -42,7 +42,6 @@ class App extends Component {
     API.getUsers()
       .then(res => {
         this.setState({ users: res.data });
-        // console.log(this.state.users);
       })
       .catch(err => console.log(err));
   };

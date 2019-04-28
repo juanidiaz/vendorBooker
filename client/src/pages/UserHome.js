@@ -14,7 +14,6 @@ class UserHome extends Component {
     let uid = localStorage.getItem('uid');
     console.log(`@ClientHome: Current uid=${uid}`);
 
-
     if (!auth.uid) return <Redirect to='/signin' />
     return (
       <div>
