@@ -42,28 +42,29 @@ export function UpdateSecUser(props) {
   return (
     <div>
       Edit mode
+      <p><small>Fields marked <strong>*</strong> as required.</small></p>
       <hr />
-      <small>Type of animal: </small><ListSecUserType
+      <small>Type of animal: *</small><ListSecUserType
         name="petType"
         onChange={(e) => props.handleValueUpdate(e, props.pet._id)}
         value={props.pet.petType}
       />
-      <small>Name: </small><Input
+      <small>Name: *</small><Input
         name="petName"
         onChange={(e) => props.handleValueUpdate(e, props.pet._id)}
         value={props.pet.petName}
       />
-      <small>Age: </small><Input
+      <small>Age: *</small><Input
         name="petAge"
         onChange={(e) => props.handleValueUpdate(e, props.pet._id)}
         value={props.pet.petAge}
       />
-      <small>Breed: </small><Input
+      <small>Breed: *</small><Input
         name="petBreed"
         onChange={(e) => props.handleValueUpdate(e, props.pet._id)}
         value={props.pet.petBreed}
       />
-      <small>Weight: </small><Input
+      <small>Weight: *</small><Input
         name="petWeight"
         onChange={(e) => props.handleValueUpdate(e, props.pet._id)}
         value={props.pet.petWeight}

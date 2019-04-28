@@ -75,11 +75,6 @@ class ManageUsers extends Component {
       .catch(err => console.log(err));
   };
 
-
-
-
-
-
   handleUpdateUser = event => {
     // console.log(event.target);
     this.setState({ updating: true });
@@ -174,7 +169,7 @@ class ManageUsers extends Component {
 
                         <Card key={user._id}>
                           <Card.Header>
-                            <Accordion.Toggle as={Card.Header} eventKey={user._id}>
+                            <Accordion.Toggle as={Card.Header} eventKey={user._id} onClick={this.handleClickOnAccordion}>
                               {user.firstName} {user.lastName}
                             </Accordion.Toggle>
                           </Card.Header>
@@ -207,7 +202,7 @@ class ManageUsers extends Component {
                       {this.state.users.map(user => user.userType === 'vendor' || user.userType === 'staff' ? (
                         <Card key={user._id}>
                           <Card.Header>
-                            <Accordion.Toggle as={Card.Header} eventKey={user._id}>
+                            <Accordion.Toggle as={Card.Header} eventKey={user._id} onClick={this.handleClickOnAccordion}>
                               {user.firstName} {user.lastName}
                             </Accordion.Toggle>
                           </Card.Header>

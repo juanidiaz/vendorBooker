@@ -16,6 +16,7 @@ export function ReadUser(props) {
 
   return (
     <div>
+      <p><small><i>UID (Firebase): {props.user.uid}</i></small></p>    
       <p><b>Phone: </b>{props.user.phone}</p>
       <p><b>Email: </b>{props.user.email}</p>
       <p><b>Address: </b>{props.user.address}</p>
@@ -40,37 +41,44 @@ export function UpdateUser(props) {
   return (
     <div>
       Edit mode
-      <ListUserType
+      <p><small>Fields marked <strong>*</strong> as required.</small></p>
+      <hr />
+      <small>Type of account: *</small><ListUserType
         name="userType"
         handleValueUpdate={props.handleValueUpdate}
         user={props.user}
         // onChange={(e) => props.handleValueUpdate(e, props.user._id)}
         text={props.user.userType}
       />
-      <Input
+      <small>First name: *</small><Input
         name="firstName"
         onChange={(e) => props.handleValueUpdate(e, props.user._id)}
         value={props.user.firstName}
       />
-      <Input
+      <small>Last name: *</small><Input
         name="lastName"
         onChange={(e) => props.handleValueUpdate(e, props.user._id)}
         defaultValue={props.user.lastName}
       />
-      <Input
+      <small>Phone: *</small><Input
         name="phone"
         onChange={(e) => props.handleValueUpdate(e, props.user._id)}
         defaultValue={props.user.phone}
       />
-      <Input
+      <small>Email: *</small><Input
         name="email"
         onChange={(e) => props.handleValueUpdate(e, props.user._id)}
         defaultValue={props.user.email}
       />
-      <TextArea
+      <small>Address:</small><TextArea
         name="address"
         onChange={(e) => props.handleValueUpdate(e, props.user._id)}
         defaultValue={props.user.address}
+      />
+      <small>UID (Firebase): *</small><Input
+        name="uid"
+        onChange={(e) => props.handleValueUpdate(e, props.user._id)}
+        defaultValue={props.user.uid}
       />
       <FormBtn
         onClick={props.handleCancelUpdate}

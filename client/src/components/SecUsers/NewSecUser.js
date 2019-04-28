@@ -22,7 +22,7 @@ function NewSecUser(props) {
 
   let validateBeforeAdding = (event) => {
     event.preventDefault();
-    if (!props.newPet.petType || !props.newPet.petName || !props.newPet.petAge || !props.newPet.petBreed || !props.newPet.petWeigth || !props.newPet.userId) { return } 
+    if (!props.newPet.petType || !props.newPet.petName || !props.newPet.petAge || !props.newPet.petBreed || !props.newPet.petWeigth || !props.newPet.userId) { return }
 
     props.handleSubmitNewSecUser()
   };
@@ -32,7 +32,7 @@ function NewSecUser(props) {
       <Row>
         <Col size="md-10">
           <h3>Create a new pet</h3>
-          <small>Fields marked * as required.</small>
+          <small>Fields marked <strong>*</strong> as required.</small>
           <form>
             <small>Type of animal: *</small><ListSecUserType
               name="petType"
