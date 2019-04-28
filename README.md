@@ -1,29 +1,51 @@
-# Create React Express App
+# VendorBooker
+## Business management framework for small businesses ##
+![LOGO](./client/public/images/vendorBooker_Logo.png)
 
-## About This Boilerplate
+See the project [live](https://idiaz-vendorbooker.herokuapp.com/)!
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+> **Cretaed by**
+- Christopher Donner @ <christopher.donner@gmail.com>!
+- Alexis Yepes @ <alexisyepes@yahoo.com>!
+- Pryambudhi Cahyadi @ <pcahyadi@gmail.com>!
+- Juan I Diaz @ <jdi@idiaz.ca>!
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+> **Date:** April 2019
 
-## Starting the app locally
+> ## Project Description
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+This project is a fully functional and fully responsive site deployed in [Heroku](https://idiaz-vendorbooker.herokuapp.com/). The idea behind this site is to provide small business owners with a platform where new and existing clients can come and book serives; allowing the owner to manage the sheduling of staff better.
 
-```
-npm install
-```
+The project is based on **node.js**, **express.js** and **react.js**. The back end is backed by **MongoDB** and **Mongoose** as the ORM. The aplication has been deployed in **Heroku** using their **mLab** database application.
 
-This should install node modules within the server and the client folder.
+> ## Building tools
+- **FRONT END**
+    - HTML, CSS
+    - Javascript
+    - React (JSX)
+    - Bootstrap
+    - AXIOS
+    - REDUX
+    - Full calendar
 
-After both installations complete, run the following command in your terminal:
+- **BACK END**
+    - node.js
+    - Express
+    - Mongoose / mLab MongoDB (Heroku)
+    - Google Firebase
+    
+- **Deployment**
+    - Heroku
 
-```
-npm start
-```
+>**Screenshots**
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+*Services page - Desktop*
+![03](./client/public/images/site01.png)
 
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+## QUESTIONS OR COMMENTS
+- Feel free to contact the developers:
+    - Christopher Donner @ <christopher.donner@gmail.com>!
+    - Alexis Yepes @ <alexisyepes@yahoo.com>!
+    - Pryambudhi Cahyadi @ <pcahyadi@gmail.com>!
+    - Juan I Diaz @ <jdi@idiaz.ca>!
+- See the **depolyed** project [live](https://idiaz-vendorbooker.herokuapp.com/)
