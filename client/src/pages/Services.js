@@ -31,7 +31,7 @@ class Services extends Component {
       <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/cepillar-perro.jpg">
       </Background>
 
-        <AllServices
+      <AllServices
           services = {this.state.services}
           color= 'info'
           text = 'Book service'

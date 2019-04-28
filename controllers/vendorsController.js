@@ -14,7 +14,7 @@ module.exports = {
   deleteOne: (id) => {
     return db.Vendor.findOneAndDelete({_id: id});
   },
-  updateOne: (id, updateInfo) => {
-    return db.Vendor.findOneAndUpdate({ _id: id }, updateInfo);
+  updateOne: (id, data) => {
+    return db.Vendor.findOneAndUpdate({ _id: id }, data);
   }
 };

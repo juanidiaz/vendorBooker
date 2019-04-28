@@ -14,7 +14,7 @@ module.exports = {
   deleteOne: (id) => {
     return db.User.findOneAndDelete({_id: id});
   },
-  updateOne: (id, updateInfo) => {
-    return db.User.findOneAndUpdate({ _id: id }, updateInfo);
+  updateOne: (id, data) => {
+    return db.User.findOneAndUpdate({ _id: id }, data);
   }
 };

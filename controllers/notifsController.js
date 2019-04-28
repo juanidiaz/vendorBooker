@@ -14,7 +14,7 @@ module.exports = {
   deleteOne: (id) => {
     return db.Notification.findOneAndDelete({_id: id});
   },
-  updateOne: (id, updateInfo) => {
-    return db.Notification.findOneAndUpdate({ _id: id }, updateInfo);
+  updateOne: (id, data) => {
+    return db.Notification.findOneAndUpdate({ _id: id }, data);
   }
 };

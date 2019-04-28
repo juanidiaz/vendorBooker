@@ -7,9 +7,16 @@ import "./style.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 function Navbar(props) {
+
   const { auth } = props;
   // console.log(auth);
-  const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
+  const links = auth.uid ? (
+    <SignedInLinks
+      users={props.users}
+    />
+  ) : (
+      <SignedOutLinks />
+    );
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-light" id="nav">
@@ -42,10 +49,7 @@ function Navbar(props) {
               Book Appointment
             </Link>
           </li>
-         
-          <div style={{ marginTop: "7.5px" }}>
-            {links}
-          </div>
+          {links}
         </ul>
       </div>
     </nav>
