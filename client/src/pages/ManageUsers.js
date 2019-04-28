@@ -7,6 +7,9 @@ import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
 import "./index.css"
+import { connect } from 'react-redux';
+import { signUp } from '../store/actions/authActions';
+import { Redirect } from 'react-router-dom';
 
 class ManageUsers extends Component {
   state = {
@@ -116,6 +119,8 @@ class ManageUsers extends Component {
   }
 
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/client' /> 
     return (
       <div>
         <h1><img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' />
@@ -130,6 +135,7 @@ class ManageUsers extends Component {
                   <a href="/admin/services" className="badge badge-warning mr-2">Manage Services</a>
                   {/* <a href="/admin/users" className="badge badge-warning mr-2">Manage Users</a> */}
                   <a href="/admin/pets" className="badge badge-warning mr-2">Manage Pets</a>
+
                 </div>
                 <h2 style={{ color: "black" }}>
                   Managing Users
@@ -233,4 +239,17 @@ class ManageUsers extends Component {
   }
 }
 
-export default ManageUsers;
+const mapDispatchToProps = (dispatch)=> {
+  return {
+    signUp: (creds) => dispatch(signUp(creds))
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+      authError: state.auth.authError,
+      auth: state.firebase.auth
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageUsers)
