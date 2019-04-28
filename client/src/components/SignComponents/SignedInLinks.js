@@ -6,11 +6,15 @@ import "../Navbar/style.css";
 
 const SignedInLinks = (props) => {
 
+    console.log(props.users);
+    let uid = localStorage.getItem('uid');
+    console.log(`@NAV: Current uid=${uid}`);
+
     return (
         <ul className="navbar-nav">
             <li className="nav-item">
                 <Link
-                    to="/client"
+                    to={"/client/" + uid}
                     className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}>
                     My Account
                     </Link>
@@ -19,12 +23,12 @@ const SignedInLinks = (props) => {
                 <Link
                     to="/admin"
                     className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}>
-                    About
+                    Admin
                     </Link>
             </li>
             <li className="nav-item">
                 <Link
-                    to="/client"
+                    to="/"
                     className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}
                     onClick={props.signOut}>
                     Log out

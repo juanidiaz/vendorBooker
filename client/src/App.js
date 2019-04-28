@@ -15,14 +15,16 @@ import Wrapper from "./components/Wrapper";
 import SignIn from "./components/Auth/SignIn";
 import SignUp from "./components/Auth/SignUp";
 import fireAdmin from './config/adminConfig';
-
+import API from "./utils/API";
 import "./App.css";
 
 class App extends Component {
 
   state = {
     authenticated: false,
+    users: []
   };
+
   componentDidMount() {
     fireAdmin.auth().onAuthStateChanged((authenticated) => {
       authenticated
@@ -33,14 +35,26 @@ class App extends Component {
           authenticated: false,
         }));
     });
-  }
+    this.loadUsers();
+  };
+
+  loadUsers = () => {
+    API.getUsers()
+      .then(res => {
+        this.setState({ users: res.data });
+        // console.log(this.state.users);
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     return (
       <Router>
         <div>
-          <Navbar authenticated={this.state.authenticated} />
-
+          <Navbar 
+            authenticated={this.state.authenticated} 
+            users={this.state.users}
+            />
           <Wrapper>
             <Switch>
               <Route exact path="/" component={Home} />

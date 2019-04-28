@@ -6,8 +6,8 @@ import React from 'react';
 
 export default (props) => {
 
-  console.log(props)
-  console.log(props.services);
+  // console.log(props)
+  // console.log(props.services);
 
   return(
   <div className="form-group">
