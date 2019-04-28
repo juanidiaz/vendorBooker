@@ -1,46 +1,60 @@
-import React from "react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { Redirect, Link } from 'react-router-dom';
 import Background from "../components/Background";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 
-function UserHome() {
-  return (
-    <div>
-      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-        <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
-      </Background>
+class UserHome extends Component {
+  render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/signin' /> 
+    return (
+      <div>
+        <Background backgroundImage="https://llppetminding.com.au/wp-content/uploads/2012/10/malibuzeus-and-I-print-2.jpg">
+        </Background>
 
-      <Container style={{ marginTop: 30 }}>
-        <Row>
-          <Col size="md-10">
-            <h1>User profile</h1>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-12">
+        <Container style={{ marginTop: 30 }}>
+          <Row>
+            <Col size="md-12">
+              <h1>Welcome to our online booking site</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-12">
             <p>
-              Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor. Sed
-              malesuada molestie velit ac viverra. Quisque a ullamcorper purus. Curabitur luctus mi
-              ac mi hendrerit semper. Nulla tincidunt accumsan lobortis. Mauris convallis sapien non
-              nibh porta accumsan. Nunc volutpat tempus porttitor. Nunc congue dictum egestas.
-              Aliquam blandit mi eu urna scelerisque, vitae volutpat ligula ultricies. Maecenas vel
-              porta augue. Fusce mauris ex, dignissim et lacinia ut, tempus eget nibh.
-            </p>
+            As a pet owner, you do need to groom your pet on a regular schedule. </p>
             <p>
-              Phasellus at rutrum nisl. Praesent sed massa ut ipsum bibendum porttitor. Sed
-              malesuada molestie velit ac viverra. Quisque a ullamcorper purus. Curabitur luctus mi
-              ac mi hendrerit semper. Nulla tincidunt accumsan lobortis. Mauris convallis sapien non
-              nibh porta accumsan. Nunc volutpat tempus porttitor. Nunc congue dictum egestas.
-              Aliquam blandit mi eu urna scelerisque, vitae volutpat ligula ultricies. Maecenas vel
-              porta augue. Fusce mauris ex, dignissim et lacinia ut, tempus eget nibh.
+            Our academy-trained Pet Stylists have over 800 hours of hands-on grooming instruction that includes bathing, trimming & styling at least 200 dogs of all breeds & sizes plus annual safety certification. 
+            We offer complete bath, haircut & walk-in grooming services.
             </p>
-          </Col>
-        </Row>
+            <p>We have flexible appointment times — our services are open 6 days a week.</p>
+            <p>Book your pet's salon appointment today!
+                <br></br>
+                <br></br>
+            <button className="btn-warning bookAppBtn">
+            <Link to="/booking">click here 
+            to book an appointment {' '}</Link>
+          </button>
+            </p>
+            </Col>
+          </Row>
 
-      </Container>
-    </div>
-  );
+        </Container>
+      </div>
+    );
+  }
 }
 
-export default UserHome;
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return {
+    auth: state.firebase.auth
+  }
+}
+
+export default compose(
+  connect(mapStateToProps)
+)(UserHome);

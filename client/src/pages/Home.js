@@ -1,42 +1,71 @@
-import React from "react";
+import React, { Component } from "react";
 import Background from "../components/Background";
-import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import Container from "../components/Container";
+import Slider from "../components/Slider";
+// import API from "../utils/API";
 
-function Home() {
+const settings = {
+  focusOnSelect: true,
+  infinite: true,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  speed: 500
+};
 
+class Home extends Component {
+  state = {
+    services: [],
+  };
+  
+
+render() {
   return (
     <div>
       <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
-        <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
       </Background>
 
       <Container style={{ marginTop: 30 }}>
         <Row>
-          <Col size="md-10">
-            <h2 style={{ color: "black" }}>
-              Call us at: 905 878 9009 / 905 878 5557
-            </h2>
-            <a href="/about" class="badge badge-danger mr-2">About us</a>
-            <a href="/services" class="badge badge-danger mr-2">Services</a>
-            <a href="/booking" class="badge badge-danger mr-2">Book appointment</a>
-            <a href="/login" class="badge badge-danger mr-2">Log in</a>
-            {/* <Button
-              // onClick={routeChange('/services')}
-              color='primary'
-            >Services</Button>
-            <Button
-              // onClick={this.handleAddService}
-              color='primary'
-            >Log in</Button> */}
-
+          <Col size="md-12">
+            <h1>Our Services Stand Apart</h1>
           </Col>
         </Row>
-
+        <Row>
+          <Col size="md-12">
+    
+            <Slider {...settings}>
+           <div>
+              <h4>Bathing</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/bathingDog.jpg" alt="bathing" style={{ height:"120px", width: "120px" }}/>
+            </div>
+            <div>
+              <h4>Drying</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/dryingDog.jpg" alt="drying" style={{ height:"120px", width: "15git 0px"  }}/>
+            </div>
+            <div>
+              <h4>De-matting</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/demattingDog.jpg" alt="de-matting" style={{ height:"120px", width: "150px"  }}/>
+            </div>
+            <div>
+              <h4>Ear Cleaning</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/earCleaning.jpg" alt="earcleaning" style={{ height:"120px", width: "150px"  }}/>
+            </div>
+            <div>
+              <h4>Haircuts</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/haircutImg.jpg" alt="ear cleaning" style={{ height:"120px", width: "150px"  }}/>
+            </div>
+            <div>
+              <h4>Nail Trimming</h4>
+              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/nailTrim.jpg" alt="nail trimming" style={{ height:"120px", width: "150px" }}/>
+            </div>
+          </Slider>
+          </Col>
+        </Row>
       </Container>
     </div>
-  );
+    );
+  }
 }
-
 export default Home;

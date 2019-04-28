@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card';
 import NewUser from "../components/Users/NewUser"
@@ -116,6 +117,8 @@ class ManageUsers extends Component {
   }
 
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/client' /> 
     return (
       <div>
         <h1><img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' />
@@ -233,4 +236,17 @@ class ManageUsers extends Component {
   }
 }
 
-export default ManageUsers;
+const mapDispatchToProps = (dispatch)=> {
+  return {
+    signUp: (creds) => dispatch(signUp(creds))
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+      authError: state.auth.authError,
+      auth: state.firebase.auth
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageUsers)

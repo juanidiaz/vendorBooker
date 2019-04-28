@@ -90,27 +90,27 @@ export default {
 
   // Get ALL calendar events
   getCalendars: () => {
-    return axios.get("/api/calendars");
+    return axios.get("/api/calendar");
   },
 
   // Save ONE calendar event
   addCalendar: (newCalendar) => {
-    return axios.post("/api/calendars", newCalendar);
+    return axios.post("/api/calendar", newCalendar);
   },
 
   // Get ONE calendar event by ID
   getCalendar: (id) => {
-    return axios.get("/api/calendars/" + id);
+    return axios.get("/api/calendar/" + id);
   },
 
   // Update ONE calendar event by ID
-  updateCalendar: (id, data) => {
-    return axios.put("/api/calendars/" + id, data);
-  },
+  uptadeCalendar: (id) => {
+    return axios.put("/api/calendar/" + id);
 
+  },
   // Delete ONE calendar event by ID
   deleteCalendar: (id) => {
-    return axios.delete("/api/calendars/" + id);
+    return axios.delete("/api/calendar/" + id);
   },
 
   ///////////////////////

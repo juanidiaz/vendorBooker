@@ -3,3 +3,27 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+form{
+  padding: 30px;
+  margin-top: 60px;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+form button, form h5{
+  margin: 20px 0;
+}
+
+form button {
+  padding: 15px;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]){
+  border-color: rgb(0, 140, 255);
+  box-shadow: none;
+}
