@@ -47,6 +47,12 @@ export default {
     return axios.get("/api/users/" + id);
   },
 
+  // Get ONE user by Firebase UID
+  getUserUID: (uid) => {
+    console.log('@ utils/API.js')
+    return axios.get("/api/users/uid/" + uid);
+  },
+
   // Update ONE user by ID
   updateUser: (id, data) => {
     return axios.put("/api/users/" + id, data);

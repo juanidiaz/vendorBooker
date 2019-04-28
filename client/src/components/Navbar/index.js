@@ -12,7 +12,7 @@ function Navbar(props) {
   // console.log(auth);
   const links = auth.uid ? (
     <SignedInLinks
-      users={props.users}
+      authUser={props.authUser}
     />
   ) : (
       <SignedOutLinks />
