@@ -6,14 +6,36 @@ import Background from "../components/Background";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import API from "../utils/API";
 
 class UserHome extends Component {
+
+  state = {
+    users: [],
+    authUser: []
+  };
+
+  componentDidMount() {
+    this.getAuthUser();
+  };
+
+  getAuthUser = () => {
+    console.log(`@UserHome.js: loading users`);
+    API.getUsers()
+      .then(res => {
+        this.setState({ users: res.data });
+        const user = { ...this.state.users.find(user => user.uid === localStorage.getItem('uid')) }
+        this.setState({ authUser: user });
+        console.log(`@UserHome.js: Authenticated user`);
+        console.log(user);
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     const { auth } = this.props;
     let uid = localStorage.getItem('uid');
     console.log(`@ClientHome: Current uid=${uid}`);
-
 
     if (!auth.uid) return <Redirect to='/signin' />
     return (
@@ -24,9 +46,21 @@ class UserHome extends Component {
         <Container style={{ marginTop: 30 }}>
           <Row>
             <Col size="md-12">
-              <h1>Welcome {uid} to our online booking site</h1>
-
+              <h1>Welcome <strong>{this.state.authUser.firstName} {this.state.authUser.lastName}</strong> to our online booking site</h1>
               <hr />
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-12">
+              {this.state.authUser.userType === 'user' ? (
+                <div className="alert alert-warning" role="alert">
+                  Our system indicates you are a <strong>client</strong>
+                </div>
+              ) : (
+                  <div className="alert alert-danger" role="alert">
+                    Our system indicates you are an <strong>administrator</strong>
+                  </div>
+                )}
             </Col>
           </Row>
           <Row>

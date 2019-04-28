@@ -22,27 +22,29 @@ class App extends Component {
 
   state = {
     authenticated: false,
-    users: []
+    users: [],
+    authUser: []
   };
 
   componentDidMount() {
     fireAdmin.auth().onAuthStateChanged((authenticated) => {
       authenticated
-        ? this.setState(() => ({
-          authenticated: true,
-        }))
+        ? (this.setState(() => ({ authenticated: true })))
         : this.setState(() => ({
           authenticated: false,
         }));
     });
-    this.loadUsers();
+    this.getAuthUser();
   };
 
-  loadUsers = () => {
+  getAuthUser = () => {
+    console.log(`@APP.js: loading users`);
     API.getUsers()
       .then(res => {
         this.setState({ users: res.data });
-        // console.log(this.state.users);
+        const user = { ...this.state.users.find(user => user.uid === localStorage.getItem('uid')) }
+        this.setState({ authUser: user });
+        console.log(user);
       })
       .catch(err => console.log(err));
   };
@@ -51,10 +53,10 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Navbar 
-            authenticated={this.state.authenticated} 
-            users={this.state.users}
-            />
+          <Navbar
+            authenticated={this.state.authenticated}
+            authUser={this.state.authUser}
+          />
           <Wrapper>
             <Switch>
               <Route exact path="/" component={Home} />
