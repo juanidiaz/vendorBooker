@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+// import Accordion from 'react-bootstrap/Accordion'
+// import Card from 'react-bootstrap/Card';
 import NewSecUser from "../components/SecUsers/NewSecUser"
 import { ReadSecUser, UpdateSecUser } from "../components/SecUsers/CRUDSecUser"
 import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
 import "./index.css"
+import { connect } from 'react-redux';
+import { signUp } from '../store/actions/authActions';
+import { Redirect } from 'react-router-dom';
 
 class ManageSecUsers extends Component {
   state = {
@@ -18,7 +23,7 @@ class ManageSecUsers extends Component {
   componentDidMount() {
     this.loadSecUsers();
     this.loadUsers();
-  }
+  };
 
   loadUsers = () => {
     API.getUsers()
@@ -53,8 +58,9 @@ class ManageSecUsers extends Component {
   handleDeleteSecUser = event => {
     let id = event.target.id
     API.deleteSecUser(id)
-      .then((deletedSecUser) => {
-        alert(`${deletedSecUser.petName}'s (${deletedSecUser.petBreed}) register was deleted!`)
+      .then((res) => {
+        console.log(res.data);
+        alert(`${res.data.petName}'s (${res.data.petBreed}) register was deleted!`)
         this.loadSecUsers();
       })
       .catch(err => console.log(err));
@@ -62,10 +68,10 @@ class ManageSecUsers extends Component {
 
   handleSubmitNewSecUser = () => {
     API.addSecUser(this.state.newPet)
-      .then((data) => {
-        console.log(data.data)
+      .then((res) => {
+        // console.log(res.data)
         alert(`A new ${this.state.newPet.petType} register was created for "${this.state.newPet.petName}" (${this.state.newPet.petBreed}).`)
-        return API.updateUser( this.state.newPet.userId , { $push: { petIds: data.data._id } }, { new: true });
+        return API.updateUser(this.state.newPet.userId, { $push: { petIds: res.data._id } }, { new: true });
       })
       .then(() => {
         this.setState({ adding: false });
@@ -101,15 +107,13 @@ class ManageSecUsers extends Component {
       // } else { return { ...pet } }
     });
     this.setState({ pets: nextSecUsers })
-    console.log(this.state.pets)
   };
 
   handleAddValueUpdate = (event) => {
-    console.log(`name=${event.target.name}     value=${event.target.value}`)
+    // console.log(`name=${event.target.name}     value=${event.target.value}`)
     const { name, value } = event.target;
     const newSecUser = { ...this.state.newPet };
     newSecUser[name] = value;
-
     this.setState({ newPet: newSecUser })
   };
 
@@ -118,9 +122,14 @@ class ManageSecUsers extends Component {
     const updatedSecUser = { ...this.state.pets.find(pet => pet._id === id) }
     const { name, value } = event.target;
     updatedSecUser[name] = value;
-
-    console.log(updatedSecUser);
+    if (updatedSecUser.userId) { updatedSecUser.petOwner = updatedSecUser.userId }
+    console.log(updatedSecUser)
     API.updateSecUser(updatedSecUser._id, updatedSecUser)
+      .then((res) => {
+        // console.log(res.data)
+        // alert(`A new ${this.state.newPet.petType} register was created for "${this.state.newPet.petName}" (${this.state.newPet.petBreed}).`)
+        return API.updateUser(updatedSecUser.userId, { $push: { petIds: res.data._id } }, { new: true });
+      })
       .then(res => {
         alert(`${updatedSecUser.petName}'s (${updatedSecUser.petBreed}) register was updated!`)
         this.setState({ updating: false });
@@ -130,6 +139,8 @@ class ManageSecUsers extends Component {
   }
 
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/client' />
     return (
       <div>
         <h1><img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' />
@@ -167,8 +178,9 @@ class ManageSecUsers extends Component {
                             {!this.state.updating ? (
                               <ReadSecUser
                                 pet={pet}
-                                handleUpdateSecUser={this.handleUpdateSecUser}
                                 users={this.state.users}
+                                handleUpdateSecUser={this.handleUpdateSecUser}
+                                handleDeleteSecUser={this.handleDeleteSecUser}
                               />
                             ) : (
                                 <UpdateSecUser
@@ -204,10 +216,13 @@ class ManageSecUsers extends Component {
                                 <ReadSecUser
                                   pet={pet}
                                   handleUpdateSecUser={this.handleUpdateSecUser}
+                                  handleDeleteSecUser={this.handleDeleteSecUser}
+                                  users={this.state.users}
                                 />
                               ) : (
                                   <UpdateSecUser
                                     pet={pet}
+                                    users={this.state.users}
                                     handleValueUpdate={this.handleValueUpdate}
                                     handleUpdateClick={this.handleUpdateClick}
                                     handleCancelUpdate={this.handleCancelUpdate}
@@ -249,4 +264,17 @@ class ManageSecUsers extends Component {
   }
 }
 
-export default ManageSecUsers;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUp: (creds) => dispatch(signUp(creds))
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authError,
+    auth: state.firebase.auth
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageSecUsers);

@@ -14,20 +14,31 @@ import { Redirect } from 'react-router-dom';
 class ManageUsers extends Component {
   state = {
     users: [],
+    pets: [],
     newUser: [],
     adding: false,
     updating: false
   };
 
   componentDidMount() {
+    this.loadSecUsers();
     this.loadUsers();
-  }
+  };
 
   loadUsers = () => {
     API.getUsers()
       .then(res => {
         this.setState({ users: res.data });
         // console.log(this.state.users);
+      })
+      .catch(err => console.log(err));
+  };
+
+  loadSecUsers = () => {
+    API.getSecUsers()
+      .then(res => {
+        this.setState({ pets: res.data });
+        // console.log(this.state.pets);
       })
       .catch(err => console.log(err));
   };
@@ -64,6 +75,11 @@ class ManageUsers extends Component {
       .catch(err => console.log(err));
   };
 
+
+
+
+
+
   handleUpdateUser = event => {
     // console.log(event.target);
     this.setState({ updating: true });
@@ -72,16 +88,14 @@ class ManageUsers extends Component {
   handleClickOnAccordion = event => {
     this.setState({ updating: false });
     this.loadUsers();
-    console.log(this.state)
   }
 
   handleValueUpdate = (event, id) => {
-    event.preventDefault();
-    event.stopPropagation();
-    console.log(event.target.value)
     const nextUsers = this.state.users.map(user => {
       const { name, value } = event.target;
-      // This line will RETURN the result of evaluating the `_id` of the user and, if 
+      // console.log(`name: ${event.target.name} - value: ${event.target.value}`)
+
+      // This line will RETURN the result of evaluating the `_id` of the pet and, if 
       // it's the same as the one that is being modified then it will make a copy of 
       // the whole `user` but updating the key `[name]` with the new `value`. If it 
       // is NOT the same `_id` then just copy that `user` without any changes.
@@ -96,6 +110,7 @@ class ManageUsers extends Component {
   };
 
   handleAddValueUpdate = (event) => {
+    // console.log(`name=${event.target.name}     value=${event.target.value}`)
     const { name, value } = event.target;
     const newUser = { ...this.state.newUser };
     newUser[name] = value;
@@ -116,11 +131,20 @@ class ManageUsers extends Component {
         this.loadUsers();
       })
       .catch(err => console.log(err));
-  }
+  };
+
+  returnPet = id => {
+    API.getSecUser(id)
+      .then(pet => {
+        console.log(pet.data)
+        return pet.data;
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     const { auth } = this.props;
-    if (!auth.uid) return <Redirect to='/client' /> 
+    if (!auth.uid) return <Redirect to='/client' />
     return (
       <div>
         <h1><img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' />
@@ -159,6 +183,7 @@ class ManageUsers extends Component {
                               {!this.state.updating ? (
                                 <ReadUser
                                   user={user}
+                                  returnPet={this.returnPet}
                                   handleUpdateUser={this.handleUpdateUser}
                                 />
                               ) : (
@@ -191,6 +216,7 @@ class ManageUsers extends Component {
                               {!this.state.updating ? (
                                 <ReadUser
                                   user={user}
+                                  returnPet={this.returnPet}
                                   handleUpdateUser={this.handleUpdateUser}
                                 />
                               ) : (
@@ -239,17 +265,17 @@ class ManageUsers extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch)=> {
+const mapDispatchToProps = (dispatch) => {
   return {
     signUp: (creds) => dispatch(signUp(creds))
-  }
-}
+  };
+};
 
 const mapStateToProps = (state) => {
   return {
-      authError: state.auth.authError,
-      auth: state.firebase.auth
-  }
-}
+    authError: state.auth.authError,
+    auth: state.firebase.auth
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageUsers)
+export default connect(mapStateToProps, mapDispatchToProps)(ManageUsers);

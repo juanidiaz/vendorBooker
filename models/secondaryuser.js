@@ -11,6 +11,7 @@ const secondaryUserSchema = new Schema({
   petTag: { type: String },
   petBehaviour: { type: String },
   petNotes: { type: String },
+  petOwner: { type: String }
 });
 
 const SecondaryUser = mongoose.model("SecondaryUser", secondaryUserSchema);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row, Container } from "../Grid";
-import { Input, FormBtn, ListUserType } from "../Form";
+import { Input, FormBtn, ListUserType, TextArea } from "../Form";
 
 function NewUser(props) {
 

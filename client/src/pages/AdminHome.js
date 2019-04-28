@@ -7,13 +7,13 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 class AdminHome extends Component {
-  
+
   render() {
     const { auth } = this.props;
-    if (!auth.uid) return <Redirect to='/client' /> 
+    if (!auth.uid) return <Redirect to='/client' />
 
     return (
-      
+
       <div>
         <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
           <img src="/images/logo_300.png" style={{ width: "200px" }} alt="main logo" />
@@ -27,9 +27,9 @@ class AdminHome extends Component {
           </Row>
           <Row>
             <Col size="md-10">
-            <a href="/admin/services" class="badge badge-warning mr-2">Manage Services</a>
-            <a href="/admin/users" class="badge badge-warning mr-2">Manage Users</a>
-            <a href="/admin/pets" className="badge badge-warning mr-2">Manage Pets</a>
+              <a href="/admin/services" class="badge badge-warning mr-2">Manage Services</a>
+              <a href="/admin/users" class="badge badge-warning mr-2">Manage Users</a>
+              <a href="/admin/pets" className="badge badge-warning mr-2">Manage Pets</a>
             </Col>
           </Row>
 
@@ -41,8 +41,8 @@ class AdminHome extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      authError: state.auth.authError,
-      auth: state.firebase.auth
+    authError: state.auth.authError,
+    auth: state.firebase.auth
   }
 }
 

@@ -1,16 +1,18 @@
 import React from "react";
 import { Input, TextArea, FormBtn, ListSecUserType } from "../Form";
 import Form from 'react-bootstrap/Form';
+import API from "../../utils/API";
 
 export function ReadSecUser(props) {
 
-  // let findUser = (users) => {
-  //   return props.users._id === props.pet.userId;
-  // };
-
-  // console.log(props.user.find(findUser(props.user)));
-  console.log(props.users)
-  console.log(props.pet)
+  let returnOwner = userId => {
+    API.getUser(userId)
+      .then(user => {
+        console.log(user.data)
+        return user.data.firstName + ' ' + user.data.lastName;
+      })
+      .catch(err => console.log(err));
+  };
 
   return (
     <div>
@@ -22,7 +24,7 @@ export function ReadSecUser(props) {
       {props.pet.petTag ? (<p><b>Tag: </b>{props.pet.petTag}</p>) : null}
       {props.pet.petBehaviour ? (<p><b>Behaviour: </b>{props.pet.petBehaviour}</p>) : null}
       {props.pet.petNotes ? (<p><b>Notes: </b>{props.pet.petNotes}</p>) : null}
-      <p><small>Owner: {props.pet.userId}</small></p>
+      <p><small>Owner: {props.pet.petOwner}</small>{returnOwner(props.pet.petOwner)}</p>
       <p><small>Pet type: {props.pet.petType}</small></p>
       <button type="button" className="btn btn-danger btn-sm" onClick={props.handleDeleteSecUser} id={props.pet._id}>Delete</button>
       <button type="button" className="btn btn-success btn-sm ml-4" onClick={props.handleUpdateSecUser} id={props.pet._id}>Update</button>
@@ -86,7 +88,7 @@ export function UpdateSecUser(props) {
         onChange={(e) => props.handleValueUpdate(e, props.pet._id)}
         value={props.pet.petNotes}
       />
-      <small>Registered to: *</small><Form.Control name='userId' as="select" size='sm' defaultValue='' onChange={props.handleAddValueUpdate}>
+      <small>Registered to: *</small><Form.Control name='userId' as="select" size='sm' defaultValue='' onChange={(e) => props.handleValueUpdate(e, props.pet._id)}>
         <option key='' value='' disabled>Select a client...</option>
         {props.users.map(user => (
           <option key={user._id} value={user._id}>{user.firstName} {user.lastName}</option>
