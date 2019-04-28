@@ -4,6 +4,9 @@ import Row from "../components/Row";
 import Col from "../components/Col";
 import Container from "../components/Container";
 import Slider from "../components/Slider";
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+
 // import API from "../utils/API";
 
 const settings = {
@@ -19,7 +22,6 @@ class Home extends Component {
     services: [],
   };
   
-
 render() {
   return (
     <div>
@@ -37,29 +39,77 @@ render() {
     
             <Slider {...settings}>
            <div>
-              <h4>Bathing</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/bathingDog.jpg" alt="bathing" style={{ height:"120px", width: "120px" }}/>
+              <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/bathingDog.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
+                <Card.Body>
+                <Card.Title>Bathing</Card.Title>
+                <Button variant="info" href="/services">More Info</Button>
+                </Card.Body>
+              </Card>
             </div>
             <div>
-              <h4>Drying</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/dryingDog.jpg" alt="drying" style={{ height:"120px", width: "15git 0px"  }}/>
+              <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/dryingDog.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
+                <Card.Body>
+                <Card.Title>Drying and brushing</Card.Title>
+                <Button variant="info" href="/services">More Info</Button>
+                </Card.Body>
+              </Card>
             </div>
             <div>
-              <h4>De-matting</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/demattingDog.jpg" alt="de-matting" style={{ height:"120px", width: "150px"  }}/>
+              <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/demattingDog.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
+                <Card.Body>
+                <Card.Title>De-tangle</Card.Title>
+                <Button variant="info" href="/services">More Info</Button>
+                </Card.Body>
+              </Card>
             </div>
             <div>
-              <h4>Ear Cleaning</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/earCleaning.jpg" alt="earcleaning" style={{ height:"120px", width: "150px"  }}/>
+              <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/earCleaning.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
+                <Card.Body>
+                <Card.Title>Ear cleaning</Card.Title>
+                <Button variant="info" href="/services">More Info</Button>
+                </Card.Body>
+              </Card>
             </div>
             <div>
-              <h4>Haircuts</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/haircutImg.jpg" alt="ear cleaning" style={{ height:"120px", width: "150px"  }}/>
+              <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/haircutImg.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
+                <Card.Body>
+                <Card.Title>Haircut</Card.Title>
+                <Button variant="info" href="/services">More Info</Button>
+                </Card.Body>
+              </Card>
             </div>
             <div>
-              <h4>Nail Trimming</h4>
-              <img src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/nailTrim.jpg" alt="nail trimming" style={{ height:"120px", width: "150px" }}/>
+              <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/nailTrim.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
+                <Card.Body>
+                <Card.Title>Nail trimming</Card.Title>
+                <Button variant="info" href="/services">More Info</Button>
+                </Card.Body>
+              </Card>
             </div>
+            <div>
+            <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/teethCleaning.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
+              <Card.Body>
+              <Card.Title>Teeth clearning</Card.Title>
+              <Button variant="info" href="/services">More Info</Button>
+              </Card.Body>
+            </Card>
+          </div>
+          <div>
+          <Card style={{ width: '18rem' }}>
+          <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/spaDog.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
+            <Card.Body>
+            <Card.Title>Spa packages</Card.Title>
+            <Button variant="info" href="/services">More Info</Button>
+            </Card.Body>
+          </Card>
+        </div>
           </Slider>
           </Col>
         </Row>
