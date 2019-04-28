@@ -42,10 +42,7 @@ function Navbar(props) {
               Book Appointment
             </Link>
           </li>
-         
-          <div style={{ marginTop: "7.5px" }}>
             {links}
-          </div>
         </ul>
       </div>
     </nav>
