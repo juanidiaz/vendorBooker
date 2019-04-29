@@ -49,7 +49,7 @@ router
     .route("/uid/:uid")
     .get((req, res) => { // get ONE user from database based in UID (Firebase)
         console.log(`@ api/users.js - ${req.params.uid}`)
-        users.findOneAndUpdate({
+        users.findOne({
                 'uid': req.params.uid
             })
             .then((data) => {

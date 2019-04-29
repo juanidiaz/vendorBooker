@@ -6,23 +6,19 @@ const calendarSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User"
   }],
-  vendorId: [{
-    type: Schema.Types.ObjectId,
-    ref: "Vendor"
-  }],
-  petId: [{
+  secondUserId: [{
     type: Schema.Types.ObjectId,
     ref: "SecondaryUser"
   }],
-  skuId: [{
-    type: Schema.Types.ObjectId,
+  service: [{
+    type: String,
     ref: "Service"
   }],
-  startTime: {
+  start: {
     type: Date,
     // required: true
   },
-  endTime: {
+  end: {
     type: Date,
     // required: true
   },
