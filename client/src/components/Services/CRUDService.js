@@ -27,42 +27,44 @@ export function UpdateService(props) {
   return (
     <div>
       Edit mode
-      <Input
+      <p><small>Fields marked <strong>*</strong> as required.</small></p>
+      <hr />
+      <small>Service name: *</small><Input
         name="name"
         onChange={(e) => props.handleValueUpdate(e, props.service._id)}
         value={props.service.name}
       />
-      <TextArea
+      <small>Description: *</small><TextArea
         name="description"
         onChange={(e) => props.handleValueUpdate(e, props.service._id)}
         value={props.service.description}
       />
-      <ListDuration
+      <small>Duration: *</small><ListDuration
         name="duration"
         onChange={(e) => props.handleValueUpdate(e, props.service._id)}
         value={props.service.duration}
       />
-      <Input
+      <small>Price: *</small><Input
         name="price"
         onChange={(e) => props.handleValueUpdate(e, props.service._id)}
         value={props.service.price}
       />
-      <Input
+      <small>Special / discount price:</small><Input
         name="specialPrice"
         onChange={(e) => props.handleValueUpdate(e, props.service._id)}
         value={props.service.specialPrice}
       />
-      <Input
+      <small>Cost:</small><Input
         name="cost"
         onChange={(e) => props.handleValueUpdate(e, props.service._id)}
         value={props.service.cost}
       />
-      <Input
+      <small>Image (filename with extension!):</small><Input
         name="images"
         onChange={(e) => props.handleValueUpdate(e, props.service._id)}
         value={props.service.images}
       />
-      <TextArea
+      <small>Notes:</small><TextArea
         name="notes"
         onChange={(e) => props.handleValueUpdate(e, props.service._id)}
         value={props.service.notes}
