@@ -10,7 +10,7 @@ import Calendar from "../components/Calendar"
 import ListServices from "../components/Services/ListServices"
 import API from "../utils/API";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import "../components/Calendar/react-datepicker.css";
 import { FormBtn } from "../components/Form"
 // import NewBooking from "../components/Booking/NewBooking"
 
