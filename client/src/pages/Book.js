@@ -60,8 +60,8 @@ checkUser = () => {
 loadEvents = () => {
   API.getCalendars()
     .then(res => this.setState({ events: res.data }))
-    console.log(this.state.events)
-    // .catch(err => console.log(err));
+    // console.log(this.state.events)
+    .catch(err => console.log(err));
 };
 
 loadServices = () => {
@@ -92,7 +92,7 @@ const newBooking = {
 }
   API.addCalendar(newBooking)
   .then(res => {
-    alert(`Appointment for ${this.state.booking.service} has been booked for ${this.state.start} has been requested!`)
+    alert(`Appointment for ${this.state.title} has been booked for ${this.state.start} has been requested!`)
       this.loadEvents();
     })
     .catch(err => console.log(err));
@@ -146,7 +146,7 @@ render() {
             <ListServices
             name="services"
             services = {this.state.services}
-            selected={this.state.service}
+            selected={this.state.title}
             onChange={this.handleServiceChange}
             />
             {/* <NewBooking booking={this.state.booking}/> */}
