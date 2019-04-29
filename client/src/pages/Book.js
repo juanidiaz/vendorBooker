@@ -17,6 +17,7 @@ import { FormBtn } from "../components/Form"
 class Booking extends Component {
   state = {
     booking: {},
+    newBooking: {},
     services: [],
     title: '',
     start: '',
@@ -29,7 +30,7 @@ class Booking extends Component {
   componentDidMount() {
     this.loadEvents();
     this.loadServices();
-    this.checkUser();
+    // this.checkUser();
     this.getAuthUser();
     }
 
@@ -84,15 +85,15 @@ handleServiceChange = (Service) => {
 }
 
 handleSubmitNewBooking = () => {
-const newBooking = {
-  // user: ,
-  // secondUserId:,
-  title: this.state.newBooking,
-  start: this.state.start
-}
-  API.addCalendar(newBooking)
+// const newBooking = {
+//   // user: ,
+//   // secondUserId:,
+//   title: this.state.booking,
+//   // start: this.state.start
+// }
+  API.addCalendar(this.state.booking)
   .then(res => {
-    alert(`Appointment for ${this.state.title} has been booked for ${this.state.start} has been requested!`)
+    alert(`Appointment for ${this.state.booking.title} has been booked for ${this.state.start} has been requested!`)
       this.loadEvents();
     })
     .catch(err => console.log(err));
@@ -103,15 +104,17 @@ handleValueChange = (event) => {
   const { name, value } = event.target;
   const newApp =
   {
-    ...this.state.newBooking,
+    ...this.state.booking,
     start: this.state.start
    };
   newApp[name] = value;
 
   this.setState({
     start: this.state.start,
-    newBooking: newApp
+    booking: newApp
   })
+  console.log(this.state.booking)
+  console.log(newApp)
 };
 
 render() {
@@ -144,10 +147,10 @@ render() {
                             <br /><br />
             What do you need done?
             <ListServices
-            name="services"
+            name="title"
             services = {this.state.services}
             selected={this.state.title}
-            onChange={this.handleServiceChange}
+            onChange={this.handleValueChange}
             />
             {/* <NewBooking booking={this.state.booking}/> */}
             <br /><br />
@@ -162,7 +165,7 @@ render() {
         <br /><br />
 
         <FormBtn
-                                disabled={!(this.state.start && this.state.title)}
+                                disabled={!(this.state.start && this.state.newBooking)}
                                 onClick={this.handleSubmitNewBooking}
                                 color="primary"
                             >
