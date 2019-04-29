@@ -21,6 +21,9 @@ class ManageUsers extends Component {
   };
 
   componentDidMount() {
+    const { auth } = { ...this.props };
+    if (!auth.uid) return <Redirect to='/client' />
+
     this.loadSecUsers();
     this.loadUsers();
   };
@@ -128,18 +131,16 @@ class ManageUsers extends Component {
       .catch(err => console.log(err));
   };
 
-  returnPet = id => {
-    API.getSecUser(id)
-      .then(pet => {
-        console.log(pet.data)
-        return pet.data;
-      })
-      .catch(err => console.log(err));
-  };
+  // returnPet = id => {
+  //   API.getSecUser(id)
+  //     .then(pet => {
+  //       console.log(pet.data)
+  //       return pet.data;
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   render() {
-    const { auth } = this.props;
-    if (!auth.uid) return <Redirect to='/client' />
     return (
       <div>
         <h1><img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' />
@@ -178,6 +179,7 @@ class ManageUsers extends Component {
                               {!this.state.updating ? (
                                 <ReadUser
                                   user={user}
+                                  pets={this.state.pets}
                                   returnPet={this.returnPet}
                                   handleUpdateUser={this.handleUpdateUser}
                                 />
@@ -211,6 +213,7 @@ class ManageUsers extends Component {
                               {!this.state.updating ? (
                                 <ReadUser
                                   user={user}
+                                  pets={this.state.pets}
                                   returnPet={this.returnPet}
                                   handleUpdateUser={this.handleUpdateUser}
                                 />
@@ -257,8 +260,8 @@ class ManageUsers extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
