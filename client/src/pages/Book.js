@@ -18,23 +18,50 @@ class Booking extends Component {
   state = {
     booking: {},
     services: [],
-    service: '',
+    title: '',
     start: '',
     value: '',
-    events: []
+    events: [],
+    userUID: '',
+    currentUser: []
   };
 
   componentDidMount() {
     this.loadEvents();
     this.loadServices();
+    this.checkUser();
+    this.getAuthUser();
+    }
 
-  }
+  getAuthUser = () => {
+    console.log(`@UserHome.js: loading users`);
+    API.getUsers()
+      .then(res => {
+        this.setState({ users: res.data });
+        const user = { ...this.state.users.find(user => user.uid === localStorage.getItem('uid')) }
+        this.setState({ authUser: user });
+        console.log(`@UserHome.js: Authenticated user`);
+        console.log(user);
+      })
+      .catch(err => console.log(err));
+  };
+
+
+checkUser = () => {
+  let UID=localStorage.getItem("uid")
+  console.log(UID)
+  this.setState({userUID: UID})
+  API.getUserUID(UID)
+  .then(res => this.setState({currentUser: res.data}))
+  // console.log(this.state.currentUser)
+  .catch(err => console.log(err));
+}
 
 loadEvents = () => {
   API.getCalendars()
     .then(res => this.setState({ events: res.data }))
-    console.log(this.state.events)
-    // .catch(err => console.log(err));
+    // console.log(this.state.events)
+    .catch(err => console.log(err));
 };
 
 loadServices = () => {
@@ -45,31 +72,27 @@ loadServices = () => {
 
 handleDateChange = (date) => {
   this.setState({
-    startDate: date
+    start: date
   });
 }
 
 handleServiceChange = (Service) => {
   this.setState({
-    service: Service
+    title: Service
   })
   // console.log(this.state.service)
 }
 
-handleSubmitNewBooking = (newBooking) => {
-
-  // console.log(this.state)
-  // console.log(newBooking)
-  this.setState({
-    booking: {
-      title: this.state.service,
-      start: this.state.start
-    }
-  })
-  console.log(this.state.booking)
-  API.addCalendar(this.state.booking)
+handleSubmitNewBooking = () => {
+const newBooking = {
+  // user: ,
+  // secondUserId:,
+  title: this.state.newBooking,
+  start: this.state.start
+}
+  API.addCalendar(newBooking)
   .then(res => {
-    alert(`Appointment for ${this.state.service} has been booked for ${newBooking.start} has been requested!`)
+    alert(`Appointment for ${this.state.title} has been booked for ${this.state.start} has been requested!`)
       this.loadEvents();
     })
     .catch(err => console.log(err));
@@ -78,10 +101,17 @@ handleSubmitNewBooking = (newBooking) => {
 handleValueChange = (event) => {
   console.log(`name=${event.target.name}     value=${event.target.value}`)
   const { name, value } = event.target;
-  const newApp = { ...this.state.newBooking };
+  const newApp =
+  {
+    ...this.state.newBooking,
+    start: this.state.start
+   };
   newApp[name] = value;
 
-  this.setState({ newBooking: newApp })
+  this.setState({
+    start: this.state.start,
+    newBooking: newApp
+  })
 };
 
 render() {
@@ -94,15 +124,16 @@ render() {
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-10">
+            <h1>Welcome {this.state.currentUser}</h1>
             <h1>Book a service for your pet</h1>
           </Col>
         </Row>
         <Row>
-          <Col size="md-7">
+          <Col size="md-4">
           <p>When would you like?</p>
           <DatePicker
                                 name="datetime"
-                                selected={this.state.startDate}
+                                selected={this.state.start}
                                 onChange={this.handleDateChange}
                                 showTimeSelect
                                 timeFormat="HH:mm"
@@ -113,15 +144,16 @@ render() {
                             <br /><br />
             What do you need done?
             <ListServices
+            name="services"
             services = {this.state.services}
-            selected={this.state.service}
+            selected={this.state.title}
             onChange={this.handleServiceChange}
             />
             {/* <NewBooking booking={this.state.booking}/> */}
             <br /><br />
             {/* For what pet? */}
           </Col>
-          <Col size="md-4" offset="md-1">
+          <Col size="lg-7" offset="md-1">
           <Calendar
           events= {this.state.events}
           />
@@ -130,7 +162,7 @@ render() {
         <br /><br />
 
         <FormBtn
-                                disabled={!(this.state.startDate && this.state.service)}
+                                disabled={!(this.state.start && this.state.title)}
                                 onClick={this.handleSubmitNewBooking}
                                 color="primary"
                             >
