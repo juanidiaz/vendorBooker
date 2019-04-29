@@ -14,7 +14,7 @@ const SignedInLinks = (props) => {
     // Get the UID value fro the local storage
     let uid = localStorage.getItem('uid');
 
-    console.log(`Print SignComponents/SignedInLinks.js now UID=${props.authUser.uid}`);
+    // console.log(`Print SignComponents/SignedInLinks.js now UID=${props.authUser.uid}`);
 
     return (
         <ul className="navbar-nav">

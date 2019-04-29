@@ -52,11 +52,7 @@ class UserHome extends Component {
   render() {
 
     const { auth } = this.props;
-
     if (!auth.uid) { return <Redirect to='/signin' /> };
-
-    // console.log(this.props)
-    console.log(this.state.authUser.petIds);
 
     return (
       <div>
@@ -122,13 +118,13 @@ class UserHome extends Component {
             </Col>
           </Row>
           <br />
-          <Row>
-            <Col size="md-12">
-              <Card >
-                <Card.Body>
-                  <Card.Title><h2>Pet info</h2></Card.Title>
-                  {this.state.authUser.petIds ? (
-                    <span>
+          {this.state.authUser.petIds ? (
+            <span>
+              <Row>
+                <Col size="md-12">
+                  <Card >
+                    <Card.Body>
+                      <Card.Title><h2>Pet info</h2></Card.Title>
                       {this.state.authUser.petIds.map(petId =>
                         <span>
                           <Card.Subtitle className="mb-2 text-muted"><strong>Type: </strong>{this.getPet(petId).petType}</Card.Subtitle>
@@ -144,14 +140,14 @@ class UserHome extends Component {
                           <hr />
                         </span>
                       )}
-                    </span>
-                  ) : (
-                      <Card.Subtitle className="mb-2 text-muted"><small>UID: {localStorage.getItem('uid')}</small></Card.Subtitle>
-                    )}
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+            </span>
+          ) : (
+              <Card.Subtitle className="mb-2 text-muted"><small>You have no pets registered</small></Card.Subtitle>
+            )}
         </Container>
       </div>
     );
