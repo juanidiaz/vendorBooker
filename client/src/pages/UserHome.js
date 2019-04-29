@@ -6,17 +6,15 @@ import Background from "../components/Background";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import Card from 'react-bootstrap/Card'
 import API from "../utils/API";
 
 class UserHome extends Component {
 
   state = {
+    pets: [],
     users: [],
     authUser: []
-  };
-
-  componentDidMount() {
-    this.getAuthUser();
   };
 
   getAuthUser = () => {
@@ -32,6 +30,25 @@ class UserHome extends Component {
       .catch(err => console.log(err));
   };
 
+  loadSecUsers = () => {
+    API.getSecUsers()
+      .then(res => {
+        this.setState({ pets: res.data });
+        // console.log(this.state.pets);
+      })
+      .catch(err => console.log(err));
+  };
+
+  getPet = (id) => {
+    const pet = { ...this.state.pets.find(pet => pet._id === id) };
+    return pet;
+  };
+
+  componentDidMount() {
+    this.loadSecUsers();
+    this.getAuthUser();
+  };
+
   render() {
 
     const { auth } = this.props;
@@ -39,19 +56,17 @@ class UserHome extends Component {
     if (!auth.uid) { return <Redirect to='/signin' /> };
 
     // console.log(this.props)
+    console.log(this.state.authUser.petIds);
 
     return (
       <div>
+
         <Background backgroundImage="https://llppetminding.com.au/wp-content/uploads/2012/10/malibuzeus-and-I-print-2.jpg">
         </Background>
-
         <Container style={{ marginTop: 30 }}>
           <Row>
             <Col size="md-12">
               <h1>Welcome <strong>{this.state.authUser.firstName} {this.state.authUser.lastName}</strong> to our online booking site</h1>
-              <small>UID: {localStorage.getItem('uid')}</small><br />
-              <small>email: {this.state.authUser.email}</small><br />
-              <small>phone: {this.state.authUser.phone}</small>
               <hr />
             </Col>
           </Row>
@@ -75,7 +90,7 @@ class UserHome extends Component {
               <p>
                 Our academy-trained Pet Stylists have over 800 hours of hands-on grooming instruction that includes bathing, trimming & styling at least 200 dogs of all breeds & sizes plus annual safety certification.
                 We offer complete bath, haircut & walk-in grooming services.
-            </p>
+              </p>
               <p>We have flexible appointment times — our services are open 6 days a week.</p>
               <p>Book your pet's salon appointment today!
                 <br></br>
@@ -88,7 +103,55 @@ class UserHome extends Component {
               </p>
             </Col>
           </Row>
-
+          <Row>
+            <Col size="md-12">
+              <p>See below the information we have on file. If any of this information is not correct please <a href="mailto:contact@mail.com?Subject=User%20data" target="_top">contact us</a> and let us know the problem. We will be glad to correct it.</p>
+              <Card >
+                <Card.Body>
+                  <Card.Title><h2>User info</h2></Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted"><small>UID: {localStorage.getItem('uid')}</small></Card.Subtitle>
+                  <Card.Text>
+                    <strong>First name: </strong>{this.state.authUser.firstName}<br />
+                    <strong>Last name: </strong>{this.state.authUser.lastName}<br />
+                    <strong>Phone: </strong>{this.state.authUser.phone}<br />
+                    <strong>Email: </strong>{this.state.authUser.email}<br />
+                    <strong>Address: </strong>{this.state.authUser.address}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col size="md-12">
+              <Card >
+                <Card.Body>
+                  <Card.Title><h2>Pet info</h2></Card.Title>
+                  {this.state.authUser.petIds ? (
+                    <span>
+                      {this.state.authUser.petIds.map(petId =>
+                        <span>
+                          <Card.Subtitle className="mb-2 text-muted"><strong>Type: </strong>{this.getPet(petId).petType}</Card.Subtitle>
+                          <Card.Text key={petId}>
+                            <strong>Name: </strong>{this.getPet(petId).petName}<br />
+                            <strong>Age: </strong>{this.getPet(petId).petAge}<br />
+                            <strong>Breed: </strong>{this.getPet(petId).petBreed}<br />
+                            <strong>Weight: </strong>{this.getPet(petId).petWeight}<br />
+                            <strong>Vaccines: </strong>{this.getPet(petId).petVaccines}<br />
+                            <strong>Tag info: </strong>{this.getPet(petId).petTag}<br />
+                            <strong>Behaviour: </strong>{this.getPet(petId).petBehaviour}<br />
+                          </Card.Text>
+                          <hr />
+                        </span>
+                      )}
+                    </span>
+                  ) : (
+                      <Card.Subtitle className="mb-2 text-muted"><small>UID: {localStorage.getItem('uid')}</small></Card.Subtitle>
+                    )}
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
         </Container>
       </div>
     );
