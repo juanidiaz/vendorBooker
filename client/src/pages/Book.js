@@ -18,7 +18,7 @@ class Booking extends Component {
   state = {
     booking: {},
     services: [],
-    service: '',
+    title: '',
     start: '',
     value: '',
     events: [],
@@ -78,7 +78,7 @@ handleDateChange = (date) => {
 
 handleServiceChange = (Service) => {
   this.setState({
-    service: Service
+    title: Service
   })
   // console.log(this.state.service)
 }
@@ -87,7 +87,7 @@ handleSubmitNewBooking = () => {
 const newBooking = {
   // user: ,
   // secondUserId:,
-  service: this.state.service,
+  title: this.state.newBooking,
   start: this.state.start
 }
   API.addCalendar(newBooking)
@@ -162,7 +162,7 @@ render() {
         <br /><br />
 
         <FormBtn
-                                disabled={!(this.state.start && this.state.service)}
+                                disabled={!(this.state.start && this.state.title)}
                                 onClick={this.handleSubmitNewBooking}
                                 color="primary"
                             >

@@ -2,28 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const calendarSchema = new Schema({
-  userId: [{
-    type: Schema.Types.ObjectId,
-    ref: "User"
-  }],
-  secondUserId: [{
-    type: Schema.Types.ObjectId,
-    ref: "SecondaryUser"
-  }],
-  service: [{
+  title: [{
     type: String,
-    ref: "Service"
+    ref: "title"
   }],
-  start: {
-    type: Date,
+    start: {
+    type: String,
     // required: true
   },
   end: {
-    type: Date,
+    type: String,
     // required: true
   },
   status: {
-    type: String,
+    type: Boolean,
     // required: true
   },
   notes: { type: String },
