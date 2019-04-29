@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
 const styles = {
     image: {
         width: "100%", 
@@ -41,7 +42,7 @@ class ContactUs extends Component {
                     <div className="col-md-6">
                       <a href="https://www.google.com/maps/place/Amazing+Pet+Grooming/@43.5239754,-79.8731451,17z/data=!3m1!4b1!4m5!3m4!1s0x882b6f0649aa7edb:0xa1616d6c9e9e1545!8m2!3d43.5239754!4d-79.8709564?hl=en-CA" target="blank">  
                       <img style={ styles.image } 
-                        alt="gooogle Map" src="./images/GoogleMap.png"></img></a>
+                        alt="gooogle Map" src="https://res.cloudinary.com/bootcamp2019/image/upload/v1556559547/GoogleMap.png"></img></a>
                     </div>
                     <div className="col-md-12">
                     <hr></hr>
