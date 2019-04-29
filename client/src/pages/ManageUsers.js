@@ -143,9 +143,11 @@ class ManageUsers extends Component {
   render() {
     return (
       <div>
-        <h1><img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' />
-          &nbsp;&nbsp;&nbsp;&nbsp;Administrator panel</h1>
-        <hr />
+        <h1>
+          {/* <img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' /> */}
+          &nbsp;&nbsp;&nbsp;&nbsp;Administrator panel
+        </h1>
+        {/* <hr /> */}
         <div style={{ background: "white" }}>
           <Container>
             <Row>
