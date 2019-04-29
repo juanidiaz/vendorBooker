@@ -27,7 +27,7 @@ class SignUp extends Component {
         if (auth.uid) return <Redirect to='/client' />
         return (
             <div className="container">
-                <img className="logoForms" alt="logo" src="./images/logo_300.png"></img>
+                {/* <img className="logoForms" alt="logo" src="./images/logo_300.png"></img> */}
                 <div className="row">
                     <div className="col-md-6 mainBox" >
                         <form className="white" onSubmit={this.handleSubmit}>

@@ -16,8 +16,8 @@ const SignedOutLinks = () => {
         <li className="nav-item">
           <Link
             to="/admin"
-            className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}>
-            Admin
+            className={window.location.pathname === "/admin" ? "nav-link active" : "nav-link"}>
+            <p className="text-warning">Admin Panel</p>
           </Link>
         </li>
       </ul >

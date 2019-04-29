@@ -20,24 +20,26 @@ class UserHome extends Component {
   };
 
   getAuthUser = () => {
-    console.log(`@UserHome.js: loading users`);
+    // console.log(`@UserHome.js: loading users`);
     API.getUsers()
       .then(res => {
         this.setState({ users: res.data });
         const user = { ...this.state.users.find(user => user.uid === localStorage.getItem('uid')) }
         this.setState({ authUser: user });
-        console.log(`@UserHome.js: Authenticated user`);
-        console.log(user);
+        // console.log(`@UserHome.js: Authenticated user`);
+        // console.log(user);
       })
       .catch(err => console.log(err));
   };
 
   render() {
-    const { auth } = this.props;
-    let uid = localStorage.getItem('uid');
-    console.log(`@ClientHome: Current uid=${uid}`);
 
-    if (!auth.uid) return <Redirect to='/signin' />
+    const { auth } = this.props;
+
+    if (!auth.uid) { return <Redirect to='/signin' /> };
+
+    // console.log(this.props)
+
     return (
       <div>
         <Background backgroundImage="https://llppetminding.com.au/wp-content/uploads/2012/10/malibuzeus-and-I-print-2.jpg">
@@ -47,6 +49,9 @@ class UserHome extends Component {
           <Row>
             <Col size="md-12">
               <h1>Welcome <strong>{this.state.authUser.firstName} {this.state.authUser.lastName}</strong> to our online booking site</h1>
+              <small>UID: {localStorage.getItem('uid')}</small><br />
+              <small>email: {this.state.authUser.email}</small><br />
+              <small>phone: {this.state.authUser.phone}</small>
               <hr />
             </Col>
           </Row>
