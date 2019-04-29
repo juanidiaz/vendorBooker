@@ -19,7 +19,7 @@ function Navbar(props) {
       <SignedOutLinks />
     );
 
-  console.log(`Print Navbar/index.js now UID=${props.authUser.uid}`);
+  // console.log(`Print Navbar/index.js now UID=${props.authUser.uid}`);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-light" id="nav">

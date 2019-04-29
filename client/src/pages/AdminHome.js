@@ -27,8 +27,8 @@ class AdminHome extends Component {
           </Row>
           <Row>
             <Col size="md-10">
-              <a href="/admin/services" class="badge badge-warning mr-2">Manage Services</a>
-              <a href="/admin/users" class="badge badge-warning mr-2">Manage Users</a>
+              <a href="/admin/services" className="badge badge-warning mr-2">Manage Services</a>
+              <a href="/admin/users" className="badge badge-warning mr-2">Manage Users</a>
               <a href="/admin/pets" className="badge badge-warning mr-2">Manage Pets</a>
               <a href="/admin/calendar" className="badge badge-warning mr-2">Manage Calendar</a>
             </Col>
