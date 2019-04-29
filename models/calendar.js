@@ -18,6 +18,9 @@ const calendarSchema = new Schema({
     type: Boolean,
     // required: true
   },
+  userEmail:{
+    type: String
+  },
   notes: { type: String },
 });
 
