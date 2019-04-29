@@ -127,7 +127,7 @@ render() {
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-10">
-            <h1>Welcome {this.state.currentUser}</h1>
+            <h1>Welcome {this.state.currentUser.firstName}</h1>
             <h1>Book a service for your pet</h1>
           </Col>
         </Row>
