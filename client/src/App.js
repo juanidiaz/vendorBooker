@@ -9,6 +9,7 @@ import AdminHome from "./pages/AdminHome";
 import ManageServices from "./pages/ManageServices";
 import ManageUsers from "./pages/ManageUsers";
 import ManageSecUsers from "./pages/ManageSecUsers";
+import ContactUs from "./pages/ContactUs";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
@@ -68,6 +69,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/about" component={About} />
               <Route exact path="/services" component={Services} />
+              <Route exact path="/contactus" component={ContactUs} />
               <Route exact path="/booking" component={Book} />
               <Route exact path="/client*" component={UserHome} />
               <Route exact path="/admin" component={AdminHome} />

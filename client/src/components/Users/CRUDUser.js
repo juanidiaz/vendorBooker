@@ -1,6 +1,6 @@
 import React from "react";
 import { Input, TextArea, FormBtn, ListUserType } from "../Form";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 
 export function ReadUser(props) {
 
