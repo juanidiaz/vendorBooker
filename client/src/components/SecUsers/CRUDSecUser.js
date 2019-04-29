@@ -1,17 +1,20 @@
 import React from "react";
 import { Input, TextArea, FormBtn, ListSecUserType } from "../Form";
 import Form from 'react-bootstrap/Form';
-import API from "../../utils/API";
+// import API from "../../utils/API";
 
 export function ReadSecUser(props) {
 
-  let returnOwner = userId => {
-    API.getUser(userId)
-      .then(user => {
-        console.log(user.data)
-        return user.data.firstName + ' ' + user.data.lastName;
-      })
-      .catch(err => console.log(err));
+  let returnOwner = id => {
+    // API.getUser(userId)
+    //   .then(user => {
+    //     console.log(user.data)
+    //     return user.data.firstName + ' ' + user.data.lastName;
+    //   })
+    //   .catch(err => console.log(err));
+
+    let user = {...props.users.find( user => user._id === id)};
+    return user;
   };
 
   return (
@@ -24,7 +27,7 @@ export function ReadSecUser(props) {
       {props.pet.petTag ? (<p><b>Tag: </b>{props.pet.petTag}</p>) : null}
       {props.pet.petBehaviour ? (<p><b>Behaviour: </b>{props.pet.petBehaviour}</p>) : null}
       {props.pet.petNotes ? (<p><b>Notes: </b>{props.pet.petNotes}</p>) : null}
-      <p><small>Owner: {props.pet.petOwner}</small>{returnOwner(props.pet.petOwner)}</p>
+      <p><small>Owner: <span className="text-success">{returnOwner(props.pet.petOwner).firstName} {returnOwner(props.pet.petOwner).lastName}</span></small></p>
       <p><small>Pet type: {props.pet.petType}</small></p>
       <button type="button" className="btn btn-danger btn-sm" onClick={props.handleDeleteSecUser} id={props.pet._id}>Delete</button>
       <button type="button" className="btn btn-success btn-sm ml-4" onClick={props.handleUpdateSecUser} id={props.pet._id}>Update</button>

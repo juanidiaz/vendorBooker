@@ -4,14 +4,16 @@ import API from "../../utils/API";
 
 export function ReadUser(props) {
 
-  // console.log(props.user)
-
   let returnPet = id => {
-    API.getSecUser(id)
-      .then(pet => {
-        return pet.data;
-      })
-      .catch(err => console.log(err));
+    // API.getSecUser(id)
+    //   .then(pet => {
+    //     console.log(pet.data.petName)
+    //     return pet.data.petName;
+    //   })
+    //   .catch(err => console.log(err));
+
+    let pet = {...props.pets.find( pet => pet._id === id)};
+    return pet;
   };
 
   return (
@@ -23,7 +25,7 @@ export function ReadUser(props) {
       <p><small>User type: {props.user.userType}</small></p>
       <p><small>This user owns:</small></p>
       {props.user.petIds.map((petId) =>
-        <p key={petId}>- {returnPet(petId)}<small> {petId}</small></p>
+        <p key={petId}>- <span className="text-success">{returnPet(petId).petName}</span><small> ({returnPet(petId).petType})</small></p>
       )}
       <button type="button" className="btn btn-danger btn-sm" onClick={props.handleDeleteUser} id={props.user._id}>Delete</button>
       <button type="button" className="btn btn-success btn-sm ml-4" onClick={props.handleUpdateUser} id={props.user._id}>Update</button>

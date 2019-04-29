@@ -13,13 +13,13 @@ const SignedOutLinks = () => {
             Log in
           </Link>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link
             to="/admin"
-            className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}>
-            Admin
+            className={window.location.pathname === "/admin" ? "nav-link active" : "nav-link"}>
+            Admin Panel
           </Link>
-        </li>
+        </li> */}
       </ul >
     </div >
   )

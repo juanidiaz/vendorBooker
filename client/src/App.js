@@ -38,15 +38,20 @@ class App extends Component {
   };
 
   getAuthUser = () => {
-    console.log(`@APP.js: loading users`);
+    // console.log(`@APP.js: loading users`);
     API.getUsers()
       .then(res => {
         this.setState({ users: res.data });
         const user = { ...this.state.users.find(user => user.uid === localStorage.getItem('uid')) }
         this.setState({ authUser: user });
-        console.log(user);
+        // console.log(user);
       })
       .catch(err => console.log(err));
+  };
+
+  redrawNavbar = () => {
+    // Force a render of the NavBar without state change...
+    this.forceUpdate();
   };
 
   render() {
@@ -54,6 +59,7 @@ class App extends Component {
       <Router>
         <div>
           <Navbar
+            redrawNavbar={this.redrawNavbar}
             authenticated={this.state.authenticated}
             authUser={this.state.authUser}
           />

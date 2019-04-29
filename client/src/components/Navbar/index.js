@@ -12,16 +12,19 @@ function Navbar(props) {
   // console.log(auth);
   const links = auth.uid ? (
     <SignedInLinks
+      redrawNavbar={props.redrawNavbar}
       authUser={props.authUser}
     />
   ) : (
       <SignedOutLinks />
     );
 
+  console.log(`Print Navbar/index.js now UID=${props.authUser.uid}`);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-light" id="nav">
       <Link className="navbar-brand" to="/">
-      <img src="/images/logo_300.png" style={{ width: "100px" }} alt="main logo" />
+        <img src="/images/logo_300.png" style={{ width: "100px" }} alt="main logo" />
       </Link>
       <div>
         <ul className="navbar-nav">
@@ -41,14 +44,14 @@ function Navbar(props) {
               Services
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link
               to="/booking"
               className={window.location.pathname === "/booking" ? "nav-link active" : "nav-link"}
             >
               Book Appointment
             </Link>
-          </li>
+          </li> */}
           {links}
         </ul>
       </div>

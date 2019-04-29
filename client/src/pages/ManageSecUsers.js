@@ -143,9 +143,11 @@ class ManageSecUsers extends Component {
     if (!auth.uid) return <Redirect to='/client' />
     return (
       <div>
-        <h1><img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' />
-          &nbsp;&nbsp;&nbsp;&nbsp;Administrator panel</h1>
-        <hr />
+        <h1>
+          {/* <img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' /> */}
+          &nbsp;&nbsp;&nbsp;&nbsp;Administrator panel
+        </h1>
+        {/* <hr /> */}
         <div style={{ background: "white" }}>
           <Container>
             <Row>
@@ -177,8 +179,8 @@ class ManageSecUsers extends Component {
                           <div className="card-body">
                             {!this.state.updating ? (
                               <ReadSecUser
-                                pet={pet}
                                 users={this.state.users}
+                                pet={pet}
                                 handleUpdateSecUser={this.handleUpdateSecUser}
                                 handleDeleteSecUser={this.handleDeleteSecUser}
                               />
@@ -214,10 +216,10 @@ class ManageSecUsers extends Component {
                             <div className="card-body">
                               {!this.state.updating ? (
                                 <ReadSecUser
+                                  users={this.state.users}
                                   pet={pet}
                                   handleUpdateSecUser={this.handleUpdateSecUser}
                                   handleDeleteSecUser={this.handleDeleteSecUser}
-                                  users={this.state.users}
                                 />
                               ) : (
                                   <UpdateSecUser

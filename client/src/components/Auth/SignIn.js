@@ -24,7 +24,7 @@ class SignIn extends Component {
 
         return (
             <div className="container">
-                <img className="logoForms" alt="logo" src="./images/logo_300.png"></img>
+                {/* <img className="logoForms" alt="logo" src="./images/logo_300.png"></img> */}
                 <div className="row">
                     <div className="col-md-6">
                         <form className="white" onSubmit={this.handleSubmit} style={{ marginBottom: "50px" }}>
