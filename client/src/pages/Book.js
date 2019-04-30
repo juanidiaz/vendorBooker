@@ -12,6 +12,7 @@ import API from "../utils/API";
 import DatePicker from "react-datepicker";
 import "../components/Calendar/react-datepicker.css";
 import { FormBtn } from "../components/Form"
+import ListSecUsers from "../components/SecUsers/ListSecUsers"
 // import NewBooking from "../components/Booking/NewBooking"
 
 class Booking extends Component {
@@ -32,6 +33,7 @@ class Booking extends Component {
     this.loadServices();
     // this.checkUser();
     this.getAuthUser();
+    this.loadSecUsers();
     }
 
   getAuthUser = () => {
@@ -141,8 +143,8 @@ render() {
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-10">
-            <h1>Welcome {this.state.currentUser.firstName}</h1>
-            <h1>Book a service for your pet</h1>
+            <h1>Welcome, {this.state.currentUser.firstName}, please book a service for your pet</h1>
+            <br/><br/>
           </Col>
         </Row>
         <Row>
@@ -168,7 +170,7 @@ render() {
             />
             {/* <NewBooking booking={this.state.booking}/> */}
             <br /><br />
-            {/* For what pet? */}
+            For what pet?
           </Col>
           <Col size="lg-7" offset="md-1">
           <Calendar
