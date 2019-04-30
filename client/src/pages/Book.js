@@ -23,7 +23,7 @@ class Booking extends Component {
     start: '',
     value: '',
     events: [],
-    userUID: '',
+    userID: '',
     currentUser: []
   };
 
@@ -52,7 +52,7 @@ class Booking extends Component {
 checkUser = () => {
   let UID=localStorage.getItem("uid")
   console.log(UID)
-  this.setState({userUID: UID})
+  this.setState({userID: UID})
   API.getUserUID(UID)
   .then(res => this.setState({currentUser: res.data}))
   // console.log(this.state.currentUser)
@@ -66,11 +66,22 @@ loadEvents = () => {
     .catch(err => console.log(err));
 };
 
+loadSecUsers = () => {
+  API.getSecUsers()
+    .then(res => {
+      this.setState({ pets: res.data });
+      // console.log(this.state.pets);
+    })
+    .catch(err => console.log(err));
+};
+
 loadServices = () => {
   API.getServices()
     .then(res => this.setState({ services: res.data }))
     .catch(err => console.log(err));
 };
+
+
 
 handleDateChange = (date) => {
   this.setState({
@@ -106,14 +117,15 @@ handleValueChange = (event) => {
   const newApp =
   {
     ...this.state.booking,
-    start: this.state.start
-    
+    start: this.state.start,
+    userID: this.state.currentUser.uid
    };
   newApp[name] = value;
 
   this.setState({
     start: this.state.start,
-    booking: newApp
+    booking: newApp,
+
   })
   console.log(this.state.booking)
   console.log(newApp)

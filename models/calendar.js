@@ -20,6 +20,9 @@ const calendarSchema = new Schema({
   petID: {
     type: String
   },
+  serviceID: {
+    type: String
+  },
   confirmed: {
     type: Boolean,
     // required: true
