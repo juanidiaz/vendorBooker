@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
+import 'moment-timezone';
 import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
 import Calendar from "../components/Calendar"
@@ -14,9 +16,25 @@ class ManageCalendar extends Component {
     users: [],
     pets: [],
     events: [],
+    services: [],
     newEvent: [],
     adding: false,
     updating: false
+  };
+
+  getUser = (id) => {
+    const user = { ...this.state.users.find(user => user._id === id) };
+    return user;
+  };
+
+  getPet = (id) => {
+    const pet = { ...this.state.pets.find(pet => pet._id === id) };
+    return pet;
+  };
+
+  getService = (id) => {
+    const service = { ...this.state.services.find(service => service._id === id) };
+    return service;
   };
 
   loadUsers = () => {
@@ -39,16 +57,36 @@ class ManageCalendar extends Component {
 
   loadEvents = () => {
     API.getCalendars()
-      .then(res => this.setState({ events: res.data }))
-    console.log(this.state.events)
-    // .catch(err => console.log(err));
+      .then(res => {
+        this.setState({ events: res.data });
+        // console.log(this.state.events);
+      })
+      .catch(err => console.log(err));
+  };
+
+  loadServices = () => {
+    API.getServices()
+      .then(res => {
+        this.setState({ services: res.data });
+        console.log(this.state.services);
+      })
+      .catch(err => console.log(err));
+  };
+
+  componentDidMount() {
+    const { auth } = { ...this.props };
+    if (!auth.uid) return <Redirect to='/client' />
+
+    this.loadEvents();
+    this.loadSecUsers();
+    this.loadUsers();
+    this.loadServices();
   };
 
   render() {
     return (
       <div>
         <h1>
-          {/* <img src='/images/logo_300.png' style={{ width: '150px', marginLeft: '10px', marginTop: '10px' }} alt='logo 300' /> */}
           &nbsp;&nbsp;&nbsp;&nbsp;Administrator panel
         </h1>
         {/* <hr /> */}
@@ -76,7 +114,22 @@ class ManageCalendar extends Component {
                 />
               </Col>
               <Col size="md-6">
-
+                <h2 style={{ color: "black" }}>
+                  Agenda
+                </h2>
+                {this.state.events.map(event =>
+                  <div key={event._id}>
+                    <strong>> <Moment format="YYYY-MMMM-DD" >{event.start}</Moment> <span className="text-success"><Moment format="h:mm A" >{event.start}</Moment></span> - <span className="text-danger"><Moment format="h:mm A" add={{ minutes: this.getService(event.serviceID).duration }}>{event.start}</Moment></span></strong>
+                    <br />
+                    {this.getService(event.serviceID).name} <small>{event.confirmed ? <span className="badge badge-pill badge-primary">Confirmed</span> : <span className="badge badge-pill badge-danger">Not Confirmed</span> }</small><br />
+                    <small>{this.getPet(event.petID).petName} {this.getPet(event.petID).petType === 'Dog' ? (
+                      <span className="badge badge-pill badge-success">{this.getPet(event.petID).petType}</span>
+                    ) : (
+                        <span className="badge badge-pill badge-warning">{this.getPet(event.petID).petType}</span>
+                      )} <i><span className="text-muted">Owner: <strong>{this.getUser(event.userID).firstName} {this.getUser(event.userID).lastName}</strong></span></i> </small>
+                    <hr />
+                  </div>
+                )}
               </Col>
             </Row>
             <Row>
@@ -90,14 +143,6 @@ class ManageCalendar extends Component {
     );
   };
 
-  componentDidMount() {
-    const { auth } = { ...this.props };
-    if (!auth.uid) return <Redirect to='/client' />
-
-    this.loadEvents();
-    this.loadSecUsers();
-    this.loadUsers();
-  };
 }
 
 const mapDispatchToProps = (dispatch) => {
