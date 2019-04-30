@@ -7,22 +7,16 @@ import Slider from "../components/Slider";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-// import API from "../utils/API";
-
-const settings = {
-  focusOnSelect: true,
-  infinite: true,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  speed: 500
-};
-
 class Home extends Component {
-  state = {
-    services: [],
-  };
+  render() {
+    const settings = {
+      focusOnSelect: true,
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      speed: 500
+    };
   
-render() {
   return (
     <div>
       <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
