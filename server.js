@@ -21,7 +21,8 @@ app.use(routes);
 // Connect to database... then if all good start server
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://vendorbooker:v3ndorbooker@ds059496.mlab.com:59496/heroku_rjwfngfr", {
+  "mongodb://localhost/vendorbooker", {
+  // "mongodb://vendorbooker:v3ndorbooker@ds059496.mlab.com:59496/heroku_rjwfngfr", {
     useNewUrlParser: true
   }
 ).then(() => {
