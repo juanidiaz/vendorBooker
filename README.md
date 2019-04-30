@@ -39,8 +39,39 @@ The project is based on **node.js**, **express.js** and **react.js**. The back e
 
 >**Screenshots**
 
+*Home page - Desktop*
+![IMAGE](./client/public/images/home.png)
+
+*About - Desktop*
+![IMAGE](./client/public/images/about.png)
+
+*Booking - Desktop*
+![IMAGE](./client/public/images/calendar.png)
+
+*Log-in page - Desktop*
+![IMAGE](./client/public/images/login.png)
+
+*Signup page - Desktop*
+![IMAGE](./client/public/images/signup.png)
+
 *Services page - Desktop*
-![IMAGE](./client/public/images/site01.png)
+![IMAGE](./client/public/images/services.png)
+
+*Admin panel: managing users - Desktop*
+![IMAGE](./client/public/images/adminUsers.png)
+
+*Admin panel: managing services - Desktop*
+![IMAGE](./client/public/images/adminServices.png)
+
+*Admin panel: managing pets - Desktop*
+![IMAGE](./client/public/images/adminPets.png)
+
+*Admin panel: managing events - Desktop*
+![IMAGE](./client/public/images/adminCalendar.png)
+
+*Client page - Desktop*
+![IMAGE](./client/public/images/userHome.png)
+
 
 ## QUESTIONS OR COMMENTS
 - Feel free to contact the developers:
