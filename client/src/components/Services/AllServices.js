@@ -21,11 +21,9 @@ export default (props) => {
                         <div className="mb-1 text-muted">Duration: {service.duration} min</div>
                         <p className="card-text mb-auto">{service.description}</p>
                         <strong className="d-inline-block mb-2 text-primary">$ {service.price}</strong>
-                        <Button
-                          // onClick={this.handleFormSubmit}
-                          color={props.color}
-                        >{props.text}
-                        </Button>
+                        <a href={"/booking"} role="button" className="badge badge-info">
+                        {props.text}
+                        </a>
                       </div>
                       <div className="col-auto d-none d-lg-block">
                         <img src={`/images/${service.images}`} width="200" height="300" alt={''}/>
