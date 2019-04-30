@@ -40,9 +40,10 @@ class Booking extends Component {
       .then(res => {
         this.setState({ users: res.data });
         const user = { ...this.state.users.find(user => user.uid === localStorage.getItem('uid')) }
-        this.setState({ authUser: user });
+        this.setState({ currentUser: user });
         console.log(`@UserHome.js: Authenticated user`);
         console.log(user);
+        // console.log(this.state.c)
       })
       .catch(err => console.log(err));
   };
@@ -106,6 +107,7 @@ handleValueChange = (event) => {
   {
     ...this.state.booking,
     start: this.state.start
+    
    };
   newApp[name] = value;
 

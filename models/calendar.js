@@ -14,18 +14,15 @@ const calendarSchema = new Schema({
     type: String,
     // required: true
   },
-  userEmail: {
+  userID: {
     type: String
   },
-  secondaryUserName: {
+  petID: {
     type: String
   },
-  status: {
+  confirmed: {
     type: Boolean,
     // required: true
-  },
-  userEmail:{
-    type: String
   },
   notes: { type: String },
 });
