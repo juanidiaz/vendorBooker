@@ -20,12 +20,14 @@ class Booking extends Component {
     booking: {},
     newBooking: {},
     services: [],
+    secondaryUsers: [],
     title: '',
     start: '',
     value: '',
     events: [],
     userID: '',
-    currentUser: []
+    currentUser: [],
+    pet: ''
   };
 
   componentDidMount() {
@@ -71,7 +73,7 @@ loadEvents = () => {
 loadSecUsers = () => {
   API.getSecUsers()
     .then(res => {
-      this.setState({ pets: res.data });
+      this.setState({ secondaryUsers: res.data });
       // console.log(this.state.pets);
     })
     .catch(err => console.log(err));
@@ -171,6 +173,12 @@ render() {
             {/* <NewBooking booking={this.state.booking}/> */}
             <br /><br />
             For what pet?
+            <ListSecUsers
+            name="pets"
+            services = {this.state.secondaryUsers}
+            selected={this.state.title}
+            onChange={this.handleValueChange}
+            />
           </Col>
           <Col size="lg-7" offset="md-1">
           <Calendar
