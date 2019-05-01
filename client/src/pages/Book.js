@@ -17,19 +17,20 @@ import { FormBtn } from "../components/Form"
 class Booking extends Component {
   state = {
     booking: {},
+    newBooking: {},
     services: [],
     title: '',
     start: '',
     value: '',
     events: [],
-    userUID: '',
+    userID: '',
     currentUser: []
   };
 
   componentDidMount() {
     this.loadEvents();
     this.loadServices();
-    this.checkUser();
+    // this.checkUser();
     this.getAuthUser();
     }
 
@@ -39,9 +40,10 @@ class Booking extends Component {
       .then(res => {
         this.setState({ users: res.data });
         const user = { ...this.state.users.find(user => user.uid === localStorage.getItem('uid')) }
-        this.setState({ authUser: user });
+        this.setState({ currentUser: user });
         console.log(`@UserHome.js: Authenticated user`);
         console.log(user);
+        // console.log(this.state.c)
       })
       .catch(err => console.log(err));
   };
@@ -50,7 +52,7 @@ class Booking extends Component {
 checkUser = () => {
   let UID=localStorage.getItem("uid")
   console.log(UID)
-  this.setState({userUID: UID})
+  this.setState({userID: UID})
   API.getUserUID(UID)
   .then(res => this.setState({currentUser: res.data}))
   // console.log(this.state.currentUser)
@@ -64,11 +66,22 @@ loadEvents = () => {
     .catch(err => console.log(err));
 };
 
+loadSecUsers = () => {
+  API.getSecUsers()
+    .then(res => {
+      this.setState({ pets: res.data });
+      // console.log(this.state.pets);
+    })
+    .catch(err => console.log(err));
+};
+
 loadServices = () => {
   API.getServices()
     .then(res => this.setState({ services: res.data }))
     .catch(err => console.log(err));
 };
+
+
 
 handleDateChange = (date) => {
   this.setState({
@@ -84,15 +97,15 @@ handleServiceChange = (Service) => {
 }
 
 handleSubmitNewBooking = () => {
-const newBooking = {
-  // user: ,
-  // secondUserId:,
-  title: this.state.newBooking,
-  start: this.state.start
-}
-  API.addCalendar(newBooking)
+// const newBooking = {
+//   // user: ,
+//   // secondUserId:,
+//   title: this.state.booking,
+//   // start: this.state.start
+// }
+  API.addCalendar(this.state.booking)
   .then(res => {
-    alert(`Appointment for ${this.state.title} has been booked for ${this.state.start} has been requested!`)
+    alert(`Appointment for ${this.state.booking.title} has been booked for ${this.state.start} has been requested!`)
       this.loadEvents();
     })
     .catch(err => console.log(err));
@@ -103,15 +116,19 @@ handleValueChange = (event) => {
   const { name, value } = event.target;
   const newApp =
   {
-    ...this.state.newBooking,
-    start: this.state.start
+    ...this.state.booking,
+    start: this.state.start,
+    userID: this.state.currentUser.uid
    };
   newApp[name] = value;
 
   this.setState({
     start: this.state.start,
-    newBooking: newApp
+    booking: newApp,
+
   })
+  console.log(this.state.booking)
+  console.log(newApp)
 };
 
 render() {
@@ -124,7 +141,7 @@ render() {
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-10">
-            <h1>Welcome {this.state.currentUser}</h1>
+            <h1>Welcome {this.state.currentUser.firstName}</h1>
             <h1>Book a service for your pet</h1>
           </Col>
         </Row>
@@ -144,10 +161,10 @@ render() {
                             <br /><br />
             What do you need done?
             <ListServices
-            name="services"
+            name="title"
             services = {this.state.services}
             selected={this.state.title}
-            onChange={this.handleServiceChange}
+            onChange={this.handleValueChange}
             />
             {/* <NewBooking booking={this.state.booking}/> */}
             <br /><br />
@@ -162,7 +179,7 @@ render() {
         <br /><br />
 
         <FormBtn
-                                disabled={!(this.state.start && this.state.title)}
+                                disabled={!(this.state.start && this.state.newBooking)}
                                 onClick={this.handleSubmitNewBooking}
                                 color="primary"
                             >

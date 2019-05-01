@@ -22,6 +22,7 @@ app.use(routes);
 mongoose.connect(
   process.env.MONGODB_URI ||
   "mongodb://localhost/vendorbooker", {
+  // "mongodb://vendorbooker:v3ndorbooker@ds059496.mlab.com:59496/heroku_rjwfngfr", {
     useNewUrlParser: true
   }
 ).then(() => {
