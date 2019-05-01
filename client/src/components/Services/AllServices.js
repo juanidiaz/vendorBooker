@@ -21,7 +21,7 @@ export default (props) => {
                         <div className="mb-1 text-muted">Duration: {service.duration} min</div>
                         <p className="card-text mb-auto">{service.description}</p>
                         <strong className="d-inline-block mb-2 text-primary">$ {service.price}</strong>
-                        <a href={"/booking"} role="button" className="badge badge-info">
+                        <a href={"/booking"} role="button" className="btn badge-info">
                         {props.text}
                         </a>
                       </div>
