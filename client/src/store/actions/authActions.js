@@ -10,6 +10,7 @@ export const signIn = (credentials) => {
       credentials.password
     ).then((res) => {
       localStorage.setItem('uid', (res.user.uid));
+      window.location.reload();
       dispatch({ type: 'LOGIN_SUCCESS' });
     }).catch((err) => {
       dispatch({ type: 'LOGIN_ERROR', err });
