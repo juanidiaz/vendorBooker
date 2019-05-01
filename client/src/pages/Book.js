@@ -79,6 +79,21 @@ getPetsForUser = () => {
 //   .catch(err => console.log(err));
 // }
 
+getUser = (id) => {
+  const user = { ...this.state.users.find(user => user._id === id) };
+  return user;
+};
+
+getPet = (id) => {
+  const pet = { ...this.state.pets.find(pet => pet._id === id) };
+  return pet;
+};
+
+getService = (id) => {
+  const service = { ...this.state.services.find(service => service._id === id) };
+  return service;
+};
+
 loadEvents = () => {
   API.getCalendars()
     .then(res => this.setState({ events: res.data }))
@@ -131,8 +146,10 @@ handleValueChange = (event) => {
   {
     ...this.state.booking,
     start: this.state.start,
-    userID: this.state.currentUser.uid,
-    petID: this.state.pet._id
+    userID: this.state.currentUser._id,
+    petID: this.state.pet._id,
+    // serviceID: this.state.service._id,
+
    };
   newApp[name] = value;
 
