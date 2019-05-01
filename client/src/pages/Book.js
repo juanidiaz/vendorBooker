@@ -12,6 +12,7 @@ import API from "../utils/API";
 import DatePicker from "react-datepicker";
 import "../components/Calendar/react-datepicker.css";
 import { FormBtn } from "../components/Form"
+import ListSecUsers from "../components/SecUsers/ListSecUsers"
 // import NewBooking from "../components/Booking/NewBooking"
 
 class Booking extends Component {
@@ -19,12 +20,15 @@ class Booking extends Component {
     booking: {},
     newBooking: {},
     services: [],
+    secondaryUsers: [],
     title: '',
     start: '',
     value: '',
     events: [],
     userID: '',
-    currentUser: []
+    currentUser: [],
+    pet: '',
+    users: []
   };
 
   componentDidMount() {
@@ -32,6 +36,8 @@ class Booking extends Component {
     this.loadServices();
     // this.checkUser();
     this.getAuthUser();
+    this.loadSecUsers();
+    this.getPetsForUser();
     }
 
   getAuthUser = () => {
@@ -48,16 +54,45 @@ class Booking extends Component {
       .catch(err => console.log(err));
   };
 
+  loadUsers = () => {
+    API.getUsers()
+      .then(res => {
+        this.setState({ users: res.data });
+        console.log(this.state.users);
+      })
+      .catch(err => console.log(err));
+  };
 
-checkUser = () => {
-  let UID=localStorage.getItem("uid")
-  console.log(UID)
-  this.setState({userID: UID})
-  API.getUserUID(UID)
-  .then(res => this.setState({currentUser: res.data}))
-  // console.log(this.state.currentUser)
-  .catch(err => console.log(err));
+getPetsForUser = () => {
+  // const pet = this.state.currentUser.pet
+  console.log(this.state.currentUser.petIDs)
+  // API.getSecUser()
 }
+
+// checkUser = () => {
+//   let UID=localStorage.getItem("uid")
+//   console.log(UID)
+//   this.setState({userID: UID})
+//   API.getUserUID(UID)
+//   .then(res => this.setState({currentUser: res.data}))
+//   // console.log(this.state.currentUser)
+//   .catch(err => console.log(err));
+// }
+
+getUser = (id) => {
+  const user = { ...this.state.users.find(user => user._id === id) };
+  return user;
+};
+
+getPet = (id) => {
+  const pet = { ...this.state.pets.find(pet => pet._id === id) };
+  return pet;
+};
+
+getService = (id) => {
+  const service = { ...this.state.services.find(service => service._id === id) };
+  return service;
+};
 
 loadEvents = () => {
   API.getCalendars()
@@ -69,8 +104,8 @@ loadEvents = () => {
 loadSecUsers = () => {
   API.getSecUsers()
     .then(res => {
-      this.setState({ pets: res.data });
-      // console.log(this.state.pets);
+      this.setState({ secondaryUsers: res.data });
+      console.log(this.state.secondaryUsers);
     })
     .catch(err => console.log(err));
 };
@@ -80,8 +115,6 @@ loadServices = () => {
     .then(res => this.setState({ services: res.data }))
     .catch(err => console.log(err));
 };
-
-
 
 handleDateChange = (date) => {
   this.setState({
@@ -97,12 +130,7 @@ handleServiceChange = (Service) => {
 }
 
 handleSubmitNewBooking = () => {
-// const newBooking = {
-//   // user: ,
-//   // secondUserId:,
-//   title: this.state.booking,
-//   // start: this.state.start
-// }
+
   API.addCalendar(this.state.booking)
   .then(res => {
     alert(`Appointment for ${this.state.booking.title} has been booked for ${this.state.start} has been requested!`)
@@ -118,7 +146,10 @@ handleValueChange = (event) => {
   {
     ...this.state.booking,
     start: this.state.start,
-    userID: this.state.currentUser.uid
+    userID: this.state.currentUser._id,
+    petID: this.state.pet._id,
+    // serviceID: this.state.service._id,
+
    };
   newApp[name] = value;
 
@@ -141,8 +172,8 @@ render() {
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-10">
-            <h1>Welcome {this.state.currentUser.firstName}</h1>
-            <h1>Book a service for your pet</h1>
+            <h1>Welcome, {this.state.currentUser.firstName}, please book a service for your pet</h1>
+            <br/><br/>
           </Col>
         </Row>
         <Row>
@@ -168,7 +199,13 @@ render() {
             />
             {/* <NewBooking booking={this.state.booking}/> */}
             <br /><br />
-            {/* For what pet? */}
+            For what pet?
+            <ListSecUsers
+            name="pets"
+            pets = {this.state.secondaryUsers}
+            selected={this.state.pet}
+            onChange={this.handleValueChange}
+            />
           </Col>
           <Col size="lg-7" offset="md-1">
           <Calendar

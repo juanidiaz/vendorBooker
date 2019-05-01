@@ -12,9 +12,9 @@ export default (props) => {
   return(
   <div className="form-group">
     <select className="form-control" name={props.name} {...props}>
-      <option selected value="">Available Services</option>
+      <option selected value="">Your pets</option>
       {props.pets.map(pet => (
-        <option value={pet.name} key={pet.petid}>{pet.name}</option>
+        <option value={pet.petName} key={pet._id}>{pet.petName}</option>
       ))}
     </select>
   </div>
