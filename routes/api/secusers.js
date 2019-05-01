@@ -31,7 +31,7 @@ router
             .catch(err => res.status(422).json(err));
     })
     .put((req, res) => { // update ONE secondary user from database
-        secusers.updateOne(req.params.id, req.body)
+        secusers.findOneAndUpdate(req.params.id, req.body)
             .then((data) => {
                 res.send(data)
             })

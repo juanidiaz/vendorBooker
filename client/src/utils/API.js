@@ -110,8 +110,8 @@ export default {
   },
 
   // Update ONE calendar event by ID
-  uptadeCalendar: (id) => {
-    return axios.put("/api/calendar/" + id);
+  updateCalendar: (id, data) => {
+    return axios.put("/api/calendar/" + id, data);
   },
 
   // Delete ONE calendar event by ID
