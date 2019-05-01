@@ -21,14 +21,17 @@ class Booking extends Component {
     newBooking: {},
     services: [],
     secondaryUsers: [],
-    title: '',
+    // title: '',
     start: '',
-    value: '',
+    end: '',
     events: [],
-    userID: '',
+    users: [],
     currentUser: [],
+    userID: '',
     pet: '',
-    users: []
+    petID: '',
+    service: '',
+    serviceID: '',
   };
 
   componentDidMount() {
@@ -133,7 +136,7 @@ handleSubmitNewBooking = () => {
 
   API.addCalendar(this.state.booking)
   .then(res => {
-    alert(`Appointment for ${this.state.booking.title} has been booked for ${this.state.start} has been requested!`)
+    alert(`Appointment for ${this.state.start} has been requested!`)
       this.loadEvents();
     })
     .catch(err => console.log(err));
@@ -147,9 +150,8 @@ handleValueChange = (event) => {
     ...this.state.booking,
     start: this.state.start,
     userID: this.state.currentUser._id,
-    petID: this.state.pet._id,
-    // serviceID: this.state.service._id,
-
+    petID: this.state.petID,
+    serviceID: this.state.serviceID
    };
   newApp[name] = value;
 
@@ -194,7 +196,8 @@ render() {
             <ListServices
             name="title"
             services = {this.state.services}
-            selected={this.state.title}
+            // selected={this.state.serviceID}
+            defaultValue={this.state.serviceID}
             onChange={this.handleValueChange}
             />
             {/* <NewBooking booking={this.state.booking}/> */}
@@ -203,7 +206,7 @@ render() {
             <ListSecUsers
             name="pets"
             pets = {this.state.secondaryUsers}
-            selected={this.state.pet}
+            selected={this.state.petID}
             onChange={this.handleValueChange}
             />
           </Col>

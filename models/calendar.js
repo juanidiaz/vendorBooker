@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const calendarSchema = new Schema({
-  title: {
-    type: String,
-    ref: "title"
-  },
-    start: {
+  start: {
     type: String,
     // required: true
   },
