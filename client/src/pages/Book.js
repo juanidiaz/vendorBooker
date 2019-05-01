@@ -27,7 +27,8 @@ class Booking extends Component {
     events: [],
     userID: '',
     currentUser: [],
-    pet: ''
+    pet: '',
+    users: []
   };
 
   componentDidMount() {
@@ -36,6 +37,7 @@ class Booking extends Component {
     // this.checkUser();
     this.getAuthUser();
     this.loadSecUsers();
+    this.getPetsForUser();
     }
 
   getAuthUser = () => {
@@ -52,16 +54,30 @@ class Booking extends Component {
       .catch(err => console.log(err));
   };
 
+  loadUsers = () => {
+    API.getUsers()
+      .then(res => {
+        this.setState({ users: res.data });
+        console.log(this.state.users);
+      })
+      .catch(err => console.log(err));
+  };
 
-checkUser = () => {
-  let UID=localStorage.getItem("uid")
-  console.log(UID)
-  this.setState({userID: UID})
-  API.getUserUID(UID)
-  .then(res => this.setState({currentUser: res.data}))
-  // console.log(this.state.currentUser)
-  .catch(err => console.log(err));
+getPetsForUser = () => {
+  // const pet = this.state.currentUser.pet
+  console.log(this.state.currentUser.petIDs)
+  // API.getSecUser()
 }
+
+// checkUser = () => {
+//   let UID=localStorage.getItem("uid")
+//   console.log(UID)
+//   this.setState({userID: UID})
+//   API.getUserUID(UID)
+//   .then(res => this.setState({currentUser: res.data}))
+//   // console.log(this.state.currentUser)
+//   .catch(err => console.log(err));
+// }
 
 loadEvents = () => {
   API.getCalendars()
@@ -74,7 +90,7 @@ loadSecUsers = () => {
   API.getSecUsers()
     .then(res => {
       this.setState({ secondaryUsers: res.data });
-      // console.log(this.state.pets);
+      console.log(this.state.secondaryUsers);
     })
     .catch(err => console.log(err));
 };
@@ -84,8 +100,6 @@ loadServices = () => {
     .then(res => this.setState({ services: res.data }))
     .catch(err => console.log(err));
 };
-
-
 
 handleDateChange = (date) => {
   this.setState({
@@ -101,12 +115,7 @@ handleServiceChange = (Service) => {
 }
 
 handleSubmitNewBooking = () => {
-// const newBooking = {
-//   // user: ,
-//   // secondUserId:,
-//   title: this.state.booking,
-//   // start: this.state.start
-// }
+
   API.addCalendar(this.state.booking)
   .then(res => {
     alert(`Appointment for ${this.state.booking.title} has been booked for ${this.state.start} has been requested!`)
@@ -122,7 +131,8 @@ handleValueChange = (event) => {
   {
     ...this.state.booking,
     start: this.state.start,
-    userID: this.state.currentUser.uid
+    userID: this.state.currentUser.uid,
+    petID: this.state.pet._id
    };
   newApp[name] = value;
 
@@ -175,8 +185,8 @@ render() {
             For what pet?
             <ListSecUsers
             name="pets"
-            services = {this.state.secondaryUsers}
-            selected={this.state.title}
+            pets = {this.state.secondaryUsers}
+            selected={this.state.pet}
             onChange={this.handleValueChange}
             />
           </Col>
