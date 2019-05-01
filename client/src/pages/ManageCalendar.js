@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
-import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
 import Calendar from "../components/Calendar"
 import API from "../utils/API";
@@ -73,6 +72,17 @@ class ManageCalendar extends Component {
       .catch(err => console.log(err));
   };
 
+  toggleConfirmation = (id) => {
+    API.getCalendar(id)
+      .then(res => {
+        API.updateCalendar(res.data._id, { confirmed: !res.data.confirmed })
+          .then(() => {
+            this.loadEvents();
+          })
+          .catch(err => console.log(err));
+      }).catch(err => console.log(err));
+  }
+
   componentDidMount() {
     const { auth } = { ...this.props };
     if (!auth.uid) return <Redirect to='/client' />
@@ -121,7 +131,7 @@ class ManageCalendar extends Component {
                   <div key={event._id}>
                     <strong>> <Moment format="YYYY-MMMM-DD" >{event.start}</Moment> <span className="text-success"><Moment format="h:mm A" >{event.start}</Moment></span> - <span className="text-danger"><Moment format="h:mm A" add={{ minutes: this.getService(event.serviceID).duration }}>{event.start}</Moment></span></strong>
                     <br />
-                    {this.getService(event.serviceID).name} <small>{event.confirmed ? <span className="badge badge-pill badge-primary">Confirmed</span> : <span className="badge badge-pill badge-danger">Not Confirmed</span> }</small><br />
+                    {this.getService(event.serviceID).name} <small>{event.confirmed ? <span className="badge badge-pill badge-primary" onClick={() => this.toggleConfirmation(event._id)}>Confirmed</span> : <span className="badge badge-pill badge-danger" onClick={() => this.toggleConfirmation(event._id)}>Not Confirmed</span>}</small><br />
                     <small>{this.getPet(event.petID).petName} {this.getPet(event.petID).petType === 'Dog' ? (
                       <span className="badge badge-pill badge-success">{this.getPet(event.petID).petType}</span>
                     ) : (
