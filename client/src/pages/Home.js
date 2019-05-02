@@ -6,23 +6,32 @@ import Container from "../components/Container";
 import Slider from "../components/Slider";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
-// import API from "../utils/API";
-
-const settings = {
-  focusOnSelect: true,
-  infinite: true,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  speed: 500
-};
+import API from "../utils/API";
 
 class Home extends Component {
   state = {
     services: [],
   };
+
+  componentDidMount() {
+    this.loadServices();
+  }
+
+  loadServices = () => {
+    API.getServices()
+      .then(res => this.setState({ services: res.data }))
+      .catch(err => console.log(err));
+  };
+
+  render() {
+    const settings = {
+      focusOnSelect: true,
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      speed: 500
+    };
   
-render() {
   return (
     <div>
       <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
@@ -36,81 +45,20 @@ render() {
         </Row>
         <Row>
           <Col size="md-12">
-    
             <Slider {...settings}>
-           <div>
-              <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/bathingDog.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
-                <Card.Body>
-                <Card.Title>Bathing</Card.Title>
-                <Button variant="info" href="/services">More Info</Button>
-                </Card.Body>
-              </Card>
-            </div>
-            <div>
-              <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/dryingDog.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
-                <Card.Body>
-                <Card.Title>Drying and brushing</Card.Title>
-                <Button variant="info" href="/services">More Info</Button>
-                </Card.Body>
-              </Card>
-            </div>
-            <div>
-              <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/demattingDog.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
-                <Card.Body>
-                <Card.Title>De-tangle</Card.Title>
-                <Button variant="info" href="/services">More Info</Button>
-                </Card.Body>
-              </Card>
-            </div>
-            <div>
-              <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/earCleaning.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
-                <Card.Body>
-                <Card.Title>Ear cleaning</Card.Title>
-                <Button variant="info" href="/services">More Info</Button>
-                </Card.Body>
-              </Card>
-            </div>
-            <div>
-              <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/haircutImg.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
-                <Card.Body>
-                <Card.Title>Haircut</Card.Title>
-                <Button variant="info" href="/services">More Info</Button>
-                </Card.Body>
-              </Card>
-            </div>
-            <div>
-              <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/nailTrim.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
-                <Card.Body>
-                <Card.Title>Nail trimming</Card.Title>
-                <Button variant="info" href="/services">More Info</Button>
-                </Card.Body>
-              </Card>
-            </div>
-            <div>
-            <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/teethCleaning.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
-              <Card.Body>
-              <Card.Title>Teeth clearning</Card.Title>
-              <Button variant="info" href="/services">More Info</Button>
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-          <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="https://alexisyepes.github.io/amazingpetgrooming/assets/images/spaDog.jpg" alt="bathing" style={{ height:"200px", width: "270px", padding: "1rem"}}/>
-            <Card.Body>
-            <Card.Title>Spa packages</Card.Title>
-            <Button variant="info" href="/services">More Info</Button>
-            </Card.Body>
-          </Card>
-        </div>
-          </Slider>
+    
+                  {this.state.services.map(service => (
+                    <div className="col-auto d-none d-lg-block" key={service._id}>
+                    <Card.Img variant="top" src={`/images/${service.images}`} alt="bathing" style={{  width: "170px" }} />
+                    <Card.Body>
+                      <Card.Title>{service.name}</Card.Title>
+                      <Button variant="info" href="/services">More Info</Button>
+                    </Card.Body>
+                    </div>
+                   ))
+                }
+
+            </Slider>
           </Col>
         </Row>
 
