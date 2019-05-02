@@ -44,6 +44,14 @@ function Navbar(props) {
               Services
             </Link>
           </li>
+          <li className="nav-item">
+            <Link
+              to="/contactus"
+              className={window.location.pathname === "/contactus" ? "nav-link active" : "nav-link"}
+            >
+              Contact us
+            </Link>
+          </li>
           {/* <li className="nav-item">
             <Link
               to="/booking"
