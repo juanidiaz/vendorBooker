@@ -13,7 +13,6 @@ import DatePicker from "react-datepicker";
 import "../components/Calendar/react-datepicker.css";
 import { FormBtn } from "../components/Form"
 import ListSecUsers from "../components/SecUsers/ListSecUsers"
-// import NewBooking from "../components/Booking/NewBooking"
 
 class Booking extends Component {
   state = {
@@ -63,22 +62,6 @@ class Booking extends Component {
       .catch(err => console.log(err));
   };
 
-getPetsForUser = () => {
-  // const pet = this.state.currentUser.pet
-  console.log(this.state.currentUser.petIDs)
-  // API.getSecUser()
-}
-
-// checkUser = () => {
-//   let UID=localStorage.getItem("uid")
-//   console.log(UID)
-//   this.setState({userID: UID})
-//   API.getUserUID(UID)
-//   .then(res => this.setState({currentUser: res.data}))
-//   // console.log(this.state.currentUser)
-//   .catch(err => console.log(err));
-// }
-
 getUser = (id) => {
   const user = { ...this.state.users.find(user => user._id === id) };
   return user;
@@ -105,7 +88,6 @@ loadSecUsers = () => {
   API.getSecUsers()
     .then(res => {
       this.setState({ secondaryUsers: res.data });
-      console.log(this.state.secondaryUsers);
     })
     .catch(err => console.log(err));
 };
@@ -148,8 +130,7 @@ handleValueChange = (event) => {
     start: this.state.start,
     userID: this.state.currentUser._id,
     petID: this.state.pet._id,
-    // serviceID: this.state.service._id,
-
+    confirmed: false
    };
   newApp[name] = value;
 
@@ -158,8 +139,6 @@ handleValueChange = (event) => {
     booking: newApp,
 
   })
-  console.log(this.state.booking)
-  console.log(newApp)
 };
 
 render() {
