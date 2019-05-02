@@ -14,7 +14,7 @@ export default (props) => {
     <select className="form-control" name={props.name} {...props}>
       <option selected value="">Your pets</option>
       {props.pets.map(pet => (
-        <option value={pet.petName} key={pet._id}>{pet.petName}</option>
+        <option value={pet._id} key={pet._id}>{pet.petName}</option>
       ))}
     </select>
   </div>
