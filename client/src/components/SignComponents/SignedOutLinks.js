@@ -9,7 +9,7 @@ const SignedOutLinks = () => {
         <li className="nav-item">
           <Link
             to="/signin"
-            className={window.location.pathname === "/about" ? "nav-link active" : "nav-link"}>
+            className={window.location.pathname === "/signin" ? "nav-link active" : "nav-link"}>
             Log in
           </Link>
         </li>
