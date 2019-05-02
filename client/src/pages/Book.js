@@ -133,7 +133,7 @@ handleSubmitNewBooking = () => {
 
   API.addCalendar(this.state.booking)
   .then(res => {
-    alert(`Appointment for ${this.state.booking.title} has been booked for ${this.state.start} has been requested!`)
+    alert(`Appointment for ${this.state.start} has been requested and will be confirmed shortly.`)
       this.loadEvents();
     })
     .catch(err => console.log(err));
@@ -192,7 +192,7 @@ render() {
                             <br /><br />
             What do you need done?
             <ListServices
-            name="title"
+            name="serviceID"
             services = {this.state.services}
             selected={this.state.title}
             onChange={this.handleValueChange}
@@ -201,7 +201,7 @@ render() {
             <br /><br />
             For what pet?
             <ListSecUsers
-            name="pets"
+            name="petID"
             pets = {this.state.secondaryUsers}
             selected={this.state.pet}
             onChange={this.handleValueChange}
