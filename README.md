@@ -6,7 +6,7 @@ See the project [live](https://idiaz-vendorbooker.herokuapp.com/)!
 
 > **Cretaed by**
 - Christopher Donner @ <christopher.donner@gmail.com>!
-- Alexis Yepes @ <alexisyepes@yahoo.com>!
+- Alexis Yepes @ <alexisyep@gmail.com>!
 - Pryambudhi Cahyadi @ <pcahyadi@gmail.com>!
 - Juan I Diaz @ <jdi@idiaz.ca>!
 
