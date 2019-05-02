@@ -48,8 +48,9 @@ class Home extends Component {
             <Slider {...settings}>
     
                   {this.state.services.map(service => (
-                    <div className="col-auto d-none d-lg-block">
-                    <Card.Img variant="top" src={`/images/${service.images}`} alt="bathing" style={{ height: "300px", width: "200px", padding: "1.5rem" }} />
+                    <div className="col-auto d-none d-lg-block" key={service._id}>
+                    <Card.Img variant="top" src={`/images/${service.images}`} alt="bathing" style={{  width: "170px" }} />
+
                     <Card.Body>
                       <Card.Title>{service.name}</Card.Title>
                       <Button variant="info" href="/services">More Info</Button>
