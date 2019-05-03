@@ -27,12 +27,12 @@ The project is based on **node.js**, **express.js** and **react.js**. The back e
     - AXIOS
     - REDUX
     - Full calendar
+    - Google Firebase *(user authentication)*
 
 - **BACK END**
     - node.js
     - Express
     - Mongoose / mLab MongoDB (Heroku)
-    - Google Firebase
     
 - **Deployment**
     - Heroku
@@ -76,7 +76,7 @@ The project is based on **node.js**, **express.js** and **react.js**. The back e
 ## QUESTIONS OR COMMENTS
 - Feel free to contact the developers:
     - Christopher Donner @ <christopher.donner@gmail.com>!
-    - Alexis Yepes @ <alexisyepes@yahoo.com>!
+    - Alexis Yepes @ <alexisyep@gmail.com>!
     - Pryambudhi Cahyadi @ <pcahyadi@gmail.com>!
     - Juan I Diaz @ <jdi@idiaz.ca>!
 - See the **depolyed** project [live](https://idiaz-vendorbooker.herokuapp.com/)
