@@ -34,7 +34,7 @@ class Home extends Component {
   
   return (
     <div>
-      <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/perro-secandose.jpg">
+      <Background backgroundImage="https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/08/16160339/akc-dog-grooming-at-home-729.jpg">
       </Background>
 
       <Container style={{ marginTop: 30 }}>
