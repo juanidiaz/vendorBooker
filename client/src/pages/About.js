@@ -7,7 +7,7 @@ import Col from "../components/Col";
 function About() {
   return (
     <div>
-    <Background backgroundImage="http://amazingpetgrooming.ca/wp-content/uploads/2016/11/mascotinos-hotel-spa-perro-mascota-varios-perros.png">
+    <Background backgroundImage="http://www.happypawsunleashed.com/wp-content/uploads/2015/11/dog-grooming-453x302.jpg">
     </Background>
   
       <Container style={{ marginTop: 30 }}>
