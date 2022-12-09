@@ -22,7 +22,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "mongoose": "^5.5.0",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "if-env": "^1.0.4",
     "enquire.js": "^2.1.6",
     "json2mq": "^0.2.0",
